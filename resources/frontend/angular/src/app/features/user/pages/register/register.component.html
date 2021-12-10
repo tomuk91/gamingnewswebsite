@@ -1,0 +1,174 @@
+<form [formGroup]="form" (submit)="submit()" class="form-body">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div
+        *ngIf="errorMessage"
+        class="col-md-auto alert alert-danger d-flex align-items-center"
+        role="alert"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
+          viewBox="0 0 16 16"
+          role="img"
+          aria-label="Warning:"
+        >
+          <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+          />
+        </svg>
+        <div>
+          {{ errorMessage | json }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Register</h3>
+          <p>Complete form below to continue</p>
+          <div class form-group>
+            <input
+              formControlName="username"
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              [ngClass]="{
+                'is-invalid':
+                  submitted && f.username.errors && f.username.touched
+              }"
+            />
+            <div
+              *ngIf="submitted && f.username.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.username.errors.required">Username is required</div>
+              <div *ngIf="f.username.errors.minlength">
+                Username should be more than 3 characters
+              </div>
+              <div *ngIf="f.username.errors.maxlength">
+                Username should be less than than 10 characters
+              </div>
+            </div>
+          </div>
+          <div class form-group>
+            <input
+              formControlName="first_name"
+              type="text"
+              class="form-control"
+              placeholder="First Name"
+              [ngClass]="{
+                'is-invalid':
+                  submitted && f.first_name.errors && f.first_name.touched
+              }"
+            />
+            <div
+              *ngIf="submitted && f.first_name.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.first_name.errors.required">
+                First name is required
+              </div>
+              <div *ngIf="f.first_name.errors.maxlength">
+                First name should be less than than 15 characters
+              </div>
+            </div>
+          </div>
+          <div class form-group>
+            <input
+              formControlName="last_name"
+              type="text"
+              class="form-control"
+              placeholder="Last Name"
+              [ngClass]="{
+                'is-invalid':
+                  submitted && f.last_name.errors && f.last_name.touched
+              }"
+            />
+            <div
+              *ngIf="submitted && f.last_name.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.last_name.errors.required">
+                First name is required
+              </div>
+              <div *ngIf="f.last_name.errors.maxlength">
+                Last name should be less than than 15 characters
+              </div>
+            </div>
+          </div>
+          <div class form-group>
+            <input
+              formControlName="email"
+              type="email"
+              class="form-control"
+              placeholder="Email Address"
+              [ngClass]="{
+                'is-invalid': submitted && f.email.errors && f.email.touched
+              }"
+            />
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">
+                Please enter a valid email address
+              </div>
+            </div>
+          </div>
+          <div class form-group>
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              [ngClass]="{
+                'is-invalid':
+                  submitted && f.password.errors && f.password.touched
+              }"
+            />
+            <div
+              *ngIf="submitted && f.password.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.password">
+                Password should be between 5-10 characters, include a number and
+                special character
+              </div>
+            </div>
+          </div>
+          <div class form-group>
+            <input
+              formControlName="password_confirmation"
+              type="password"
+              class="form-control"
+              placeholder="Password Confirmation"
+              [ngClass]="{
+                'is-invalid':
+                  submitted &&
+                  f.password_confirmation.errors &&
+                  f.password_confirmation.touched
+              }"
+            />
+            <div
+              *ngIf="submitted && f.password_confirmation.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.password_confirmation.errors.required">
+                Email is required
+              </div>
+              <div *ngIf="f.password_confirmation.errors.compare">
+                Passwords are not matching
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-block mt-2">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

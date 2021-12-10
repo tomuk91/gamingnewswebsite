@@ -1,0 +1,50 @@
+.footer {
+  max-width: 100%;
+  background-color: rgb(204, 204, 204);
+}
+
+.links {
+  text-align: center;
+  font-size: 12px;
+  text-decoration: none;
+  display: block;
+  padding-left: 10px;
+  height: auto;
+  a {
+    color: black;
+    margin-top: 5px;
+    text-align: center;
+    display: block;
+  }
+  a:hover {
+    color: rgb(57, 57, 212);
+    font-weight: 800;
+  }
+}
+
+.footer-container {
+  border-left: 1px solid rgb(255, 255, 255);
+}
+
+.logo {
+  text-align: center;
+  p {
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+.links {
+  height: auto;
+  top: 0;
+  img {
+    margin-right: 5px;
+  }
+  i {
+    font-size: 15px;
+  }
+  h6 {
+    margin-bottom: 10px;
+  }
+}

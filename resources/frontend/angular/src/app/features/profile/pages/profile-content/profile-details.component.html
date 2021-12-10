@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-sm-12 col-md-12 col-lg-6 mt-4 rounded"
+      style="background-color: white"
+    >
+      <div class="pt-3 px-3 m-3">
+        <div *ngIf="!user[0].user_profile_picture">
+          <img
+            src="http://localhost:8000/storage/profile-picture.png"
+            class="img-thumbnail"
+            alt="profile picture"
+          />
+        </div>
+        <div *ngIf="user[0].user_profile_picture?.image">
+          <img
+            src="http://localhost:8000/storage/profile_images/{{
+              user[0].user_profile_picture.image
+            }}"
+            class="img-thumbnail"
+            alt="profile picture"
+          />
+        </div>
+      </div>
+      <button
+        class="btn btn-md btn-dark m-2"
+        *ngIf="!editPic"
+        (click)="changeImage()"
+      >
+        Edit Pic
+      </button>
+      <div class="d-inline" *ngIf="editPic">
+        <app-profile-image-upload [user]="user"></app-profile-image-upload>
+      </div>
+    </div>
+
+    <div class="col-md">
+      <h4 class="text-center mt-4">My Profile</h4>
+      <hr />
+      <div id="profileContainer">
+        <h6>Username:</h6>
+        <p>{{ user[0]?.username }}</p>
+      </div>
+      <div id="profileContainer">
+        <h6>First Name:</h6>
+        <p>{{ user[0]?.first_name }}</p>
+      </div>
+      <div id="profileContainer">
+        <h6>Last Name:</h6>
+        <p>{{ user[0]?.last_name }}</p>
+      </div>
+      <div id="profileContainer">
+        <h6>Email:</h6>
+        <p>{{ user[0]?.email }}</p>
+      </div>
+      <div id="profileContainer">
+        <h6>Member Since:</h6>
+        <p>{{ user[0].created_at | date }}</p>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary btn-sm d-grid gap-2 col-6 mx-auto m-2"
+        (click)="openDialogUpdate()"
+      >
+        Edit Profile
+      </button>
+    </div>
+  </div>
+  <app-quick-stats></app-quick-stats>
+  <app-accolades></app-accolades>
+
+  <!--ACTIVITIES AND ACCOUNT SERVICES SECTION OF PROFILE-->
+
+  <div class="row mx-auto">
+    <div class="col-sm-12 col-md-6">
+      <h4 class="text-center mt-4">Activities</h4>
+      <div class="account-services p-1 rounded">
+        <div class="account">
+          <h1>test</h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <h4 class="text-center mt-4">Account Services</h4>
+      <div class="account-services p-2 mb-2 rounded">
+        <div class="account mb-3">
+          <h6>Request Support:</h6>
+          <button class="btn btn-sm btn-primary">Support</button>
+        </div>
+        <div class="account mb-3">
+          <h6>Terms & Conditions:</h6>
+          <button class="btn btn-sm btn-primary">T&C</button>
+        </div>
+        <div class="account mb-3">
+          <h6>Privacy Policy:</h6>
+          <button class="btn btn-sm btn-primary">Policy</button>
+        </div>
+        <div class="account mb-3">
+          <h6>Delete Account:</h6>
+          <button class="btn btn-sm btn-danger" (click)="openDialogDelete()">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

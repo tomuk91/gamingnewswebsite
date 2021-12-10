@@ -1,0 +1,141 @@
+<h6 class="text-center" mat-dialog-title>Update desired fields to continue</h6>
+<form [formGroup]="form" class="form-body">
+  <div class="form-group">
+    <b><label for="username" class="control-label mt-3">Username</label></b>
+    <input
+      formControlName="username"
+      [readonly]="!isReadable"
+      type="text"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid': submitted && f.username.errors
+      }"
+    />
+    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div *ngIf="f.username.errors.required">Username is required</div>
+      <div *ngIf="f.username.errors.minlength">
+        Username should be more than 3 characters
+      </div>
+      <div *ngIf="f.username.errors.maxlength">
+        Username should be less than than 10 characters
+      </div>
+    </div>
+    <div class form-group>
+      <b><label for="first_name" class="control-label">First Name</label></b>
+      <input
+        formControlName="first_name"
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && f.first_name.errors
+        }"
+      />
+      <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+        <div *ngIf="f.first_name.errors.required">First name is required</div>
+        <div *ngIf="f.first_name.errors.maxlength">
+          First name should be less than than 15 characters
+        </div>
+      </div>
+    </div>
+    <div class form-group>
+      <b><label for="last_name" class="control-label">Last Name</label></b>
+      <input
+        formControlName="last_name"
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && f.last_name.errors
+        }"
+      />
+      <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+        <div *ngIf="f.last_name.errors.required">Last name is required</div>
+        <div *ngIf="f.last_name.errors.maxlength">
+          Last name should be less than than 15 characters
+        </div>
+      </div>
+    </div>
+    <div class form-group>
+      <b><label for="email" class="control-label">Email</label></b>
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': submitted && f.email.errors
+        }"
+      />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">
+          Please enter a valid email address
+        </div>
+      </div>
+    </div>
+
+    <p><b>Change Password?</b></p>
+    <div id="checkboxes">
+      <input
+        type="checkbox"
+        name="rGroup"
+        value="1"
+        id="r1"
+        checked="checked"
+        (click)="toggle()"
+      />
+      <label class="checkboxlabel mb-2" for="r1"></label>
+    </div>
+
+    <div [hidden]="!changePassword">
+      <div class form-group>
+        <b><label for="password" class="control-label">Password</label></b>
+
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control"
+          placeholder="***"
+          [ngClass]="{
+            'is-invalid': submitted && f.password.errors
+          }"
+        />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.password">
+            Password should be between 5-10 characters, include a number and
+            special character
+          </div>
+        </div>
+      </div>
+      <div class form-group>
+        <b
+          ><label for="password_confirmation" class="control-label"
+            >Confirm Password</label
+          ></b
+        >
+
+        <input
+          formControlName="password_confirmation"
+          type="password"
+          class="form-control"
+          placeholder="***"
+          [ngClass]="{
+            'is-invalid': submitted && f.password_confirmation.errors
+          }"
+        />
+        <div
+          *ngIf="submitted && f.password_confirmation.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.password_confirmation.errors.required">
+            Email is required
+          </div>
+          <div *ngIf="f.password_confirmation.errors.compare">
+            Passwords are not matching
+          </div>
+        </div>
+      </div>
+    </div>
+    <button (click)="submit()" class="btn btn-primary btn-block m-1">Update</button>
+    <button (click)="cancel()" class="btn btn-warning btn-block m-1">Cancel</button>
+  </div>
+</form>

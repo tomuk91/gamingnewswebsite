@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="footer mt-4">
+    <div class="row no-gutters m-auto">
+      <div class="logo footer-container col-md-3">
+        <img
+          src="../../assets/angular/assets/img/retromize-logo.png"
+          alt="Retromize Logo"
+          width="200"
+          height="85"
+          class="d-inline-block align-top"
+        />
+        <p>The Gaming News & Social Network</p>
+      </div>
+      <div class="col-md-3 footer-container">
+        <div class="links p-2">
+          <h6>Follow Us</h6>
+          <div class="facebook">
+            <img
+              src="//localhost:8000/storage/facebook.svg"
+              alt="facebook logo"
+              width="20"
+              height="20"
+              class="d-inline-block align-top"
+            />
+            <i class="bi d-inline bi-facebook">Facebook</i>
+          </div>
+          <div class="twitter mt-2">
+            <img
+              src="//localhost:8000/storage/twitter.svg"
+              alt="twitter logo"
+              width="20"
+              height="20"
+              class="d-inline-block align-top"
+            />
+            <i class="bi bi-twitter d-inline">Twitter</i>
+          </div>
+          <div class="youtube mt-2">
+            <img
+              src="//localhost:8000/storage/youtube.svg"
+              alt="youtube logo"
+              width="20"
+              height="20"
+              class="d-inline-block align-top"
+            />
+            <i class="bi bi-youtube d-inline">Youtube</i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 footer-container">
+        <div class="links p-2">
+          <h6>Help & Info</h6>
+          <i class="bi bi-facebook"></i>
+          <a [routerLink]="['/site/about']">About</a>
+          <a [routerLink]="['/site/privacy']">Privacy</a>
+          <a [routerLink]="['/site/contact']">Contact</a>
+          <a [routerLink]="['/site/copyright']">Copyright</a>
+        </div>
+      </div>
+      <div class="col-md-3 footer-container">
+        <div class="links p-2">
+          <h6>Explore</h6>
+          <a [routerLink]="['hot']">What's Hot</a>
+          <a [routerLink]="['/xbox']">Xbox</a>
+          <a [routerLink]="['/playstation']">Playstation</a>
+          <a [routerLink]="['/nintendo']">Nintendo</a>
+          <a [routerLink]="['/pc']">PC</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

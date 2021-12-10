@@ -1,0 +1,41 @@
+#profileContainer h6,
+#profileContainer p {
+    display: inline-flex;
+    margin-right: 6px;
+    margin-left: 20px;
+}
+
+#profileContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.account-services {
+  background-color: white;
+  min-width: 90%;
+}
+
+.account button, h6 {
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.account {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+@media (min-width: 1399.98px) {
+   .profile-container h6, p {
+    font-size:1.4rem;
+  }
+}
+
+@media (max-width: 1199.98px) {
+
+ }
+

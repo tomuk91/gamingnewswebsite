@@ -1,0 +1,28 @@
+<div class="container post-container p-4" *ngIf="post">
+  <div class="row">
+    <div class="col-md p-2">
+      <img
+        src="http://localhost:8000/storage/post_images/{{ post.image_url }}"
+        class="img-thumbnail img-fluid"
+        alt="post main picture"
+      />
+    </div>
+    <div class="col-md m-3 text-center">
+      <h1>{{ post.title }}</h1>
+      <p>{{ post.summary }}</p>
+      <div class="col d-flex justify-content-around">
+        <p>{{ calculateDiff(post.created_at) }}</p>
+        <b>|</b>
+        <p>{{ post.category }}</p>
+        <b>|</b>
+        <p>{{ post.website }}</p>
+      </div>
+      <div class="col d-flex justify-content-center m-2">
+        <a href="//{{ post.url }}" target="_blank"
+          ><button class="btn btn-secondary p-2">Read More</button></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+<app-post-comments [postId]="postId"></app-post-comments>

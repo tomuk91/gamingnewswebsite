@@ -1,0 +1,53 @@
+<form [formGroup]="form" (submit)="submit()" class="form-body">
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-items">
+        <h4>Submit Article</h4>
+        <div class="form">
+          <div class="form-group">
+            <input
+              formControlName="title"
+              type="text"
+              class="form-control"
+              placeholder="Article title"
+            />
+          </div>
+          <div class="form-floating">
+            <textarea
+              class="form-control summary"
+              type="textarea"
+              formControlName="summary"
+              id="summary"
+            ></textarea>
+            <label for="summary">Article Summary</label>
+          </div>
+          <div class="form-group">
+            <input
+              formControlName="image"
+              type="image"
+              class="form-control"
+              placeholder="Image"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              formControlName="website"
+              type="text"
+              class="form-control"
+              placeholder="Website Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+            formControlName="url"
+            type="url"
+            class="form-control"
+            placeholder="Credit URL"
+            >
+          </div>
+        </div>
+        <button class="btn btn-primary btn-md" type="submit">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,9 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.css';
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+a {
+  text-decoration: none;
+}
+
