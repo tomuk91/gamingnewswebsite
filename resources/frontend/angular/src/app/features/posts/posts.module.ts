@@ -9,7 +9,7 @@ import { LogPipe } from 'src/app/shared/pipes/log.pipe';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
-
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     PostDetailsComponent,
@@ -19,6 +19,6 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     CreateCommentComponent,
     CreatePostComponent,
   ],
-  imports: [CommonModule, RxReactiveFormsModule, PostsRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, MatSelectModule, RxReactiveFormsModule, PostsRoutingModule, ReactiveFormsModule],
 })
 export class PostsModule {}

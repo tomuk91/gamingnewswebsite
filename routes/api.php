@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\CommentsController;
@@ -46,6 +47,8 @@ Route::group([
     Route::get('/getpostcomments', [CommentsController::class, 'getPostComments']);
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/contact', [MailController::class, 'contact']);
+    Route::get('category', [CategoriesController::class, 'index']);
+    Route::post('createcategory', [CategoriesController::class, 'store']);
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);

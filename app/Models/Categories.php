@@ -9,6 +9,12 @@ class Categories extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description'];
+
+    protected $hidden = [
+      
+    ];
+
     public function posts()
     {
         return $this->belongsToMany(Post::class);

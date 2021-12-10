@@ -39,12 +39,28 @@
           </div>
           <div class="form-group">
             <input
-            formControlName="url"
-            type="url"
-            class="form-control"
-            placeholder="Credit URL"
-            >
+              formControlName="url"
+              type="url"
+              class="form-control"
+              placeholder="Credit URL"
+            />
           </div>
+          <mat-form-field>
+            <mat-label>Select Categories</mat-label>
+            <mat-select
+              class="select"
+              multiple="multiple"
+              formControlName="categories"
+              placeholder="Select relevant Categories"
+            >
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category.id"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <button class="btn btn-primary btn-md" type="submit">Submit</button>
       </div>

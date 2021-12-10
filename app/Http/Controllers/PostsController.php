@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-
-
 use App\Models\Post;
+use App\Services\Post\CreateUpdatePost;
 use App\Services\Post\PostCurrentUser;
 use App\Services\Post\PostById;
+
+
 
 
 
@@ -36,6 +37,11 @@ class PostsController extends Controller
         } else {
             return response()->json('Post Not Found', 404);
         }
+    }
+
+    public function store(Request $request, CreateUpdatePost $store) {
+
+        $action = $store->create($request);
     }
 
 }
