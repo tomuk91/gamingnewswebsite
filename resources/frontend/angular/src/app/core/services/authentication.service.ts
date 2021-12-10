@@ -106,7 +106,7 @@ export class AuthenticationService {
       grant_type: 'refresh_token',
       refresh_token: `${token}`,
       client_id: 2,
-      client_secret: '2dlWsSFzmLavevH6b3XmH6lGSABheTjIXLxuiToP',
+      client_secret: 'ZLDZ8lw5zjQ6cugG9cRbFPQF2ngMnP0T90tiRuw9',
       scope: '*',
     };
     return this.http.post<any>('//localhost:8000/oauth/token', data);

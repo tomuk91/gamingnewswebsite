@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LogPipe } from 'src/app/shared/pipes/log.pipe';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,6 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
     CreateCommentComponent,
     CreatePostComponent,
   ],
-  imports: [CommonModule, PostsRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, RxReactiveFormsModule, PostsRoutingModule, ReactiveFormsModule],
 })
 export class PostsModule {}

@@ -20,9 +20,9 @@ class CreatePostsTable extends Migration
             $table->string('image_url');
             $table->string('url');
             $table->string('website');
-            $table->string('upvotes');
-            $table->boolean('pending');
-            $table->integer('is_featured');
+            $table->string('upvotes')->default(0);
+            $table->boolean('pending')->default(0);
+            $table->integer('is_featured')->default(0);
             $table->foreignId('user_id');
             $table->timestamps();
         });
