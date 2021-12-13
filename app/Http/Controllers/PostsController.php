@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
@@ -16,9 +17,11 @@ use App\Services\Post\PostById;
 class PostsController extends Controller
 {
 
-    public function getPosts()
+    public function index()
     {
-        return response()->json(Post::all(), 200);
+        $posts = Post::with('categories')->get();
+
+        return $posts;
     }
 
     public function currentUserPosts(PostCurrentUser $post)
@@ -42,6 +45,12 @@ class PostsController extends Controller
     public function store(Request $request, CreateUpdatePost $store) {
 
         $action = $store->create($request);
+
+        if($action) {
+            return response()->json('Post Created!', 200);
+        } else {
+            return response()->json('There was a problem creating your post!', 400);
+        }
     }
 
 }

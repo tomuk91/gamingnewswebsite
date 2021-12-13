@@ -21,6 +21,11 @@ export class DataService {
       });
   }
 
+  createPost(data: any) {
+    console.log('in service');
+    return this.http.post('http://localhost:8000/createpost', data);
+  }
+
   getUserPosts(): Observable<Posts[]> {
     return this.http.get<Posts[]>('//localhost:8000/currentuserposts');
   }

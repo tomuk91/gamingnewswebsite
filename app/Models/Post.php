@@ -11,7 +11,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'title', 'summary', 'image_url', 'url', 'website', 'tags'];
+    protected $fillable = ['user_id', 'title', 'summary', 'image_url', 'url', 'website', 'tags', 'upvotes', 'pending', 'is_featured'];
 
     protected $hidden = [
         'pending'
@@ -29,7 +29,7 @@ class Post extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Categories::class);
+        return $this->belongsToMany(Categories::class)->select('name');
     }
 
     public function tags()

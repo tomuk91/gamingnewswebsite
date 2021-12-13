@@ -10,7 +10,8 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return Categories::all();
+        $categories = Categories::with('posts')->get();
+        return $categories;
     }
 
     public function store(Request $request, CreateUpdateCategory $category)

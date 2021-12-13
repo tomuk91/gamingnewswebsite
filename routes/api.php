@@ -31,6 +31,8 @@ Route::delete('/delete', [UserController::class, 'delete']);
 
 Route::get('/getLoggedInuser', [UserController::class, 'getLoggedInuser']);
 
+Route::post('/createpost', [PostsController::class, 'store']);
+
 
 Route::group([
     'prefix' => 'forgot-password',
@@ -49,6 +51,7 @@ Route::group([
     Route::post('/contact', [MailController::class, 'contact']);
     Route::get('category', [CategoriesController::class, 'index']);
     Route::post('createcategory', [CategoriesController::class, 'store']);
+    Route::get('posts', [PostsController::class, 'index']);
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);
