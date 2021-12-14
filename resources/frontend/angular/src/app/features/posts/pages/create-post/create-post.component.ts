@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { categories } from './categories';
 import { HttpClient } from '@angular/common/http';
@@ -21,28 +21,13 @@ export class CreatePostComponent implements OnInit {
     public fb: FormBuilder,
     private http: HttpClient,
     private dataService: DataService
-  ) {}
-
-  ngOnInit(): void {
-    this.sub = this.http
-      .get<categories[]>('http://localhost:8000/category')
-      .subscribe(
-        (result) => {
-          this.categories = result;
-          return result;
-        },
-        (error) => {
-          this.error = error;
-          return error;
-        }
-      );
-
+  ) {
     this.form = this.fb.group({
       title: [
         '',
         [
           Validators.required,
-          Validators.maxLength(40),
+          Validators.maxLength(150),
           Validators.minLength(5),
         ],
       ],
@@ -62,20 +47,64 @@ export class CreatePostComponent implements OnInit {
           RxwebValidators.startsWith({ value: 'http' }),
         ],
       ],
-      website: ['', [Validators.required, Validators.maxLength(40)]],
+      website: ['', [Validators.required, Validators.maxLength(60)]],
       url: ['', [Validators.required, RxwebValidators.url()]],
       categories: ['', Validators.required],
     });
   }
 
+  ngOnInit(): void {
+    this.sub = this.http
+      .get<categories[]>('http://localhost:8000/category')
+      .subscribe(
+        (result) => {
+          this.categories = result;
+          return result;
+        },
+        (error) => {
+          this.error = error;
+          return error;
+        }
+      );
+  }
+
+  isOptionDisabled(opt: any): boolean {
+    return (
+      this.form.get('categories')?.value.length >= 3 &&
+      !this.form.get('categories')?.value.find((el: any) => el == opt)
+    );
+  }
+
+  get title() {
+    return this.form.get('title') as FormControl;
+  }
+
+  get summary() {
+    return this.form.get('summary') as FormControl;
+  }
+
+  get image() {
+    return this.form.get('image') as FormControl;
+  }
+
+  get website() {
+    return this.form.get('website') as FormControl;
+  }
+
+  get url() {
+    return this.form.get('url') as FormControl;
+  }
+
+  get category() {
+    return this.form.get('categories') as FormControl;
+  }
+
   submit() {
-    console.log(this.form.value);
+    this.submitted = true;
 
-    this.submitted = false;
-
-   // if (this.form.invalid) {
-     // return;
-   // }
+    if (this.form.invalid) {
+      return;
+    }
     const formData = this.form.value;
 
     return this.dataService.createPost(formData).subscribe(

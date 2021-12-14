@@ -3,65 +3,128 @@
     <div class="form-holder">
       <div class="form-items">
         <h4>Submit Article</h4>
-        <div class="form">
-          <div class="form-group">
-            <input
-              formControlName="title"
-              type="text"
-              class="form-control"
-              placeholder="Article title"
-            />
+        <div class="form-group">
+          <input
+            formControlName="title"
+            type="text"
+            class="form-control"
+            placeholder="Article title"
+            [ngClass]="{
+              'is-invalid': submitted && title.invalid
+            }"
+          />
+          <div *ngIf="submitted && title.errors" class="invalid-feedback">
+            <div *ngIf="submitted && title.errors?.['required']">
+              A title is required for the article
+            </div>
+            <div *ngIf="submitted && title.errors?.['minlength']">
+              The title should be more than 5 characters
+            </div>
+            <div *ngIf="submitted && title.errors?.['maxlength']">
+              The tile should be less than 150 characters
+            </div>
           </div>
-          <div class="form-floating">
-            <textarea
-              class="form-control summary"
-              type="textarea"
-              formControlName="summary"
-              id="summary"
-            ></textarea>
-            <label for="summary">Article Summary</label>
-          </div>
-          <div class="form-group">
-            <input
-              formControlName="image"
-              type="url"
-              class="form-control"
-              placeholder="Image link"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              formControlName="website"
-              type="text"
-              class="form-control"
-              placeholder="Website Name"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              formControlName="url"
-              type="url"
-              class="form-control"
-              placeholder="Credit URL"
-            />
-          </div>
-          <mat-form-field>
-            <mat-label>Select Categories</mat-label>
-            <mat-select
-              class="select"
-              multiple="multiple"
-              formControlName="categories"
-              placeholder="Select relevant Categories"
-            >
-              <mat-option
-                *ngFor="let category of categories"
-                [value]="category.id"
-              >
-                {{ category.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
         </div>
+        <div class="form-floating">
+          <textarea
+            class="form-control summary"
+            type="textarea"
+            formControlName="summary"
+            id="summary"
+            [ngClass]="{
+              'is-invalid': submitted && summary.invalid
+            }"
+          ></textarea>
+          <label for="summary">Article Summary</label>
+          <div *ngIf="submitted && summary.errors" class="invalid-feedback">
+            <div *ngIf="submitted && summary.errors?.['required']">
+              The article summary is required
+            </div>
+            <div *ngIf="submitted && summary.errors?.['maxlength']">
+              Article summary should be less than 255 characters
+            </div>
+            <div *ngIf="submitted && summary.errors?.['minlength']">
+              Article summary should be longer then 10 characters
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            formControlName="image"
+            type="url"
+            class="form-control"
+            placeholder="Image link"
+            [ngClass]="{ 'is-invalid': submitted && image.invalid }"
+          />
+          <div *ngIf="submitted && image.errors" class="invalid-feedback">
+            <div *ngIf="submitted && image.errors?.['required']">
+              An image link is required
+            </div>
+            <div *ngIf="submitted && image.errors?.['url']">
+              You must supply a valid link
+            </div>
+            <div *ngIf="submitted && image.errors?.['startsWith']">
+              Link must start with 'http';
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            formControlName="website"
+            type="text"
+            class="form-control"
+            placeholder="Website Name"
+            [ngClass]="{ 'is-invalid': submitted && website.invalid }"
+          />
+          <div *ngIf="submitted && website.errors" class="invalid-feedback">
+            <div *ngIf="submitted && website.errors?.['required']">
+              Please specify the credit website for this article
+            </div>
+            <div *ngIf="submitted && website.errors?.['maxlength']">
+              Credit website name should be less than 60 characters
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input
+            formControlName="url"
+            type="url"
+            class="form-control"
+            placeholder="Credit URL"
+            [ngClass]="{ 'is-invalid': submitted && url.invalid }"
+          />
+          <div *ngIf="submitted && url.errors" class="invalid-feedback">
+            <div *ngIf="submitted && url.errors?.['required']">
+              Please supply the link to the original article
+            </div>
+            <div *ngIf="submitted && url.errors?.['url']">
+              You must supply a valid link
+            </div>
+          </div>
+        </div>
+        <mat-form-field>
+          <mat-label>Select Categories</mat-label>
+          <mat-select
+            class="select"
+            multiple="multiple"
+            formControlName="categories"
+            placeholder="Select relevant Categories"
+            [ngClass]="{ 'is-invalid': submitted && category.invalid }"
+          >
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+              [disabled]="isOptionDisabled(category.id)"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+          <div *ngIf="submitted && category.errors" class="invalid-feedback">
+            <div *ngIf="submitted && category.errors?.['required']">
+              Select up to 3 categories
+            </div>
+          </div>
+        </mat-form-field>
         <button class="btn btn-primary btn-md" type="submit">Submit</button>
       </div>
     </div>

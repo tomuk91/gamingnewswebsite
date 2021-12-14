@@ -27,7 +27,7 @@ export class TokenStorageService {
 
   public saveRefreshToken(token: string): void {
     this.cookieService.delete(REFRESHTOKEN_KEY);
-    this.cookieService.set(REFRESHTOKEN_KEY, token, {expires: 1, secure: true, sameSite: 'Strict'});
+    this.cookieService.set(REFRESHTOKEN_KEY, token, {expires: 1, secure: true, path:'*', sameSite: 'Strict'});
   }
 
   public getRefreshToken(): string | null {

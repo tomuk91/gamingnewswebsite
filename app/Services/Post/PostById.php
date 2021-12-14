@@ -10,6 +10,6 @@ class PostById {
 
         $post_id = $request->post_id;
 
-        return Post::where('id', $post_id)->first();
+        return Post::with('categories')->where('id', $post_id)->first();
     }
 }

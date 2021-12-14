@@ -15,7 +15,7 @@ class PostCurrentUser {
 
         $user_id = Auth::user()->id;
 
-        $post = Post::where('user_id', $user_id)->get();
+        $post = Post::with('categories')->where('user_id', $user_id)->get();
 
         if($post) {
             return $post;

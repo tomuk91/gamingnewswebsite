@@ -2,6 +2,7 @@ import { Posts } from './posts';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/core/services/data.service';
 import { CookieService } from 'ngx-cookie-service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-posts',
@@ -14,7 +15,8 @@ export class UserPostsComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    public _DomSanitizationService: DomSanitizer
   ) {}
 
   ngOnInit(): void {

@@ -10,9 +10,10 @@ import { UserPostsComponent } from './pages/user-posts/user-posts.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
-
+import { SanitizedImagePipe } from 'src/app/shared/pipes/sanitized-image.pipe';
 @NgModule({
   declarations: [
+    SanitizedImagePipe,
     ProfileImageUploadComponent,
     ProfileDetailsComponent,
     ProfileHeaderComponent,

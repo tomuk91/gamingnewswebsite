@@ -27,7 +27,6 @@ export class ProfileImageUploadComponent implements OnInit {
         [
           Validators.required,
           RxwebValidators.extension({ extensions: ['jpeg', 'jpg', 'png'] }),
-          RxwebValidators.fileSize({ maxSize: 5.0 }),
         ],
       ],
     });

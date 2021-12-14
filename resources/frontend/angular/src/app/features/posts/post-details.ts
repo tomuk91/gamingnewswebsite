@@ -1,14 +1,14 @@
+import { categories } from './pages/create-post/categories';
 import { comments } from './comments';
 export interface PostDetails {
     id: number;
     title: string;
     summary: string;
-    category: string;
+    categories: categories[];
     image_url: string;
     comments: comments[];
     url: string;
     website: string;
-    tags: string;
     upvotes: number;
     is_featured: boolean;
     user_id: number;
