@@ -102,22 +102,33 @@
             </div>
           </div>
         </div>
-        <mat-form-field>
-          <mat-label>Select Categories</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>Select up to 3 relevant categories</mat-label>
           <mat-select
-            class="select"
-            multiple="multiple"
             formControlName="categories"
-            placeholder="Select relevant Categories"
-            [ngClass]="{ 'is-invalid': submitted && category.invalid }"
+            multiple="multiple"
+            class="select"
           >
-            <mat-option
+            <mat-optgroup label="Main">
+              <mat-option
+                *ngFor="let main of categories"
+                [value]="main.id"
+                [disabled]="isOptionDisabled(main.id)"
+                >{{ main.name }}</mat-option
+              >
+            </mat-optgroup>
+            <mat-optgroup
               *ngFor="let category of categories"
-              [value]="category.id"
-              [disabled]="isOptionDisabled(category.id)"
+              [label]="category.name"
             >
-              {{ category.name }}
-            </mat-option>
+              <mat-option
+                *ngFor="let cat of category.sub_categories"
+                [value]="cat.id"
+                [disabled]="isOptionDisabled(cat.id)"
+              >
+                {{ cat.name }}
+              </mat-option>
+            </mat-optgroup>
           </mat-select>
           <div *ngIf="submitted && category.errors" class="invalid-feedback">
             <div *ngIf="submitted && category.errors?.['required']">

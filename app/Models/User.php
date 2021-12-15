@@ -67,5 +67,8 @@ class User extends Authenticatable
         return $this->hasOne(userProfilePicture::class);
     }
 
+    public function votes() {
+        return $this->hasMany(Votes::class);
+    }
 
 }

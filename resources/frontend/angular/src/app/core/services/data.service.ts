@@ -1,3 +1,4 @@
+import { categories } from './../../features/posts/pages/create-post/categories';
 import { comments } from './../../features/posts/comments';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -5,6 +6,7 @@ import { NotificationService } from '../../shared/directives/notification.servic
 import { Posts } from '../../features/profile/pages/user-posts/posts';
 import { Observable } from 'rxjs';
 import { PostDetails } from 'src/app/features/posts/post-details';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +30,14 @@ export class DataService {
 
   getUserPosts(): Observable<Posts[]> {
     return this.http.get<Posts[]>('//localhost:8000/currentuserposts');
+  }
+
+  getCategories() {
+    return this.http.get<categories[]>('http://localhost:8000/category');
+  }
+
+  vote(data: any) {
+    return this.http.post('http://localhost:8000/vote', data);
   }
 
   getPostById($post_id: string): Observable<PostDetails> {

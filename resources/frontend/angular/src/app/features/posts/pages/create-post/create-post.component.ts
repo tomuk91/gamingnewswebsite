@@ -54,9 +54,7 @@ export class CreatePostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sub = this.http
-      .get<categories[]>('http://localhost:8000/category')
-      .subscribe(
+    this.sub = this.dataService.getCategories().subscribe(
         (result) => {
           this.categories = result;
           return result;
@@ -101,6 +99,8 @@ export class CreatePostComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+    console.log(this.form.value);
+    return;
 
     if (this.form.invalid) {
       return;

@@ -9,26 +9,22 @@
     >
       <div class="comments m-2 rounded mx-auto d-flex">
         <div class="pt-3 px-3 m-3 w-100 d-flex">
-          <div *ngIf="!comments.user.user_profile_picture">
-            <img
-              src="../../assets/angular/assets/img/profile-picture.png"
-              class="rounded-circle profile-img d-inline"
-              alt="profile picture"
-            />
-          </div>
-          <div *ngIf="comments.user.user_profile_picture">
-            <img
-              src="http://localhost:8000/storage/profile_images/{{
-                comments.user.user_profile_picture.image
-              }}"
-              class="rounded-circle profile-img d-inline"
-              alt="profile picture"
-            />
-          </div>
+          <img
+            [src]="
+              comments.user.user_profile_picture !== null
+                ? 'http://localhost:8000/storage/profile_images/' +
+                  comments.user.user_profile_picture.image
+                : 'http://localhost:8000/storage/profile-picture.png'
+            "
+            class="rounded-circle profile-img d-inline"
+            alt="profile picture"
+          />
           <div class="comments-container rounded p-2 m-2">
             <div class="main-comment">
               <h6 class="p-2 d-inline">{{ comments.user.username }}</h6>
-              <p class="d-inline time">{{ calculateDiff(comments.created_at) }}</p>
+              <p class="d-inline time">
+                {{ calculateDiff(comments.created_at) }}
+              </p>
               <p class="p-2">{{ comments.comment }}</p>
               <button
                 *ngIf="isLoggedIn"
@@ -46,26 +42,22 @@
             </div>
             <ng-container *ngFor="let commentreplies of comments.replies">
               <div class="replies m-1 p-1 rounded">
-                <div *ngIf="!commentreplies.user.user_profile_picture">
-                  <img
-                    src="../../assets/angular/assets/img/profile-picture.png"
-                    class="rounded-circle profile-img d-inline"
-                    alt="profile picture"
-                  />
-                </div>
-                <div *ngIf="commentreplies.user.user_profile_picture">
-                  <img
-                    src="http://localhost:8000/storage/profile_images/{{
-                      commentreplies.user.user_profile_picture.image
-                    }}"
-                    class="rounded-circle profile-img d-inline"
-                    alt="profile picture"
-                  />
-                </div>
+                <img
+                  [src]="
+                    commentreplies.user.user_profile_picture !== null
+                      ? 'http://localhost:8000/storage/profile_images/' +
+                        commentreplies.user.user_profile_picture.image
+                      : 'http://localhost:8000/storage/profile-picture.png'
+                  "
+                  class="rounded-circle profile-img d-inline"
+                  alt="profile picture"
+                />
                 <div class="main-comment">
                   <h6 class="d-inline">{{ commentreplies.user.username }}</h6>
-                  <p class="d-inline time p-2">{{ calculateDiff(commentreplies.created_at) }}</p>
-                  <br>
+                  <p class="d-inline time p-2">
+                    {{ calculateDiff(commentreplies.created_at) }}
+                  </p>
+                  <br />
                   <p>{{ commentreplies.comment }}</p>
                 </div>
               </div>
@@ -76,13 +68,13 @@
     </div>
   </div>
   <div class="d-flex justify-content-center">
-      <button
-        *ngIf="comments.length > 0"
-        class="btn btn-secondary btn-lg m-2"
-        (click)="offset = !offset"
-      >
-        {{ offset ? "Less Comments" : "More Comments" }}
-      </button>
+    <button
+      *ngIf="comments.length > 0"
+      class="btn btn-secondary btn-lg m-2"
+      (click)="offset = !offset"
+    >
+      {{ offset ? "Less Comments" : "More Comments" }}
+    </button>
   </div>
 </div>
 

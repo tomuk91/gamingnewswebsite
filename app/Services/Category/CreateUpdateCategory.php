@@ -15,6 +15,7 @@ class CreateUpdateCategory
         $category = Categories::create([
             'name' => $request->name,
             'description' => $request->description,
+            'parent_id' => $request->parent_id ?? NULL,
         ]);
 
         if ($category) {

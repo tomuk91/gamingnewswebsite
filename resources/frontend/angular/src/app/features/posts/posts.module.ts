@@ -10,8 +10,10 @@ import { CreateCommentComponent } from './components/create-comment/create-comme
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { MatSelectModule } from '@angular/material/select';
+import { ExternalHrefPipe } from 'src/app/shared/pipes/external-links.pipe';
 @NgModule({
   declarations: [
+    ExternalHrefPipe,
     PostDetailsComponent,
     PostCommentsComponent,
     CommentRepliesComponent,

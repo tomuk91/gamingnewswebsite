@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { PostDetails } from 'src/app/features/posts/post-details';
 import * as moment from 'moment';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-post-details',
@@ -12,6 +13,7 @@ import * as moment from 'moment';
 export class PostDetailsComponent implements OnInit {
   public postId: string = '';
   public post!: PostDetails;
+  public error: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -20,7 +22,7 @@ export class PostDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-     this.activatedRoute.params.subscribe((paramsId) => {
+    this.activatedRoute.params.subscribe((paramsId) => {
       this.postId = paramsId.id;
     });
 
@@ -37,6 +39,22 @@ export class PostDetailsComponent implements OnInit {
           this.router.navigate(['/404']);
         }
         return error;
+      }
+    );
+  }
+
+  vote() {
+    const data = {
+      post_id: this.postId,
+    };
+
+    this.DataService.vote(data).subscribe(
+      (vote: any) => {
+        alert(vote.message);
+        return vote;
+      },
+      (error) => {
+        this.error = error.error;
       }
     );
   }

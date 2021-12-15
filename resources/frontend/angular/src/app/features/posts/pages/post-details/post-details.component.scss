@@ -13,3 +13,13 @@ img {
   width: 100%;
   object-fit: cover;
 }
+
+.vote {
+  cursor: pointer;
+
+  &:hover {
+    fill: red;
+    height: 30px;
+    width: 30px;
+  }
+}

@@ -1,7 +1,9 @@
 <?php
 
 namespace App;
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
@@ -37,4 +39,8 @@ class Post extends Model
         return $this->belongsToMany(Tags::class);
     }
 
+    public function votes()
+    {
+        return $this->belongsTo(Vote::class);
+    }
 }

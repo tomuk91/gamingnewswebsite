@@ -10,7 +10,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Categories::with('posts')->get();
+        $categories = Categories::where('parent_id', '0')->orWhere('parent_id', NULL)->with('subCategories')->get();
         return $categories;
     }
 

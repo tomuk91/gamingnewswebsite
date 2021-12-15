@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
       password: formData.password,
       grant_type: 'password',
       client_id: 2,
-      client_secret: 'Wjp7Tui08rNGSQn2a4SJGrb8WciCfjyCOIdsJtSW',
+      client_secret: 'pmILBlIAvkZHYoYUo2PDgNGX9jPE2KWyBjv8hY6h',
       scope: '*',
     };
 

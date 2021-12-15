@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateVotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('parent_id')->nullable();
-            $table->mediumText('description');
-            $table->timestamps();
+        Schema::create('votes', function (Blueprint $table) {
+            $table->increments('id');
+            $table->foreignId('user_id');
+            $table->foreignId('post_id');
+            $table->boolean('status');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('votes');
     }
 }
