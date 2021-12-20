@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { SanitizedImagePipe } from 'src/app/shared/pipes/sanitized-image.pipe';
+import { PaginationModule } from 'src/app/shared/pagination/pagination.module';
 @NgModule({
   declarations: [
     SanitizedImagePipe,
@@ -23,6 +24,7 @@ import { SanitizedImagePipe } from 'src/app/shared/pipes/sanitized-image.pipe';
     UserPostsComponent,
   ],
   imports: [
+    PaginationModule,
     CommonModule,
     ProfileRoutingModule,
     ReactiveFormsModule,

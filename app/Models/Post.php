@@ -31,7 +31,7 @@ class Post extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Categories::class)->select('name');
+        return $this->belongsToMany(Categories::class)->select('name', 'id');
     }
 
     public function tags()
@@ -41,6 +41,6 @@ class Post extends Model
 
     public function votes()
     {
-        return $this->belongsTo(Vote::class);
+        return $this->hasMany(Vote::class);
     }
 }

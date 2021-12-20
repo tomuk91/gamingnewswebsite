@@ -1,10 +1,10 @@
+import { categories } from './../../../features/posts/pages/create-post/categories';
+import { DataService } from 'src/app/core/services/data.service';
 import { SpinnerService } from './../../services/spinner.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { NotificationService } from '../../../shared/directives/notification.service';
-import { first } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/features/user/user';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +14,14 @@ import { User } from 'src/app/features/user/user';
 export class NavbarComponent implements OnInit, OnDestroy {
   user!: Observable<any>;
   isLoggedIn!: Observable<any>;
+  categories: categories[] = [];
+  error = '';
+  sub!: Subscription;
 
   constructor(
     private notify: NotificationService,
     private authService: AuthenticationService,
+    private dataService: DataService,
     public spinnerService: SpinnerService
   ) {
     this.user = this.authService.user;
@@ -27,12 +31,29 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.authService.loggedIn.subscribe((value) => {
       this.isLoggedIn = value;
     });
+
+    this.sub = this.dataService.getCategories().subscribe(
+      (result) => {
+        console.log(result);
+        this.categories = result;
+        return result;
+      },
+      (error) => {
+        this.error = error;
+        return error;
+      }
+    );
   }
 
   logout() {
-    this.authService.logout().subscribe(first());
-    this.notify.showSuccess('Logout', 'Successful');
+    this.authService.logout().subscribe((success) => {
+      this.authService.logoutSuccess();
+      this.notify.showSuccess('Logout', 'Successful');
+      return success;
+    });
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }

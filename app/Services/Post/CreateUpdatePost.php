@@ -32,7 +32,7 @@ class CreateUpdatePost
         $post->categories()->attach($categories);
 
         if($post) {
-            return 'created!';
+            return $post->id;
         }
     }
 }

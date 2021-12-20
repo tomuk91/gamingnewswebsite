@@ -1,17 +1,18 @@
-
 .post-container {
   background-color: rgb(195, 205, 248);
-  box-shadow:
-       inset 0 -3em 3em rgba(0,0,0,0.1),
-             0 0  0 2px rgb(255,255,255),
-             0.3em 0.3em 1em rgba(0,0,0,0.3);
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-
-
 
 img {
   width: 100%;
+  height: 24rem;
   object-fit: cover;
+}
+
+.links {
+  text-decoration: underline;
+  font-weight: 600;
 }
 
 .vote {
@@ -19,7 +20,7 @@ img {
 
   &:hover {
     fill: red;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
   }
 }

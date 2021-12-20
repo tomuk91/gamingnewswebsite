@@ -70,8 +70,12 @@ export class AuthInterceptor implements HttpInterceptor {
             this.refreshTokenSubject.next(token.refresh_token);
 
             return next.handle(
-              this.addTokenHeader(request, token.access_token)
-            );
+              this.addTokenHeader(request, token.access_token))
+            }),
+            catchError((err) => {
+            this.isRefreshing = false;
+            this.authService.refreshLogout();
+            return throwError(err);
           })
         );
     }

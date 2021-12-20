@@ -13,6 +13,7 @@ export class TokenStorageService {
 
   signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
+    this.cookieService.delete(REFRESHTOKEN_KEY);
     this.cookieService.deleteAll();
   }
 
@@ -27,7 +28,7 @@ export class TokenStorageService {
 
   public saveRefreshToken(token: string): void {
     this.cookieService.delete(REFRESHTOKEN_KEY);
-    this.cookieService.set(REFRESHTOKEN_KEY, token, {expires: 1, secure: true, path:'*', sameSite: 'Strict'});
+    this.cookieService.set(REFRESHTOKEN_KEY, token, {expires: 1, secure: true, path:'/assets/angular', sameSite: 'Strict'});
   }
 
   public getRefreshToken(): string | null {

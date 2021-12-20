@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Votes;
+use App\Models\Vote;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use App\Services\Vote\CreateVote;
 
 class VotesController extends Controller
 {
@@ -25,24 +24,13 @@ class VotesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CreateVote $vote)
     {
-        $user_id = Auth::User()->id;
-        $post_id = $request->post_id;
+        $action = $vote->create($request);
 
-        $vote = Votes::updateOrCreate(
-            [
-                'user_id' => $user_id,
-                'post_id' => $request->post_id,
-            ],
-            ['status' => '0']
-        );
-        if ($vote->wasRecentlyCreated) {
-            DB::table('posts')->increment('upvotes', 1);
+        if ($action === 'Voted') {
             return response()->json(['message' => 'voted!', 200]);
         } else {
-            Votes::where('post_id', $post_id)->where('user_id', $user_id)->delete();
-            DB::table('posts')->decrement('upvotes', 1);
             return response()->json(['message' => 'Vote Removed!', 200]);
         }
     }
@@ -53,7 +41,7 @@ class VotesController extends Controller
      * @param  \App\Models\Votes  $votes
      * @return \Illuminate\Http\Response
      */
-    public function show(Votes $votes)
+    public function show(Vote $votes)
     {
         //
     }
@@ -65,7 +53,7 @@ class VotesController extends Controller
      * @param  \App\Models\Votes  $votes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Votes $votes)
+    public function update(Request $request, Vote $votes)
     {
         //
     }
@@ -76,7 +64,7 @@ class VotesController extends Controller
      * @param  \App\Models\Votes  $votes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Votes $votes)
+    public function destroy(Vote $votes)
     {
         //
     }

@@ -24,9 +24,9 @@ class PostsController extends Controller
         return $posts;
     }
 
-    public function currentUserPosts(PostCurrentUser $post)
+    public function currentUserPosts(request $request, PostCurrentUser $post)
     {
-       $action = $post->currentUser();
+        $action = $post->currentUser($request);
 
         return response()->json($action, 200);
     }
@@ -35,22 +35,22 @@ class PostsController extends Controller
     {
         $action = $post->PostId($request);
 
-        if($action) {
+        if ($action) {
             return response()->json($action, 200);
         } else {
             return response()->json('Post Not Found', 404);
         }
     }
 
-    public function store(Request $request, CreateUpdatePost $store) {
+    public function store(Request $request, CreateUpdatePost $store)
+    {
 
         $action = $store->create($request);
 
-        if($action) {
-            return response()->json('Post Created!', 200);
+        if ($action) {
+            return response()->json(['message' => 'Post Created!', 'post_id' => $action, 200]);
         } else {
             return response()->json('There was a problem creating your post!', 400);
         }
     }
-
 }

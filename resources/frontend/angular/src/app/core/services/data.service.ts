@@ -28,9 +28,6 @@ export class DataService {
     return this.http.post('http://localhost:8000/createpost', data);
   }
 
-  getUserPosts(): Observable<Posts[]> {
-    return this.http.get<Posts[]>('//localhost:8000/currentuserposts');
-  }
 
   getCategories() {
     return this.http.get<categories[]>('http://localhost:8000/category');

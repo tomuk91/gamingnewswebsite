@@ -3,7 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { PostDetails } from 'src/app/features/posts/post-details';
 import * as moment from 'moment';
-import { DOCUMENT } from '@angular/common';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { NotificationService } from 'src/app/shared/directives/notification.service';
 
 @Component({
   selector: 'app-post-details',
@@ -18,6 +19,8 @@ export class PostDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private DataService: DataService,
+    private notify: NotificationService,
+    public auth: AuthenticationService,
     private router: Router
   ) {}
 
@@ -44,6 +47,10 @@ export class PostDetailsComponent implements OnInit {
   }
 
   vote() {
+    if (!this.auth.loginStatus) {
+      this.notify.showError('You must login to vote', 'Failed');
+      return;
+    }
     const data = {
       post_id: this.postId,
     };
@@ -51,6 +58,7 @@ export class PostDetailsComponent implements OnInit {
     this.DataService.vote(data).subscribe(
       (vote: any) => {
         alert(vote.message);
+        this.ngOnInit();
         return vote;
       },
       (error) => {

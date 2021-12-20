@@ -14,4 +14,11 @@ export interface PostDetails {
     user_id: number;
     created_at: Date;
     updated_at: Date;
+    votes: votes[];
+}
+
+export interface votes {
+  [index: number]: {
+    status: number;
+  }
 }

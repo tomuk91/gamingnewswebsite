@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  Form,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { categories } from './categories';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
+import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/shared/directives/notification.service';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',
@@ -19,7 +27,8 @@ export class CreatePostComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private http: HttpClient,
+    private router: Router,
+    private notify: NotificationService,
     private dataService: DataService
   ) {
     this.form = this.fb.group({
@@ -55,15 +64,15 @@ export class CreatePostComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.dataService.getCategories().subscribe(
-        (result) => {
-          this.categories = result;
-          return result;
-        },
-        (error) => {
-          this.error = error;
-          return error;
-        }
-      );
+      (result) => {
+        this.categories = result;
+        return result;
+      },
+      (error) => {
+        this.error = error;
+        return error;
+      }
+    );
   }
 
   isOptionDisabled(opt: any): boolean {
@@ -99,8 +108,6 @@ export class CreatePostComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-    console.log(this.form.value);
-    return;
 
     if (this.form.invalid) {
       return;
@@ -108,12 +115,13 @@ export class CreatePostComponent implements OnInit {
     const formData = this.form.value;
 
     return this.dataService.createPost(formData).subscribe(
-      (result) => {
-        console.log('created!');
+      (result: any) => {
+        this.notify.showSuccess('Post Created!', 'Success');
+        this.router.navigate(['/posts', result.post_id]);
         return result;
       },
       (error) => {
-        console.log(error);
+        this.error = error.error;
       }
     );
   }

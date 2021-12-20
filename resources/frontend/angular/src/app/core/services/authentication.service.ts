@@ -18,7 +18,7 @@ export class AuthenticationService {
   skipLoadingInterceptor: Boolean = false;
   public userSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   private isLoggedIn: BehaviorSubject<string | null>;
-  public loggedIn: Observable<any>
+  public loggedIn: Observable<any>;
   public user: Observable<User[]>;
 
   constructor(
@@ -88,13 +88,18 @@ export class AuthenticationService {
     });
   }
 
+  refreshLogout() {
+    this.tokenStorage.signOut();
+    this.CookieService.deleteAll();
+    this.userSubject.next([]);
+  }
+
   logout() {
     return this.http
       .post<any>('//localhost:8000/logout', null)
       .pipe((response) => {
         this.userSubject.next([]);
         this.isLoggedIn.next(null);
-        this.logoutSuccess();
         return response;
       });
   }

@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 // User CRUD Operations
 
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
 
 Route::post('/update{id}', [UserController::class, 'update']);
 

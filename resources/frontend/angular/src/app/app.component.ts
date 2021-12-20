@@ -13,15 +13,18 @@ export class AppComponent implements OnInit {
     public auth: AuthenticationService
   ) {
     if (this.auth.loginStatus) {
-      this.auth.getCurrentUser().subscribe((user: any) => {
-        if (user) {
+      this.auth.getCurrentUser().subscribe(
+        (user: any) => {
           this.auth.userSubject.next(user);
-        } else {
-          return;
+        },
+        (err) => {
+          if (err.status === 401) {
+            console.log(err.status);
+            this.auth.refreshLogout();
+          }
         }
-      });
+      );
     }
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

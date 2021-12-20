@@ -9,7 +9,13 @@ class PostById {
     public function PostId($request) {
 
         $post_id = $request->post_id;
+        $user_id = auth('api')->user()->id;
 
-        return Post::with('categories')->where('id', $post_id)->first();
+        $post = Post::with('categories')->where('id', $post_id)->with(['votes' => function ($subQuery) use ($user_id) {
+            return $subQuery->where('user_id', $user_id);
+        }])->first();
+
+        return $post;
+
     }
 }
