@@ -42,13 +42,6 @@ export class AuthenticationService {
     return this.isLoggedIn.value;
   }
 
-  logoutSuccess(): void {
-    this.userSubject.next([]);
-    this.tokenStorage.signOut();
-    this.CookieService.deleteAll();
-    this.router.navigate(['/home']);
-  }
-
   getCurrentUser() {
     return this.http
       .get<User[]>('//localhost:8000/getLoggedInuser')
@@ -88,7 +81,7 @@ export class AuthenticationService {
     });
   }
 
-  refreshLogout() {
+  refreshLogout(): void {
     this.tokenStorage.signOut();
     this.CookieService.deleteAll();
     this.userSubject.next([]);
@@ -100,8 +93,16 @@ export class AuthenticationService {
       .pipe((response) => {
         this.userSubject.next([]);
         this.isLoggedIn.next(null);
+        this.logoutSuccess();
         return response;
       });
+  }
+
+  logoutSuccess(): void {
+    this.userSubject.next([]);
+    this.tokenStorage.signOut();
+    this.CookieService.deleteAll();
+    this.router.navigate(['/home']);
   }
 
   refreshToken() {

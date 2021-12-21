@@ -40,11 +40,13 @@
         >
         <div class="dropdown-menu">
           <div *ngFor="let cat of categories">
-            <a class="dropdown-item" href="#"
+            <a class="dropdown-item" [routerLink]="['category', cat.id]"
               ><b>{{ cat.name }}</b></a
             >
             <div *ngFor="let sub of cat.sub_categories">
-              <a class="dropdown-item" href="#">{{ sub.name }}</a>
+              <a class="dropdown-item" [routerLink]="['category', sub.id]">{{
+                sub.name
+              }}</a>
             </div>
           </div>
         </div>

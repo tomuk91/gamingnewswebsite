@@ -29,9 +29,9 @@ class VotesController extends Controller
         $action = $vote->create($request);
 
         if ($action === 'Voted') {
-            return response()->json(['message' => 'voted!', 200]);
+            return response()->json(['message' => 'You liked this post!', 200]);
         } else {
-            return response()->json(['message' => 'Vote Removed!', 200]);
+            return response()->json(['message' => 'Like Removed!', 200]);
         }
     }
 

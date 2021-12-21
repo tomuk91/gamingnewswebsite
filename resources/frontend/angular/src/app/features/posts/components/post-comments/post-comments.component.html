@@ -1,4 +1,4 @@
-<div class="container comments-container">
+<div class="container p-3">
   <app-create-comment [comments]="comments"></app-create-comment>
   <div *ngIf="comments.length > 0; else empty">
     <div
@@ -23,7 +23,7 @@
             <div class="main-comment">
               <h6 class="p-2 d-inline">{{ comments.user.username }}</h6>
               <p class="d-inline time">
-                {{ calculateDiff(comments.created_at) }}
+                {{ postService.calculateDiff(comments.created_at) }}
               </p>
               <p class="p-2">{{ comments.comment }}</p>
               <button
@@ -55,7 +55,7 @@
                 <div class="main-comment">
                   <h6 class="d-inline">{{ commentreplies.user.username }}</h6>
                   <p class="d-inline time p-2">
-                    {{ calculateDiff(commentreplies.created_at) }}
+                    {{ postService.calculateDiff(commentreplies.created_at) }}
                   </p>
                   <br />
                   <p>{{ commentreplies.comment }}</p>

@@ -11,6 +11,7 @@ import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { MatSelectModule } from '@angular/material/select';
 import { ExternalHrefPipe } from 'src/app/shared/pipes/external-links.pipe';
+import { PostsCategoryComponent } from './pages/posts-category/posts-category.component';
 @NgModule({
   declarations: [
     ExternalHrefPipe,
@@ -20,6 +21,7 @@ import { ExternalHrefPipe } from 'src/app/shared/pipes/external-links.pipe';
     LogPipe,
     CreateCommentComponent,
     CreatePostComponent,
+    PostsCategoryComponent,
   ],
   imports: [CommonModule, MatSelectModule, RxReactiveFormsModule, PostsRoutingModule, ReactiveFormsModule],
 })

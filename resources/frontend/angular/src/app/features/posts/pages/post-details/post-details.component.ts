@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { PostDetails } from 'src/app/features/posts/post-details';
-import * as moment from 'moment';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { PostsService } from 'src/app/core/services/posts.service';
 
 @Component({
   selector: 'app-post-details',
@@ -21,6 +21,7 @@ export class PostDetailsComponent implements OnInit {
     private DataService: DataService,
     private notify: NotificationService,
     public auth: AuthenticationService,
+    public postService: PostsService,
     private router: Router
   ) {}
 
@@ -65,11 +66,5 @@ export class PostDetailsComponent implements OnInit {
         this.error = error.error;
       }
     );
-  }
-
-  calculateDiff(sentDate: string | number | Date) {
-    let date1 = moment(sentDate);
-    let date2 = moment(new Date());
-    return date1.from(date2);
   }
 }

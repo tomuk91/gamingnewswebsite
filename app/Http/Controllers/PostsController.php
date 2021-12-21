@@ -9,10 +9,8 @@ use App\Models\Post;
 use App\Services\Post\CreateUpdatePost;
 use App\Services\Post\PostCurrentUser;
 use App\Services\Post\PostById;
-
-
-
-
+use App\Services\Post\PostsByCategory;
+use CategoriesPost;
 
 class PostsController extends Controller
 {
@@ -39,6 +37,16 @@ class PostsController extends Controller
             return response()->json($action, 200);
         } else {
             return response()->json('Post Not Found', 404);
+        }
+    }
+
+    public function postsByCategory(Request $request, PostsByCategory $post)
+    {
+        $action = $post->getPosts($request);
+        if ($action) {
+            return $action;
+        } else {
+            return response()->json(['message' => 'Unable to find posts', 404]);
         }
     }
 

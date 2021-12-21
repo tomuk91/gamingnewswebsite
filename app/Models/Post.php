@@ -31,7 +31,7 @@ class Post extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Categories::class)->select('name', 'id');
+        return $this->belongsToMany(Categories::class);
     }
 
     public function tags()

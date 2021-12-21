@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     this.sub = this.dataService.getCategories().subscribe(
       (result) => {
-        console.log(result);
         this.categories = result;
         return result;
       },

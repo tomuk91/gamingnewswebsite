@@ -16,10 +16,7 @@ import {
   filter,
   switchMap,
   take,
-  finalize,
-  skip,
 } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
@@ -31,7 +28,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private tokenService: TokenStorageService,
     private authService: AuthenticationService,
-    private router: Router
   ) {}
 
   intercept(

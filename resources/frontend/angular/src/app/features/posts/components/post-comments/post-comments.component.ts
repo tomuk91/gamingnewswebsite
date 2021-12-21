@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { CommentsService } from 'src/app/core/services/comments-service';
+import { PostsService } from 'src/app/core/services/posts.service';
 @Component({
   selector: 'app-post-comments',
   templateUrl: './post-comments.component.html',
@@ -18,7 +18,8 @@ export class PostCommentsComponent implements OnInit {
 
   constructor(
     public commentsService: CommentsService,
-    public auth: AuthenticationService
+    public auth: AuthenticationService,
+    public postService: PostsService,
   ) {
     this.hideReplyForm = [];
   }
@@ -42,9 +43,4 @@ export class PostCommentsComponent implements OnInit {
     this.commentsService.sendReply.next(true);
   }
 
-  calculateDiff(sentDate: string | number | Date) {
-    let date1 = moment(sentDate);
-    let date2 = moment(new Date());
-    return date1.from(date2);
-  }
 }

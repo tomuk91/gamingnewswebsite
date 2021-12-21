@@ -55,6 +55,7 @@ Route::group([
     Route::get('category', [CategoriesController::class, 'index']);
     Route::post('createcategory', [CategoriesController::class, 'store']);
     Route::get('posts', [PostsController::class, 'index']);
+    Route::get('postbycat', [PostsController::class, 'postsByCategory']);
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);
