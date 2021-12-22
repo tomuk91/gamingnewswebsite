@@ -10,7 +10,6 @@ use App\Services\Post\CreateUpdatePost;
 use App\Services\Post\PostCurrentUser;
 use App\Services\Post\PostById;
 use App\Services\Post\PostsByCategory;
-use CategoriesPost;
 
 class PostsController extends Controller
 {
@@ -18,8 +17,28 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::with('categories')->get();
+                $user_id = auth('api')->user()->id ?? NULL;
+
 
         return $posts;
+    }
+
+    public function pendingPosts(Request $request) {
+
+        $pageOffset = (isset($request->pageOffset)) ? (int) $request->pageOffset : 10;
+        $orderBy = (isset($request->orderBy)) ? $request->orderBy : 'desc';
+        $user_id = auth('api')->user()->id ?? NULL;
+
+
+        $post = Post::where('pending', '1')->orderBy('created_at', $orderBy)->with(['votes' => function ($subQuery) use ($user_id) {
+            return $subQuery->where('user_id', $user_id);
+        }])->paginate($pageOffset);
+
+        if($post) {
+            return $post;
+        } else {
+            return 'No pending posts';
+        }
     }
 
     public function currentUserPosts(request $request, PostCurrentUser $post)

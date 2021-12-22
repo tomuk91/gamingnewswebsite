@@ -4,6 +4,8 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Models\Post;
+use Illuminate\Support\Carbon;
 
 
 class Kernel extends HttpKernel
@@ -75,5 +77,9 @@ class Kernel extends HttpKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('passport:purge')->hourly();
+
+        $schedule->call(function () {
+            Post::where('pending', 0 || null)->where('created_at', '<=', Carbon::now()->subDays(30))->delete();
+        })->daily();
     }
 }

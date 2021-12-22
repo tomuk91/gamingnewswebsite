@@ -1,3 +1,4 @@
+import { PaginationModule } from './../../shared/pagination/pagination.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
@@ -12,6 +13,9 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { MatSelectModule } from '@angular/material/select';
 import { ExternalHrefPipe } from 'src/app/shared/pipes/external-links.pipe';
 import { PostsCategoryComponent } from './pages/posts-category/posts-category.component';
+import { PendingComponent } from './pages/pending/pending.component';
+import { PostsContainerComponent } from './components/posts-container/posts-container.component';
+import { PostsHeaderContainerComponent } from './components/posts-header-container/posts-header-container.component';
 @NgModule({
   declarations: [
     ExternalHrefPipe,
@@ -22,7 +26,17 @@ import { PostsCategoryComponent } from './pages/posts-category/posts-category.co
     CreateCommentComponent,
     CreatePostComponent,
     PostsCategoryComponent,
+    PendingComponent,
+    PostsContainerComponent,
+    PostsHeaderContainerComponent,
   ],
-  imports: [CommonModule, MatSelectModule, RxReactiveFormsModule, PostsRoutingModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    PaginationModule,
+    MatSelectModule,
+    RxReactiveFormsModule,
+    PostsRoutingModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PostsModule {}

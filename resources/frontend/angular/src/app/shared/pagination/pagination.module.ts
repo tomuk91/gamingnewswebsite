@@ -9,4 +9,5 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [CommonModule, MatToolbarModule, MatIconModule],
   exports: [PaginationComponent],
 })
-export class PaginationModule {}
+export class PaginationModule {
+}

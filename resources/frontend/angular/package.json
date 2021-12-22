@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration=dev",
-    "build": "ng build",
-    "build:prod": "ng build --configuration=production && cp ../../../public/assets/angular/index.html ../../views/home.blade.php",
+    "build": "ng build --configuration=production && cp ../../../public/assets/angular/index.html ../../views/home.blade.php",
+    "prod": "ng build --configuration=production && cp ../../../public/assets/angular/index.html ../../views/home.blade.php",
     "watch": "ng build --watch --configuration dev",
     "test": "ng test",
     "lint": "ng lint"
@@ -28,6 +28,7 @@
     "@rxweb/reactive-form-validators": "^2.1.4",
     "bootstrap": "^5.1.0",
     "bootstrap-icons": "^1.7.1",
+    "date-fns": "^2.27.0",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "ngx-captcha": "^11.0.0",

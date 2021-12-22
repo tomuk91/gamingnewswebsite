@@ -56,6 +56,7 @@ Route::group([
     Route::post('createcategory', [CategoriesController::class, 'store']);
     Route::get('posts', [PostsController::class, 'index']);
     Route::get('postbycat', [PostsController::class, 'postsByCategory']);
+    route::get('pending', [PostsController::class, 'pendingPosts']);
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);

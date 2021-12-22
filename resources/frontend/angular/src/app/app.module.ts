@@ -26,6 +26,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner/';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FooterComponent } from './core/components/footer/footer.component';
+import { PaginationModule } from './shared/pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
       { path: '**', component: PageNotFoundComponent },
     ]),
     HomeModule,
+    PaginationModule,
     ProfileModule,
     UserModule,
     PostsModule,

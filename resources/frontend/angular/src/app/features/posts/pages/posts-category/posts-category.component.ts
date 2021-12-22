@@ -13,7 +13,6 @@ export class PostsCategoryComponent implements OnInit {
   posts!: PostDetails[];
   title: string = '';
   description: string = '';
-  hideDesc: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -27,16 +26,12 @@ export class PostsCategoryComponent implements OnInit {
     });
   }
 
-  hidden() {
-    this.hideDesc = !this.hideDesc;
-  }
 
   getPosts() {
     this.postService
       .postsByCategory(this.categoryId)
       .subscribe((posts: PostDetails[]) => {
         this.posts = posts;
-        console.log(this.posts);
         this.title = posts[0].categories[0].name;
         this.description = posts[0].categories[0].description;
       });

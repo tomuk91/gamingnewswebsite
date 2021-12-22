@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import * as moment from 'moment';
 import { NotificationService } from 'src/app/shared/directives/notification.service';
 @Component({
   selector: 'app-comment-replies',

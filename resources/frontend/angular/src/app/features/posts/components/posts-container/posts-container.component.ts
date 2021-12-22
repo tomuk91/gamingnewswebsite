@@ -1,0 +1,48 @@
+import { PostDetails } from 'src/app/features/posts/post-details';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { PostsService } from 'src/app/core/services/posts.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { NotificationService } from 'src/app/shared/directives/notification.service';
+
+@Component({
+  selector: 'app-posts-container',
+  templateUrl: './posts-container.component.html',
+  styleUrls: ['./posts-container.component.scss'],
+})
+export class PostsContainerComponent implements OnInit {
+  @Input() posts!: PostDetails[];
+  @Output() votedEvent = new EventEmitter;
+
+  error = '';
+
+  constructor(
+    public postService: PostsService,
+    private auth: AuthenticationService,
+    private postsService: PostsService,
+    private notify: NotificationService
+  ) {}
+
+  ngOnInit(): void {
+  }
+
+  vote(post_id: number) {
+    if (!this.auth.loginStatus) {
+      this.notify.showError('You must login to vote', 'Failed');
+      return;
+    }
+    const data = {
+      post_id: post_id,
+    };
+
+    this.postsService.vote(data).subscribe(
+      (vote: any) => {
+        alert(vote.message);
+        this.votedEvent.emit('voted!');
+        return vote;
+      },
+      (error) => {
+        this.error = error.error;
+      }
+    );
+  }
+}

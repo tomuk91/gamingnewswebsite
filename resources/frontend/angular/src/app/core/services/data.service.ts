@@ -33,9 +33,7 @@ export class DataService {
     return this.http.get<categories[]>('http://localhost:8000/category');
   }
 
-  vote(data: any) {
-    return this.http.post('http://localhost:8000/vote', data);
-  }
+
 
   getPostById($post_id: string): Observable<PostDetails> {
     let params = new HttpParams().set('post_id', $post_id);

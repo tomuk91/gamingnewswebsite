@@ -4,6 +4,7 @@ namespace App\Services\Vote;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 use App\Models\Vote;
 
 class CreateVote
@@ -13,6 +14,7 @@ class CreateVote
     {
         $user_id = Auth::User()->id;
         $post_id = $request->post_id;
+        $post = Post::find($post_id);
 
         $vote = Vote::updateOrCreate(
             [
@@ -23,11 +25,18 @@ class CreateVote
         );
 
         if ($vote->wasRecentlyCreated) {
-            DB::table('posts')->increment('upvotes', 1);
+            $post->increment('upvotes', 1);
+            $post->save();
+            $totalLikes = $post->select('upvotes')->count('upvotes');
+            if($totalLikes >= 10) {
+                $post->pending = false;
+                $post->save();
+            }
             return 'Voted';
         } else {
             Vote::where('post_id', $post_id)->where('user_id', $user_id)->delete();
-            DB::table('posts')->decrement('upvotes', 1);
+            $post->decrement('upvotes', 1);
+            $post->save();
         }
     }
 }

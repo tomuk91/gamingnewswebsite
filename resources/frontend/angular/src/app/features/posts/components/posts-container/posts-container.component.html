@@ -1,0 +1,41 @@
+<div class="row row-cols-1 row-cols-md-3 row-cols-xl-4 g-4">
+  <div *ngFor="let post of posts">
+    <div class="col card">
+      <div class="h-100 text-center">
+        <img
+          src="{{ post.image_url }}"
+          class="card-img-top img-fluid"
+          alt="..."
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text">{{ post.summary | slice: 0:50 }}...</p>
+        </div>
+      </div>
+      <div class="read-more text-center">
+        <i [routerLink]="['/posts', post.id]" class="icon material-icons"
+          >read_more</i
+        >
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <small class="text-muted"
+          >Created: {{ postService.calculateDiff(post.created_at) }}</small
+        >
+        <div *ngIf="post.votes && post.votes.length > 0">
+          <p class="d-flex">
+          <i (click)="vote(post.id)" style="color: red" class="icon material-icons"
+            >favorite</i>
+            <b>{{ post.upvotes }}</b>
+          </p>
+        </div>
+        <div *ngIf="post.votes && post.votes.length === 0">
+          <p class="d-flex">
+              <i (click)="vote(post.id)" style="color:red" class="icon material-icons">favorite_border</i>
+              <b>{{ post.upvotes }}</b>
+          </p>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>

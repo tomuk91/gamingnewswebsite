@@ -17,7 +17,7 @@ class PostsByCategory
             $qbCategory->where('id', $categoryId);
         })->with('categories', function ($sub) use ($categoryId) {
             $sub->where('id', $categoryId);
-        })->orderBy('created_at', 'desc')->get();
+        })->where('pending', 0)->orderBy('created_at', 'desc')->get();
 
 
         return $posts;

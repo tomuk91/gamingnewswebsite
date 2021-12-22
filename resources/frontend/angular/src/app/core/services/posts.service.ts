@@ -34,9 +34,24 @@ export class PostsService {
     return this.http.get<PostDetails[]>(`${fullUrl}`, { params: params });
   }
 
+  pendingPosts(pageOffset: number, page: number, orderBy: string): Observable<any> {
+    const pendingEndPoint = '/pending';
+    const pendingUrl = `${this.baseUrl}${pendingEndPoint}`;
+    const params = new HttpParams({
+      fromObject: { pageOffset, page, orderBy },
+    });
+    return this.http.get(`${pendingUrl}`, { params: params ? params : {} });
+  }
+  
+  vote(data: any) {
+    return this.http.post('http://localhost:8000/vote', data);
+  }
+
   calculateDiff(sentDate: string | number | Date) {
     let date1 = moment(sentDate);
     let date2 = moment(new Date());
     return date1.from(date2);
   }
+
+
 }

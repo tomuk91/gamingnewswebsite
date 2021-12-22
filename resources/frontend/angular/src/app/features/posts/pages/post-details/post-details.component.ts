@@ -56,7 +56,7 @@ export class PostDetailsComponent implements OnInit {
       post_id: this.postId,
     };
 
-    this.DataService.vote(data).subscribe(
+    this.postService.vote(data).subscribe(
       (vote: any) => {
         alert(vote.message);
         this.ngOnInit();
