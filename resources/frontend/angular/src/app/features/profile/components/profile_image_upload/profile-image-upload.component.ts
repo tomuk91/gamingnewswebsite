@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../../user/user';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { HttpHeaders } from '@angular/common/http';
 import { Image } from './image.model';
 import { DataService } from '../../../../core/services/data.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';

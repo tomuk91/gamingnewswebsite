@@ -57,6 +57,7 @@ Route::group([
     Route::get('posts', [PostsController::class, 'index']);
     Route::get('postbycat', [PostsController::class, 'postsByCategory']);
     route::get('pending', [PostsController::class, 'pendingPosts']);
+    route::get('latestapprovedposts', [PostsController::class, 'latestApprovedPosts']);
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);

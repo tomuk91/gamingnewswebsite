@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/core/services/data.service';
 import { PostDetails } from 'src/app/features/posts/post-details';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { PostsService } from 'src/app/core/services/posts.service';
 
 @Component({

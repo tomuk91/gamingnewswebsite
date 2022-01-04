@@ -72,4 +72,13 @@
 </button>
 </div>
 
+<div
+  infinite-scroll
+  [infiniteScrollDistance]="distance"
+  [infiniteScrollThrottle]="throttle"
+  (scrolled)="onScroll()"
+>
+<app-posts-header-container (votedEvent)="voted($event)" [title]="title"></app-posts-header-container>
+<app-posts-container [posts]="posts"></app-posts-container>
 
+<div>

@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { PostDetailsComponent } from 'src/app/features/posts/pages/post-details/post-details.component';

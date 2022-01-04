@@ -1,4 +1,4 @@
-import { State } from './../pagination-state';
+import { State } from './pagination-state';
 import { BehaviorSubject } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 @Component({

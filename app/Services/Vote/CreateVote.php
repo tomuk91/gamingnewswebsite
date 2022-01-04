@@ -14,7 +14,7 @@ class CreateVote
     {
         $user_id = Auth::User()->id;
         $post_id = $request->post_id;
-        $post = Post::find($post_id);
+        $post = Post::where('id', $post_id)->first();
 
         $vote = Vote::updateOrCreate(
             [
@@ -27,7 +27,7 @@ class CreateVote
         if ($vote->wasRecentlyCreated) {
             $post->increment('upvotes', 1);
             $post->save();
-            $totalLikes = $post->select('upvotes')->count('upvotes');
+            $totalLikes = $post->upvotes;
             if($totalLikes >= 10) {
                 $post->pending = false;
                 $post->save();

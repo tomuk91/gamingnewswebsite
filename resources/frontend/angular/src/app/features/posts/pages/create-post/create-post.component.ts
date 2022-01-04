@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/core/services/data.service';
 import { Router } from '@angular/router';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 @Component({
   selector: 'app-create-post',
   templateUrl: './create-post.component.html',

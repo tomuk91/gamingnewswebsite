@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from 'src/app/features/user/pages/login/login.component';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({

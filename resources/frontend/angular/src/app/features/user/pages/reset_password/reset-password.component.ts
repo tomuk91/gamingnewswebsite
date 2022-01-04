@@ -2,7 +2,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

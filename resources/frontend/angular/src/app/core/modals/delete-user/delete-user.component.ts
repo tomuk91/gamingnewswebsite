@@ -2,7 +2,7 @@ import { TokenStorageService } from './../../services/token-storage.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { AuthenticationService } from '../../services/authentication.service';
 import { PostDetailsComponent } from 'src/app/features/posts/pages/post-details/post-details.component';
 

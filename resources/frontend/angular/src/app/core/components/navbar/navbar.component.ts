@@ -3,7 +3,7 @@ import { DataService } from 'src/app/core/services/data.service';
 import { SpinnerService } from './../../services/spinner.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
-import { NotificationService } from '../../../shared/directives/notification.service';
+import { NotificationService } from '../../services/notification.service';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({

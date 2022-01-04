@@ -1,4 +1,4 @@
-import { PostDetails } from './../../../profile/pages/user-posts/posts';
+import { PostDetails } from '../../../features/profile/pages/user-posts/posts';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

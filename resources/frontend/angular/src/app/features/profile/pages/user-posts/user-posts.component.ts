@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { PaginationComponent } from 'src/app/shared/pagination/components/pagination.component';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 import { PostsService } from 'src/app/core/services/posts.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

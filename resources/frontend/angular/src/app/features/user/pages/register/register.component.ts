@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NotificationService } from 'src/app/shared/directives/notification.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { RxwebValidators } from '@rxweb/reactive-form-validators';
 @Component({
   selector: 'app-register',

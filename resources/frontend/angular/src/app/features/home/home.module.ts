@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/Home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutComponent } from './pages/about/about.component';
@@ -8,9 +9,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { TermsComponent } from './pages/terms/terms.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
+    HomeComponent,
     AboutComponent,
     ContactComponent,
     TermsComponent,
@@ -18,10 +22,12 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     SiteComponent
   ],
   imports: [
+    InfiniteScrollModule,
     NgxCaptchaModule,
     ReactiveFormsModule,
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    SharedModule
   ]
 })
 export class HomeModule { }

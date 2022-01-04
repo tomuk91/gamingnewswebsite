@@ -2,7 +2,7 @@ import { categories } from './../../features/posts/pages/create-post/categories'
 import { comments } from './../../features/posts/comments';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { NotificationService } from '../../shared/directives/notification.service';
+import { NotificationService } from './notification.service';
 import { Posts } from '../../features/profile/pages/user-posts/posts';
 import { Observable } from 'rxjs';
 import { PostDetails } from 'src/app/features/posts/post-details';

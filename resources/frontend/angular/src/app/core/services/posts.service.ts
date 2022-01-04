@@ -42,7 +42,16 @@ export class PostsService {
     });
     return this.http.get(`${pendingUrl}`, { params: params ? params : {} });
   }
-  
+
+  latestApprovedPosts(page: number, pageOffset: number, orderBy: string) {
+    const latestEndPoint = '/latestapprovedposts';
+    const latestPostsUrl = `${this.baseUrl}${latestEndPoint}`;
+    const params = new HttpParams({
+      fromObject: { pageOffset, page, orderBy}
+    });
+    return this.http.get(`${latestPostsUrl}`, { params: params ? params: {}});
+  }
+
   vote(data: any) {
     return this.http.post('http://localhost:8000/vote', data);
   }

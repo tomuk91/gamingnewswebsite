@@ -26,7 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner/';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FooterComponent } from './core/components/footer/footer.component';
-import { PaginationModule } from './shared/pagination/pagination.module';
+import { PaginationModule } from './shared/components/pagination/pagination.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PaginationModule } from './shared/pagination/pagination.module';
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({

@@ -10,6 +10,7 @@ use App\Services\Post\CreateUpdatePost;
 use App\Services\Post\PostCurrentUser;
 use App\Services\Post\PostById;
 use App\Services\Post\PostsByCategory;
+use App\Services\Post\LatestApproved;
 
 class PostsController extends Controller
 {
@@ -17,9 +18,6 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::with('categories')->get();
-                $user_id = auth('api')->user()->id ?? NULL;
-
-
         return $posts;
     }
 
@@ -57,6 +55,13 @@ class PostsController extends Controller
         } else {
             return response()->json('Post Not Found', 404);
         }
+    }
+
+    public function latestApprovedPosts(request $request, LatestApproved $post) {
+
+        $action = $post->latestApprovedPost($request);
+
+        return response()->json($action, 200);
     }
 
     public function postsByCategory(Request $request, PostsByCategory $post)

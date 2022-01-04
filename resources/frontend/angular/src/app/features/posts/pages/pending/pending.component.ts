@@ -1,7 +1,7 @@
 import { PostsService } from 'src/app/core/services/posts.service';
 import { PostDetails } from 'src/app/features/posts/post-details';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PaginationComponent } from 'src/app/shared/pagination/components/pagination.component';
+import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 @Component({
