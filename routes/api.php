@@ -58,6 +58,7 @@ Route::group([
     Route::get('postbycat', [PostsController::class, 'postsByCategory']);
     route::get('pending', [PostsController::class, 'pendingPosts']);
     route::get('latestapprovedposts', [PostsController::class, 'latestApprovedPosts']);
+    route::get('featuredposts', [PostsController::class, 'featuredPosts']);
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);

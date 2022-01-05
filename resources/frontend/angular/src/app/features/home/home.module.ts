@@ -11,6 +11,7 @@ import { TermsComponent } from './pages/terms/terms.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FAQComponent } from './pages/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ContactComponent,
     TermsComponent,
     PrivacyComponent,
-    SiteComponent
+    SiteComponent,
+    FAQComponent
   ],
   imports: [
     InfiniteScrollModule,

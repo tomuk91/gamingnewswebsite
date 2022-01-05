@@ -34,6 +34,12 @@ export class PostsService {
     return this.http.get<PostDetails[]>(`${fullUrl}`, { params: params });
   }
 
+  featuredPosts() {
+    const featuredEndpoint = '/featuredposts';
+    const fullFeaturedUrl = `${this.baseUrl}${featuredEndpoint}`;
+    return this.http.get(fullFeaturedUrl);
+  }
+
   pendingPosts(pageOffset: number, page: number, orderBy: string): Observable<any> {
     const pendingEndPoint = '/pending';
     const pendingUrl = `${this.baseUrl}${pendingEndPoint}`;

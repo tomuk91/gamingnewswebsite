@@ -11,19 +11,28 @@ export class HomeComponent implements OnInit {
   offset = 6;
   orderBy = 'desc';
   posts: any = [];
+  featuredPosts: any = [];
   title = 'Recently Approved';
 
   constructor(private postService: PostsService) {}
 
   ngOnInit(): void {
     this.getLatestApprovedPosts();
+    this.getFeaturedPosts();
   }
 
   voted(event: Event) {
     if (event) {
-      console.log(event);
       this.ngOnInit();
     }
+  }
+
+  getFeaturedPosts() {
+    this.postService.featuredPosts().subscribe(
+      (posts) => {
+        this.featuredPosts = posts;
+      }
+    )
   }
 
   getLatestApprovedPosts() {
