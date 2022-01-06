@@ -12,7 +12,7 @@ import { Observable, Subscription } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  user!: Observable<any>;
+  user: Observable<any>;
   isLoggedIn!: Observable<any>;
   categories: categories[] = [];
   error = '';

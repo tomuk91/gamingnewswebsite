@@ -4,7 +4,7 @@
     <mat-spinner style="top: 50%; left: 50%"></mat-spinner>
   </div>
   <nav class="navbar navbar navbar-light">
-    <a href="#" class="nav-bar-brand h5 text-decoration-none">
+    <a routerLink="/home" class="nav-bar-brand h5 text-decoration-none">
       <img
         src="../../assets/angular/assets/img/retromize-logo.png"
         alt="Retromize Logo"
@@ -27,6 +27,12 @@
       >
       <a class="nav-link" [routerLink]="['/register']" *ngIf="!isLoggedIn"
         >Register</a
+      >
+      <a
+        class="nav-link"
+        [routerLink]="['/pending']"
+        data-bs-dismiss="offcanvas"
+        >Pending</a
       >
       <li class="nav-item dropdown">
         <a
@@ -96,16 +102,16 @@
             height="100"
             alt="profile picture"
             [src]="
-            user.user_profile_picture !== null
-              ? 'http://localhost:8000/storage/profile_images/' +
-                user.user_profile_picture.image
-              : 'http://localhost:8000/storage/profile-picture.png'
+              user.user_profile_picture !== null
+                ? 'http://localhost:8000/storage/profile_images/' +
+                  user.user_profile_picture.image
+                : 'http://localhost:8000/storage/profile-picture.png'
             "
             data-holder-rendered="true"
           />
           <p>
             <a
-              [routerLink]="['/profile/details']"
+              [routerLink]="['profile', 'details', user.id]"
               data-bs-dismiss="offcanvas"
               class="text-decoration-none"
             >
@@ -219,7 +225,7 @@
           </li>
           <li class="p-2">
             <a [routerLink]="['/pending']" data-bs-dismiss="offcanvas"
-              >Pending[2]</a
+              >Pending</a
             >
           </li>
           <li class="p-2">

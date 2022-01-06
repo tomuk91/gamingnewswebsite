@@ -10,10 +10,9 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [AuthGuard],
     children: [
       {
-        path: 'details',
+        path: 'details/:id',
         component: ProfileDetailsComponent,
         resolve: {
           user: UserResolver,

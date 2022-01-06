@@ -24,7 +24,7 @@
       </div>
       <button
         class="btn btn-md btn-dark m-2"
-        *ngIf="!editPic"
+        *ngIf="!editPic && public == false"
         (click)="changeImage()"
       >
         Edit Pic
@@ -41,23 +41,26 @@
         <h6>Username:</h6>
         <p>{{ user[0]?.username }}</p>
       </div>
-      <div id="profileContainer">
-        <h6>First Name:</h6>
-        <p>{{ user[0]?.first_name }}</p>
-      </div>
-      <div id="profileContainer">
-        <h6>Last Name:</h6>
-        <p>{{ user[0]?.last_name }}</p>
-      </div>
-      <div id="profileContainer">
-        <h6>Email:</h6>
-        <p>{{ user[0]?.email }}</p>
+      <div *ngIf="public === false">
+        <div id="profileContainer">
+          <h6>First Name:</h6>
+          <p>{{ user[0]?.first_name }}</p>
+        </div>
+        <div id="profileContainer">
+          <h6>Last Name:</h6>
+          <p>{{ user[0]?.last_name }}</p>
+        </div>
+        <div id="profileContainer">
+          <h6>Email:</h6>
+          <p>{{ user[0]?.email }}</p>
+        </div>
       </div>
       <div id="profileContainer">
         <h6>Member Since:</h6>
         <p>{{ user[0].created_at | date }}</p>
       </div>
       <button
+        *ngIf="public === false"
         type="button"
         class="btn btn-primary btn-sm d-grid gap-2 col-6 mx-auto m-2"
         (click)="openDialogUpdate()"
@@ -71,7 +74,7 @@
 
   <!--ACTIVITIES AND ACCOUNT SERVICES SECTION OF PROFILE-->
 
-  <div class="row mx-auto">
+  <div *ngIf="public === false" class="row mx-auto">
     <div class="col-sm-12 col-md-6">
       <h4 class="text-center mt-4">Activities</h4>
       <div class="account-services p-1 rounded">

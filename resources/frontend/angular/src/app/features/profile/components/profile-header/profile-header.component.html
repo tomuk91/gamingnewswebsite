@@ -11,11 +11,23 @@
             routerLinkActive="active"
             class="nav-link"
             aria-current="page"
-            [routerLink]="['details']"
+            [routerLink]="['details', user[0]?.id]"
             >Profile</a
           >
-          <a class="nav-link" routerLinkActive="active" [routerLink]="['posts']">Posts</a>
-          <a class="nav-link" routerLinkActive="active" href="#">Messages</a>
+          <a
+            class="nav-link"
+            [ngClass]="{ isDisabled: public === true }"
+            routerLinkActive="active"
+            [routerLink]="public === true ? null : ['posts']"
+            >Posts</a
+          >
+          <a
+            class="nav-link"
+            [ngClass]="{ isDisabled: public === true }"
+            routerLinkActive="active"
+            href="#"
+            >Messages</a
+          >
         </nav>
       </div>
     </div>

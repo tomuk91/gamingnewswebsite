@@ -9,6 +9,9 @@ use App\Services\User\CreateUpdateUser;
 use App\Services\User\DeleteUser;
 use App\Services\User\LogoutUser;
 use App\Services\User\UserService;
+use App\Services\User\ProfileData;
+use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -22,7 +25,15 @@ class UserController extends Controller
     {
         $action = $user->currentUser();
 
-        return response()->json($action);
+        return $action;
+    }
+
+    public function getProfileData(Request $request, ProfileData $profile) {
+
+        $action = $profile->userData($request);
+
+        return response()->json($action, 200);
+
     }
 
     public function delete(DeleteUser $user)

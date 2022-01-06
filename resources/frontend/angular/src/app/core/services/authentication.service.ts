@@ -1,9 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../../features/user/user';
-import { catchError, first, map, share, switchMap } from 'rxjs/operators';
+import { first, map, switchMap } from 'rxjs/operators';
 import { TokenStorageService } from './token-storage.service';
 import { Token } from '../../features/user/token';
 import { CookieService } from 'ngx-cookie-service';
@@ -12,14 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  static userInfo: any;
   userData!: User | null;
-  options: any;
-  skipLoadingInterceptor: Boolean = false;
   public userSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
   private isLoggedIn: BehaviorSubject<string | null>;
+  public public = new Subject<boolean>();
   public loggedIn: Observable<any>;
-  public user: Observable<User[]>;
+  public user: Observable<any>;
 
   constructor(
     private router: Router,
@@ -45,6 +43,15 @@ export class AuthenticationService {
   getCurrentUser() {
     return this.http
       .get<User[]>('//localhost:8000/getLoggedInuser')
+      .pipe(first());
+  }
+
+  getProfileData(id: number) {
+    const params = new HttpParams({
+      fromObject: { id },
+    });
+    return this.http
+      .get<User[]>('//localhost:8000/profiledata', {params: params})
       .pipe(first());
   }
 

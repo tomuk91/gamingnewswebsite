@@ -19,4 +19,6 @@ export interface User {
       user_id: string;
     };
   };
+  public?: boolean;
+  id: number;
 }

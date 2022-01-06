@@ -37,6 +37,7 @@ Route::post('/createpost', [PostsController::class, 'store']);
 Route::post('vote', [VotesController::class, 'store']);
 
 
+
 Route::group([
     'prefix' => 'forgot-password',
     'excluded_middleware' => ['auth:api'],
@@ -59,6 +60,8 @@ Route::group([
     route::get('pending', [PostsController::class, 'pendingPosts']);
     route::get('latestapprovedposts', [PostsController::class, 'latestApprovedPosts']);
     route::get('featuredposts', [PostsController::class, 'featuredPosts']);
+    Route::get('profiledata', [UserController::class, 'getProfileData']);
+
 });
 
 Route::post('createcomment', [CommentsController::class, 'store']);

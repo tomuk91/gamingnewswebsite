@@ -1,7 +1,7 @@
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
+  Router, Resolve, ActivatedRouteSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../../features/user/user';
@@ -11,7 +11,8 @@ import { User } from '../../features/user/user';
 })
 export class UserResolver implements Resolve<User[]> {
   constructor(private auth: AuthenticationService, private router: Router) {}
-  resolve(): Observable<User[]> | Promise<User[]> | User[] {
-    return this.auth.getCurrentUser();
+  resolve(route: ActivatedRouteSnapshot): Observable<User[]> | Promise<User[]> | User[] {
+    let id = route.params['id'];
+    return this.auth.getProfileData(id);
   }
 }

@@ -21,7 +21,9 @@
           />
           <div class="comments-container rounded p-2 m-2">
             <div class="main-comment">
-              <h6 class="p-2 d-inline">{{ comments.user.username }}</h6>
+              <a [routerLink]="['/profile', 'details', comments.user.id]">
+                <h6 class="p-2 d-inline">{{ comments.user.username }}</h6>
+              </a>
               <p class="d-inline time">
                 {{ postService.calculateDiff(comments.created_at) }}
               </p>
@@ -53,7 +55,16 @@
                   alt="profile picture"
                 />
                 <div class="main-comment">
-                  <h6 class="d-inline">{{ commentreplies.user.username }}</h6>
+                  <a
+                    [routerLink]="[
+                      '/profile',
+                      'details',
+                      commentreplies.user.id
+                    ]"
+                    ><h6 class="d-inline">
+                      {{ commentreplies.user.username }}
+                    </h6></a
+                  >
                   <p class="d-inline time p-2">
                     {{ postService.calculateDiff(commentreplies.created_at) }}
                   </p>
