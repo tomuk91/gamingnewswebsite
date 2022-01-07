@@ -11,6 +11,9 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileImageUploadComponent } from './components/profile_image_upload/profile-image-upload.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { InboxComponent } from './pages/messages/components/inbox/inbox.component';
+import { ConversationComponent } from './pages/messages/pages/conversation/conversation.component';
 @NgModule({
   declarations: [
     ProfileImageUploadComponent,
@@ -20,6 +23,9 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
     UserPostsComponent,
     ProfileDetailsComponent,
     ProfileHeaderComponent,
+    MessagesComponent,
+    InboxComponent,
+    ConversationComponent,
   ],
   imports: [
     CommonModule,

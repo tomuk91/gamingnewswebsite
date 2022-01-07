@@ -20,6 +20,7 @@ import { PostsModule } from './features/posts/posts.module';
 import { ProfileModule } from './features/profile/profile.module';
 import { DeleteUserComponent } from './core/modals/delete-user/delete-user.component';
 import { UpdateUserComponent } from './core/modals/update-user/update-user.component';
+import { ContactUserComponent } from './core/modals/contact-user/contact-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './core/modals/forgot-password/forgot-password.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -38,6 +39,7 @@ import { SharedModule } from './shared/shared.module';
     UpdateUserComponent,
     ForgotPasswordComponent,
     FooterComponent,
+    ContactUserComponent,
   ],
   imports: [
     MatProgressSpinnerModule,

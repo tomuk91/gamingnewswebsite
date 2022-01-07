@@ -11,7 +11,7 @@ use App\Services\User\LogoutUser;
 use App\Services\User\UserService;
 use App\Services\User\ProfileData;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -19,6 +19,7 @@ class UserController extends Controller
     public function index()
     {
         return User::all();
+
     }
 
     public function getLoggedInuser(userService $user)
@@ -29,6 +30,7 @@ class UserController extends Controller
     }
 
     public function getProfileData(Request $request, ProfileData $profile) {
+
 
         $action = $profile->userData($request);
 

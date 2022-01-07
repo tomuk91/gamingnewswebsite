@@ -6,6 +6,7 @@ use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotesController;
@@ -36,6 +37,8 @@ Route::post('/createpost', [PostsController::class, 'store']);
 
 Route::post('vote', [VotesController::class, 'store']);
 
+Route::get('allusers', [MessagesController::class, 'sentMessages']);
+
 
 
 Route::group([
@@ -61,8 +64,12 @@ Route::group([
     route::get('latestapprovedposts', [PostsController::class, 'latestApprovedPosts']);
     route::get('featuredposts', [PostsController::class, 'featuredPosts']);
     Route::get('profiledata', [UserController::class, 'getProfileData']);
+    Route::post('sendmessage', [MessagesController::class, 'sendMessage']);
+    Route::get('userinbox', [MessagesController::class, 'inbox']);
+    Route::get('convo', [MessagesController::class, 'conversation']);
 
 });
+
 
 Route::post('createcomment', [CommentsController::class, 'store']);
 

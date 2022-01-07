@@ -25,7 +25,7 @@
             class="nav-link"
             [ngClass]="{ isDisabled: public === true }"
             routerLinkActive="active"
-            href="#"
+            [routerLink]="public === true ? null : ['messages']"
             >Messages</a
           >
         </nav>

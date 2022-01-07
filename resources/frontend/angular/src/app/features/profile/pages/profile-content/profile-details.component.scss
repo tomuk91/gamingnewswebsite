@@ -27,6 +27,18 @@
   justify-content: space-between;
 }
 
+.message-user {
+  font-weight: 500;
+  margin-top: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightblue;
+    border-radius: 5px;
+    padding: 2px;
+  }
+}
+
 
 
 @media (min-width: 1399.98px) {

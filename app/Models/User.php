@@ -64,12 +64,30 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function userProfilePicture() {
+    public function userProfilePicture()
+    {
         return $this->hasOne(userProfilePicture::class);
     }
 
-    public function votes() {
+    public function votes()
+    {
         return $this->hasMany(Votes::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Messages::class);
+
+    }
+
+    public function sent()
+    {
+        return $this->hasMany(Messages::class, 'sender_id');
+    }
+
+    public function received()
+    {
+        return $this->hasMany(Messages::class, 'recipient_id');
     }
 
 }

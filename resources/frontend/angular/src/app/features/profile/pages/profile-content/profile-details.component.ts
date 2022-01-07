@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../user/user';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, throwError } from 'rxjs';
+import { ContactUserComponent } from 'src/app/core/modals/contact-user/contact-user.component';
 import { DeleteUserComponent } from 'src/app/core/modals/delete-user/delete-user.component';
 import { UpdateUserComponent } from 'src/app/core/modals/update-user/update-user.component';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -50,6 +51,15 @@ export class ProfileDetailsComponent implements OnInit {
     });
   }
 
+  openDialogContact() {
+    this.dialog.open(ContactUserComponent, {
+      height: '425px',
+      width: '600px',
+      data: {
+        userId: this.userId,
+      },
+    });
+  }
   openDialogDelete() {
     this.dialog.open(DeleteUserComponent, {
       height: '290px',

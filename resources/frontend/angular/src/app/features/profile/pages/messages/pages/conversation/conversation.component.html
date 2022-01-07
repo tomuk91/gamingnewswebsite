@@ -1,0 +1,7 @@
+<div class="container">
+  <div *ngFor="let message of inbox | async">
+    <div class="container">
+      {{message.message}}
+    </div>
+  </div>
+</div>
