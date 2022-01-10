@@ -5,6 +5,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { NotificationService } from '../../services/notification.service';
 import { Observable, Subscription } from 'rxjs';
+import { isThursday } from 'date-fns';
 
 @Component({
   selector: 'app-navbar',
@@ -46,8 +47,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout().subscribe((success) => {
-      this.authService.logoutSuccess();
       this.notify.showSuccess('Logout', 'Successful');
+      this.authService.logoutSuccess();
       return success;
     });
   }

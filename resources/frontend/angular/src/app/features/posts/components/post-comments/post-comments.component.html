@@ -27,7 +27,7 @@
               <p class="d-inline time">
                 {{ postService.calculateDiff(comments.created_at) }}
               </p>
-              <p class="p-2">{{ comments.comment }}</p>
+              <p class="p-2 word-wrap text-break">{{ comments.comment }}</p>
               <button
                 *ngIf="isLoggedIn"
                 class="btn btn-sm btn-dark ms-1 mb-1"
@@ -63,13 +63,15 @@
                     ]"
                     ><h6 class="d-inline">
                       {{ commentreplies.user.username }}
-                    </h6></a
-                  >
+                    </h6>
+                  </a>
                   <p class="d-inline time p-2">
                     {{ postService.calculateDiff(commentreplies.created_at) }}
                   </p>
                   <br />
-                  <p>{{ commentreplies.comment }}</p>
+                  <p class="mx-3 word-wrap text-break">
+                    {{ commentreplies.comment }}
+                  </p>
                 </div>
               </div>
             </ng-container>

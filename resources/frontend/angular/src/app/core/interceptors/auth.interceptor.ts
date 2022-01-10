@@ -42,7 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error) => {
-        if (error instanceof HttpErrorResponse && error.status === 401) {
+        if (error instanceof HttpErrorResponse && error.status === 401 || error.message == "Unauthenticated" ) {
           return this.handle401Error(authReq, next);
         } else {
           return throwError(error);

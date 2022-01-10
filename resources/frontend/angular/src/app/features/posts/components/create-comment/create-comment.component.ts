@@ -50,13 +50,9 @@ export class CreateCommentComponent implements OnInit {
   }
 
   submit() {
+    if (this.form.invalid || !this.auth.loginStatus) return;
+
     this.submitted = true;
-
-    console.log(this.comments);
-
-    if (this.form.invalid) {
-      return;
-    }
 
     const formData = this.form.getRawValue();
 

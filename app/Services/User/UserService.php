@@ -13,7 +13,6 @@ class UserService {
 
         $user_id = Auth::user()->id;
 
-
         if(!$user_id) {
             return response()->json('No user logged in', 404);
         }

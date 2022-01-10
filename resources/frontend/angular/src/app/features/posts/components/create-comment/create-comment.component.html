@@ -40,7 +40,7 @@
     name="parent_id"
   />
   <div class="row justify-content-center">
-    <button [disabled]="auth.userValue === null" class="btn btn-primary btn-sm" type="submit">
+    <button [disabled]="!auth.loginStatus" class="btn btn-primary btn-sm" type="submit">
       Post Message
     </button>
   </div>

@@ -13,7 +13,7 @@ export class TokenStorageService {
   signOut(): void {
     localStorage.removeItem(TOKEN_KEY);
     this.cookieService.delete(REFRESHTOKEN_KEY);
-    this.cookieService.deleteAll();
+    this.cookieService.deleteAll('/assets/angular');
   }
 
   public saveAccessToken(token: string): void {

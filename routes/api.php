@@ -66,7 +66,7 @@ Route::group([
     Route::get('profiledata', [UserController::class, 'getProfileData']);
     Route::post('sendmessage', [MessagesController::class, 'sendMessage']);
     Route::get('userinbox', [MessagesController::class, 'inbox']);
-    Route::get('convo', [MessagesController::class, 'conversation']);
+    Route::get('conversation', [MessagesController::class, 'conversation']);
 
 });
 

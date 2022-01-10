@@ -1,3 +1,4 @@
+import { Inbox } from './../../features/profile/pages/messages/inbox.interface';
 import { PostDetails } from 'src/app/features/posts/post-details';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, Subject } from 'rxjs';
@@ -14,7 +15,13 @@ export class MessageService {
 
   userInbox() {
     const endpoint = '/userinbox';
-    return this.http.get(`${this.baseUrl}${endpoint}`);
+    return this.http.get<Inbox[]>(`${this.baseUrl}${endpoint}`);
   }
 
+  conversation(id: number) {
+    const endpoint = '/conversation';
+    let params = new HttpParams();
+    params = params.set('id', id);
+    return this.http.get(`${this.baseUrl}${endpoint}`, { params: params });
+  }
 }

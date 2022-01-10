@@ -100,7 +100,6 @@ export class AuthenticationService {
       .pipe((response) => {
         this.userSubject.next([]);
         this.isLoggedIn.next(null);
-        this.logoutSuccess();
         return response;
       });
   }

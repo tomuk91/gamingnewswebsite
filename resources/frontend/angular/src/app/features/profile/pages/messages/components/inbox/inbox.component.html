@@ -1,11 +1,32 @@
 <div class="container">
-  <div *ngFor="let message of (inbox | async)">
+  <div *ngFor="let message of inbox | async">
     <ol class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-start">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-start"
+      >
         <div class="ms-2 me-auto">
-          <div class="fw-bold"><a [routerLink]="['/profile', 'messages', 'conversation', message.id]">{{message.subject}}</a></div>
+          <div class="fw-bold">
+            <div class="d-flex">
+              <h6>Received: {{ message.created_at | date }}</h6>
+              <h6 class="mx-5">From: {{ message.sender.username }}</h6>
+            </div>
+            <span class="d-flex my-3">
+              <h4>Subject:</h4>
+              <a>
+                <h4 class="mx-2">{{ message.subject }}</h4>
+              </a>
+            </span>
+          </div>
         </div>
-        <span class="badge bg-primary rounded-pill">14</span>
+        <div class="col-md-1 p-1 float-end">
+          <button
+            [routerLink]="['/profile', 'messages', 'conversation', message.id]"
+            class="btn my-1 btn-sm btn-dark"
+          >
+            Read
+          </button>
+          <button class="btn my-1 btn-sm btn-danger">Delete</button>
+        </div>
       </li>
     </ol>
   </div>

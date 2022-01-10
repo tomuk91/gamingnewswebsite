@@ -23,14 +23,16 @@ class MessagesController extends Controller
 
         $user_id = Auth::user()->id;
 
-        return Messages::where('recipient_id', $user_id)->get();
+        return Messages::where('recipient_id', $user_id)->where('conversation_id', '=', '0' || null)->with('sender')->get();
     }
 
     public function conversation(Request $request) {
 
         $id = $request->id;
+        $user_id = Auth::user()->id;
 
-        return Messages::where('id', $id)->with('conversations.sender')->get();
+
+        return Messages::where('recipient_id', $user_id)->where('id', '=', $id)->with('sender')->with('conversations.sender')->get();
     }
 
     public function sentMessages() {
