@@ -12,7 +12,7 @@ use App\Services\Post\PostById;
 use App\Services\Post\PostsByCategory;
 use App\Services\Post\LatestApproved;
 use App\Services\Post\PendingPosts;
-use Carbon\Carbon;
+use App\Services\Post\FeaturedPosts;
 
 class PostsController extends Controller
 {
@@ -23,12 +23,14 @@ class PostsController extends Controller
         return $posts;
     }
 
-    public function featuredPosts(Request $request) {
-        $posts = Post::withCount(['votes' => function ($query) {
-            $query->where('upvotes', '>=', Carbon::now()->subDay());
-        }])->orderBy('votes_count', 'DESC')->limit(3)->get();
+    public function featuredPosts(FeaturedPosts $posts)
+    {
+        $action = $posts->GetFeaturedPosts();
 
-        return $posts;
+        if($action) {
+            return $action;
+        }
+
     }
 
     public function pendingPosts(Request $request, PendingPosts $post) {

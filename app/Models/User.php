@@ -74,20 +74,19 @@ class User extends Authenticatable
         return $this->hasMany(Votes::class);
     }
 
-    public function messages()
-    {
-        return $this->hasMany(Messages::class);
-
+    public function conversations() {
+        return $this->hasMany(Conversations::class);
     }
 
-    public function sent()
-    {
-        return $this->hasMany(Messages::class, 'sender_id');
+    public function messages() {
+        return $this->hasMany(Message::class, 'user_id');
     }
 
-    public function received()
+    public function accolades()
     {
-        return $this->hasMany(Messages::class, 'recipient_id');
+        return $this->belongsToMany(Accolades::class);
     }
+
+
 
 }

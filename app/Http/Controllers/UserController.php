@@ -10,8 +10,10 @@ use App\Services\User\DeleteUser;
 use App\Services\User\LogoutUser;
 use App\Services\User\UserService;
 use App\Services\User\ProfileData;
+use App\Services\User\UserStats;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
+
 
 class UserController extends Controller
 {
@@ -21,6 +23,14 @@ class UserController extends Controller
         return User::all();
 
     }
+
+    public function stats(UserStats $stats) {
+
+        $action = $stats->getStats();
+
+        return $action;
+    }
+
 
     public function getLoggedInuser(userService $user)
     {

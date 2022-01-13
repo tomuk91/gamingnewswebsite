@@ -1,4 +1,4 @@
-<div class="rounded">
+<div *ngFor="let user of user | async" class="rounded">
   <div class="container" class="m-1 p-1">
     <div class="row">
       <div class="col-md-3" class="rounded" style="background-color: white">
@@ -11,7 +11,7 @@
             routerLinkActive="active"
             class="nav-link"
             aria-current="page"
-            [routerLink]="['details', user[0]?.id]"
+            [routerLink]="['details', user.id]"
             >Profile</a
           >
           <a

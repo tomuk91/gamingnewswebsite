@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversations;
 use App\Models\Messages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Services\Messages\ConversationMessages;
+use App\Services\Messages\UserConversations;
+use App\Services\Messages\ReplyToConversation;
+use App\Services\Messages\DeleteConversation;
+use App\Services\Messages\CreateConversation;
 
 class MessagesController extends Controller
 {
@@ -19,20 +24,49 @@ class MessagesController extends Controller
         //
     }
 
-    public function inbox() {
 
-        $user_id = Auth::user()->id;
+    public function messagesByConversation(Request $request, ConversationMessages $messages)
+     {
+        $action = $messages->getMessages($request);
 
-        return Messages::where('recipient_id', $user_id)->where('conversation_id', '=', '0' || null)->with('sender')->get();
+        if($action->isNotEmpty()) {
+            return $action->collect();
+        } else {
+            return response('unauthorized', 404 );
+        }
     }
 
-    public function conversation(Request $request) {
+    public function conversation(UserConversations $conversations)
+    {
+        $action = $conversations->getConversations();
 
-        $id = $request->id;
-        $user_id = Auth::user()->id;
+        if($action->isNotEmpty()){
+            return $action;
+        } else {
+            return response()->json(['message'=> 'user has no conversations'], 204);
+        }
+    }
 
+    public function reply(Request $request, ReplyToConversation $reply)
+    {
+        $action = $reply->createReply($request);
 
-        return Messages::where('recipient_id', $user_id)->where('id', '=', $id)->with('sender')->with('conversations.sender')->get();
+        if($action->id) {
+            return response()->json(['message'=> 'reply sent!'], 200);
+        } else {
+            return response()->json(['error'=> 'unable to send message'], 400);
+        }
+    }
+
+    public function delete(Request $request, DeleteConversation $delete )
+    {
+        $action = $delete->deleteConversation($request);
+
+        if($action === 'true') {
+            return response()->json('Successfully deleted!', 200);
+        } else {
+            return response()->json(['message' => 'There was a problem, please try again', 'error' => $action], 400);
+        }
     }
 
     public function sentMessages() {
@@ -42,17 +76,14 @@ class MessagesController extends Controller
         return Messages::where('sender_id', $user_id)->get();
     }
 
-    public function sendMessage(Request $request) {
+    public function createConversation(Request $request, CreateConversation $conversation )
+    {
+        $action = $conversation->create($request);
 
-        $user_id = Auth::user()->id ?? null;
-
-        Messages::create([
-            'message' => $request->message,
-            'subject' => $request->subject,
-            'recipient_id' => $request->send_to,
-            'sender_id' =>  $request->sender_id ?? $user_id,
-            'conversation_id' => $request->conversation_id,
-        ]);
-
+        if($action) {
+            return response()->json(['message' => 'conversation created!'], 200);
+        } else {
+            return response()->json(['error' => 'unable to create conversation'], 400);
+        }
     }
 }

@@ -21,8 +21,8 @@
             alt="profile picture"
           />
         </div>
-        <span class="message-user" (click)="openDialogContact()" href=""
-          >Message this user</span
+        <span *ngIf="public === true" class="message-user" (click)="openDialogContact()" href=""
+          >Create Conversation</span
         >
       </div>
       <button

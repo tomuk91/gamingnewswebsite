@@ -1,4 +1,8 @@
-<h6 class="text-center" mat-dialog-title>Create Message</h6>
+<h6 class="text-center" mat-dialog-title>Create Conversation</h6>
+<p class="text-muted text-center">
+  Fill out your conversation subject and initial message.<br />
+  Once created, it'll be displayed in your messages
+</p>
 <form [formGroup]="form" class="form-body">
   <div class="form-group">
     <b><label for="username" class="control-label mt-3">Subject</label></b>
@@ -20,7 +24,7 @@
       </div>
     </div>
     <div class form-group>
-      <b><label for="message" class="control-label">Message</label></b>
+      <b><label for="message" class="control-label">First Message</label></b>
       <textarea
         formControlName="message"
         type="textarea"
@@ -40,7 +44,7 @@
       </div>
     </div>
   </div>
-  <button (click)="submit()" class="btn btn-primary btn-block m-1">Send</button>
+  <button (click)="submit()" class="btn btn-primary btn-block m-1">Create</button>
   <button (click)="cancel()" class="btn btn-warning btn-block m-1">
     Cancel
   </button>

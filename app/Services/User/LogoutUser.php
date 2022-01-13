@@ -4,7 +4,7 @@ namespace App\Services\User;
 
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 
 class LogoutUser {

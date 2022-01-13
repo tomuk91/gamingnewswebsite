@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { User } from 'src/app/features/user/user';
 
@@ -12,7 +12,7 @@ export class ProfileHeaderComponent implements OnInit {
   clicked: boolean = false;
   public!: boolean;
   sub!: Subscription;
-  user!: User[];
+  user!: Observable<User[]>;
 
   constructor(private auth: AuthenticationService) {}
 
@@ -22,14 +22,13 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   getUserId() {
-   this.user = this.auth.userValue;
+   this.user = this.auth.user;
   }
 
   publicState() {
     this.sub = this.auth.public.subscribe(
       (value) => {
         this.public = value;
-        console.log(this.public)
       }
     )
   }

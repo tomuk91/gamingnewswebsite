@@ -1,3 +1,4 @@
+import { DataService } from 'src/app/core/services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../user/user';
@@ -21,7 +22,6 @@ export class ProfileDetailsComponent implements OnInit {
   public user!: User;
   public!: boolean;
 
-
   constructor(
     private auth: AuthenticationService,
     private activatedRoute: ActivatedRoute,
@@ -40,7 +40,7 @@ export class ProfileDetailsComponent implements OnInit {
   }
 
   getUserData() {
-   this.sub = this.activatedRoute.data.subscribe((user) => {
+    this.sub = this.activatedRoute.data.subscribe((user) => {
       if (user.user) {
         this.user = user.user;
         this.public = user.user.public;
@@ -51,9 +51,11 @@ export class ProfileDetailsComponent implements OnInit {
     });
   }
 
+
+
   openDialogContact() {
     this.dialog.open(ContactUserComponent, {
-      height: '425px',
+      height: '475px',
       width: '600px',
       data: {
         userId: this.userId,

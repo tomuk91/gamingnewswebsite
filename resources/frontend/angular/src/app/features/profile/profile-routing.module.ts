@@ -1,6 +1,7 @@
-import { ConversationComponent } from './pages/messages/pages/conversation/conversation.component';
-import { InboxComponent } from './pages/messages/components/inbox/inbox.component';
-import { MessageNavComponent } from './pages/messages/message-nav.component';
+import { InboxResolver } from './../../core/resolvers/inbox.resolver';
+import { MessagesComponent } from './pages/messages/pages/messages/messages.component';
+import { InboxComponent } from './pages/messages/pages/inbox/inbox.component';
+import { MessageNavComponent } from './pages/messages/components/inbox-nav/message-nav.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { UserResolver } from 'src/app/core/resolvers/user.resolver';
@@ -33,14 +34,22 @@ const routes: Routes = [
           {
             path: '',
             component: InboxComponent,
+            resolve: {
+              inbox: InboxResolver,
+            },
+            runGuardsAndResolvers: 'paramsOrQueryParamsChange'
           },
           {
             path: 'inbox',
             component: InboxComponent,
+            resolve: {
+              inbox: InboxResolver,
+            },
+            runGuardsAndResolvers: 'paramsOrQueryParamsChange'
           },
           {
             path: 'conversation/:id',
-            component: ConversationComponent,
+            component: MessagesComponent,
           },
         ],
       },

@@ -43,9 +43,7 @@
         formControlName="last_name"
         type="text"
         class="form-control"
-        [ngClass]="{
-          'is-invalid': submitted && f.last_name.errors
-        }"
+        [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }"
       />
       <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
         <div *ngIf="f.last_name.errors.required">Last name is required</div>
@@ -135,7 +133,11 @@
         </div>
       </div>
     </div>
-    <button (click)="submit()" class="btn btn-primary btn-block m-1">Update</button>
-    <button (click)="cancel()" class="btn btn-warning btn-block m-1">Cancel</button>
+    <button (click)="submit()" class="btn btn-primary btn-block m-1">
+      Update
+    </button>
+    <button (click)="cancel()" class="btn btn-warning btn-block m-1">
+      Cancel
+    </button>
   </div>
 </form>

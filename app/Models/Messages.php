@@ -9,19 +9,21 @@ class Messages extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['message', 'subject', 'parent_id', 'sender_id', 'recipient_id', 'conversation_id'];
+    protected $fillable = ['conversation_id', 'is_seen', 'deleted_from_sender', 'deleted_from_receiver', 'message', 'user_id'];
 
-    public function sender()
-    {
-        return $this->belongsTo(User::class, 'sender_id')->select('id', 'username');
+    public function getMessageAttribute($value) {
+        return decrypt($value);
+    }
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
-    public function receiver()
-    {
-        return $this->belongsTo(User::class, 'recipient_id');
+    public function conversation() {
+        return $this->hasMany(Conversations::class, 'id', 'conversation_id')->select('id', 'user_one', 'user_two');
     }
 
-    public function conversations() {
-        return $this->hasMany(Messages::class, 'conversation_id');
+    public function sender() {
+        return $this->hasMany(User::class, 'id', 'user_id')->select('id', 'username');
     }
+
 }

@@ -1,5 +1,5 @@
 <div class="container pt-4">
-  <div *ngIf="userPosts; else empty">
+  <div *ngIf="userPosts.data; else empty">
     <div *ngFor="let post of userPosts">
       <div class="row">
         <div class="col-md col-sm-12 p-2 m-2 d-flex text-center">

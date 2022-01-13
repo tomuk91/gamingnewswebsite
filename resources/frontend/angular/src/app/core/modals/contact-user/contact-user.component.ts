@@ -1,3 +1,4 @@
+import { MessageService } from 'src/app/core/services/message.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
@@ -25,18 +26,31 @@ export class ContactUserComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private messageService: MessageService,
     private notify: NotificationService,
-    private http: HttpClient,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<PostDetailsComponent>
   ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      message: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(400)]],
-      subject: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      conversation_id: ['0', Validators.nullValidator],
-      send_to: [this.data.userId, Validators.nullValidator],
+      message: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(400),
+        ],
+      ],
+      subject: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50),
+        ],
+      ],
+      recipient: [this.data.userId, Validators.nullValidator],
     });
   }
 
@@ -51,28 +65,24 @@ export class ContactUserComponent implements OnInit {
   submit() {
     this.submitted = true;
 
-    //if (this.form.invalid) {
-     // return;
-   // }
-     console.log(this.form.value);
+    if (this.form.invalid) {
+      return;
+    }
     const formData = this.form.value;
 
-    this.http
-      .post('http://localhost:8000/sendmessage', formData)
-      .subscribe(
-        (result) => {
-          this.notify.showSuccess('Success', 'Your message was sent');
-          this.dialogRef.close();
-          window.location.reload();
-          return result;
-        },
-        (error) => {
-          this.notify.showError(
-            'Error',
-            'There has been an error sending your message'
-          );
-          this.errorMessage = error.error.message;
-        }
-      );
+    this.messageService.createConversation(formData).subscribe(
+      (result) => {
+        this.dialogRef.close();
+        this.notify.showSuccess('Success', 'Your conversation was created!');
+        return result;
+      },
+      (error) => {
+        this.notify.showError(
+          'Error',
+          'There has been an error creating your conversation'
+        );
+        this.errorMessage = error.error.message;
+      }
+    );
   }
 }

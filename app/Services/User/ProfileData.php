@@ -15,7 +15,7 @@ class ProfileData {
         $user_id = auth('api')->user()->id;
 
         if($user_id == null) {
-            $user = User::where('id', $user_id)->with('userProfilePicture')->get();
+            return $user = User::where('id', $user_id)->with('userProfilePicture')->get();
         }
 
 
