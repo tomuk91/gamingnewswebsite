@@ -29,10 +29,6 @@ export class DataService {
     return this.http.post('http://localhost:8000/createpost', data);
   }
 
-  getStats() {
-    const endpoint = '/stats';
-    return this.http.get(`${this.baseUrl}${endpoint}`);
-  }
 
 
   getCategories() {

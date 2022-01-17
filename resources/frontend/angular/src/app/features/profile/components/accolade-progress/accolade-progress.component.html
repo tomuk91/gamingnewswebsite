@@ -1,0 +1,19 @@
+  <h4 class="text-center mt-4">Accolades to unlock</h4>
+  <div class="account-services p-1 rounded">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Accolade</th>
+          <th scope="col">Target</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let accolade of accolades">
+          <th scope="row">{{ accolade.id }}</th>
+          <td>{{ accolade.name }}</td>
+          <td>{{ accolade.accolade_target }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

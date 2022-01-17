@@ -1,4 +1,3 @@
-import { DataService } from 'src/app/core/services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../user/user';
@@ -14,7 +13,8 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./profile-details.component.scss'],
 })
 export class ProfileDetailsComponent implements OnInit {
-  private userId!: number;
+  accolades!: any
+  public userId!: number;
   private routeSub!: Subscription;
   private sub!: Subscription;
   public editPic = false;
@@ -25,13 +25,14 @@ export class ProfileDetailsComponent implements OnInit {
   constructor(
     private auth: AuthenticationService,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.extractUserIdFromUrl();
     this.getUserData();
   }
+
 
   extractUserIdFromUrl() {
     this.routeSub = this.activatedRoute.params.subscribe((params) => {
@@ -44,14 +45,13 @@ export class ProfileDetailsComponent implements OnInit {
       if (user.user) {
         this.user = user.user;
         this.public = user.user.public;
+        this.accolades = user.user[0].accolades;
         this.auth.public.next(user.user.public);
       } else {
         throwError('Error getting user');
       }
     });
   }
-
-
 
   openDialogContact() {
     this.dialog.open(ContactUserComponent, {

@@ -1,14 +1,17 @@
-<h4 class="text-center mt-4">Awarded Accolades</h4>
-    <div class="badges-container mb-2 col-md-12 rounded">
+<div *ngIf="accolades; else empty">
+  <h4 class="text-center mt-4">Awarded Accolades</h4>
+  <div class="badges-container mb-2 col-md-12 rounded">
+    <div *ngFor="let accolade of accolades">
       <img
-        src="../../assets/angular/assets/img/100-comments.png"
-        alt="100 Comments Badge"
-        title="100 Comments Made!"
-      />
-      <img
-        src="../../assets/angular/assets/img/100-comments.png"
-        alt="100 Comments Badge"
-        title="100 Comments Made!"
+        src="../../assets/angular/assets/img/{{ accolade.badge }}"
+        alt="{{ accolade.name }}, Accolade"
+        matTooltip="{{ accolade.description }}"
       />
     </div>
-
+  </div>
+</div>
+<ng-template #empty>
+  <div class="text-center">
+    <h5>No Accolades Awarded..yet</h5>
+  </div>
+</ng-template>

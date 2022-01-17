@@ -19,6 +19,7 @@ import { NotificationService } from 'src/app/core/services/notification.service'
   styleUrls: ['./create-post.component.scss'],
 })
 export class CreatePostComponent implements OnInit {
+  siteKey: string = '6LdLZ4odAAAAAN-Ei0Rhw1Tc_MOGiSFnd3ysKV9t';
   submitted = false;
   sub!: Subscription;
   error: string = '';
@@ -59,6 +60,7 @@ export class CreatePostComponent implements OnInit {
       website: ['', [Validators.required, Validators.maxLength(60)]],
       url: ['', [Validators.required, RxwebValidators.url()]],
       categories: ['', Validators.required],
+      recaptcha: ['', Validators.required],
     });
   }
 

@@ -1,23 +1,26 @@
+import { AccoladeService } from 'src/app/core/services/accolade-service';
 import { DataService } from 'src/app/core/services/data.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-quick-stats',
   templateUrl: './quick-stats.component.html',
-  styleUrls: ['./quick-stats.component.scss']
+  styleUrls: ['./quick-stats.component.scss'],
 })
-export class QuickStatsComponent implements OnInit {
-  public stats!: Observable<any>
 
-  constructor(private dataService: DataService) { }
+export class QuickStatsComponent {
+  @Input() public!: boolean;
+  @Input() user_id!: number;
+  public stats!: Observable<any>;
 
-  ngOnInit(): void {
+  constructor(private accoladeService: AccoladeService) {}
+
+  ngOnChanges(): void {
     this.getStats();
   }
 
   getStats() {
-    this.stats = this.dataService.getStats();
-   }
-
+    this.stats = this.accoladeService.getStats(this.public, this.user_id);
+  }
 }

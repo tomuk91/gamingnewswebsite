@@ -17,6 +17,8 @@ class CreateAccoladesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('badge');
+            $table->integer('accolade_target');
             $table->timestamps();
         });
     }

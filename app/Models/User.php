@@ -84,7 +84,7 @@ class User extends Authenticatable
 
     public function accolades()
     {
-        return $this->belongsToMany(Accolades::class);
+        return $this->belongsToMany(Accolades::class)->select('id', 'name', 'description', 'badge');
     }
 
 

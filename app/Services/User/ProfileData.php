@@ -11,7 +11,6 @@ class ProfileData {
 
     public function userData($request) {
 
-
         $user_id = auth('api')->user()->id;
 
         if($user_id == null) {
@@ -20,11 +19,11 @@ class ProfileData {
 
 
         if($request->id != $user_id) {
-            $user = User::with('userProfilePicture')->where('id', $request->id)->select('id', 'username', 'created_at')->get();
+            $user = User::with('userProfilePicture')->where('id', $request->id)->with('accolades')->select('id', 'username', 'created_at')->get();
             $public = true;
         } else {
             $public = false;
-            $user = User::where('id', $user_id)->with('userProfilePicture')->get();
+            $user = User::where('id', $user_id)->with('userProfilePicture')->with('accolades')->get();
         };
 
        $user->put('public', $public);

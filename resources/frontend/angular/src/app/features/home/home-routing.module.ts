@@ -8,7 +8,6 @@ import { PrivacyComponent } from './pages/privacy/privacy.component';
 import { SiteComponent } from './pages/site/site.component';
 import { TermsComponent } from './pages/terms/terms.component';
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
   {
     path: 'site',
     component: SiteComponent,

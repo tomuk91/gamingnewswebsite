@@ -21,12 +21,25 @@ class CreateComment {
         $comment->user_id = $userId;
         $comment->save();
 
-
         $commentCount = Comment::where('user_id', $userId)->count();
-        if($commentCount = 3) {
-            $user->accolades()->sync(1);
-        }
 
+        switch($commentCount) {
+            case 1000:
+                $user->accolades()->syncWithoutDetaching(5);
+            break;
+            case 500:
+                $user->accolades()->syncWithoutDetaching(4);
+            break;
+            case 100:
+                $user->accolades()->syncWithoutDetaching(3);
+            break;
+            case 50:
+                $user->accolades()->syncWithoutDetaching(2);
+            break;
+            case 39:
+                $user->accolades()->syncWithoutDetaching(1);
+            break;
+        }
         return $comment;
     }
 }

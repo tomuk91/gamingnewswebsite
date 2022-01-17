@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccoladeController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ForgotController;
@@ -93,8 +94,8 @@ Route::group([
     Route::post('/contact', [MailController::class, 'contact']);
     //CATEGORIES
     Route::get('category', [CategoriesController::class, 'index']);
-
-
+    //ACCOLADES
+    Route::get('/accolades', [AccoladeController::class, 'Accolades']);
 });
 
 

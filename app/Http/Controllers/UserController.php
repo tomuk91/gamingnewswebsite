@@ -24,9 +24,9 @@ class UserController extends Controller
 
     }
 
-    public function stats(UserStats $stats) {
+    public function stats(Request $request, UserStats $stats) {
 
-        $action = $stats->getStats();
+        $action = $stats->getStats($request);
 
         return $action;
     }

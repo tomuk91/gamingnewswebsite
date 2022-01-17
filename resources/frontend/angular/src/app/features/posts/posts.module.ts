@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { NgxCaptchaModule } from 'ngx-captcha';
 import { CommonModule } from '@angular/common';
 import { PostDetailsComponent } from './pages/post-details/post-details.component';
 import { PostsRoutingModule } from './posts-routing.module';
@@ -24,6 +25,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     PendingComponent,
   ],
   imports: [
+    NgxCaptchaModule,
     CommonModule,
     PaginationModule,
     MatSelectModule,

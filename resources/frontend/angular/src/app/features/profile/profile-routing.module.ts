@@ -12,7 +12,7 @@ import { AuthGuard } from 'src/app/core/guards/auth-guard.guard';
 
 const routes: Routes = [
   {
-    path: 'profile',
+    path: '',
     component: ProfileComponent,
     canActivate: [AuthGuard],
     children: [
@@ -37,7 +37,7 @@ const routes: Routes = [
             resolve: {
               inbox: InboxResolver,
             },
-            runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+            runGuardsAndResolvers: 'always'
           },
           {
             path: 'inbox',
@@ -45,7 +45,7 @@ const routes: Routes = [
             resolve: {
               inbox: InboxResolver,
             },
-            runGuardsAndResolvers: 'paramsOrQueryParamsChange'
+            runGuardsAndResolvers: 'always'
           },
           {
             path: 'conversation/:id',
@@ -59,8 +59,10 @@ const routes: Routes = [
         resolve: {
           user: UserResolver,
         },
+        runGuardsAndResolvers: 'always'
       },
     ],
+    runGuardsAndResolvers: 'always'
   },
 ];
 

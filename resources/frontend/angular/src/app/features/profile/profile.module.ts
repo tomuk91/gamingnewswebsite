@@ -15,6 +15,9 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
 import { MessageNavComponent } from './pages/messages/components/inbox-nav/message-nav.component';
 import { InboxComponent } from './pages/messages/pages/inbox/inbox.component';
 import { MessagesComponent } from './pages/messages/pages/messages/messages.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { AccoladeProgressComponent } from './components/accolade-progress/accolade-progress.component';
+import { AccountServicesComponent } from './components/account-services/account-services.component';
 @NgModule({
   declarations: [
     ProfileImageUploadComponent,
@@ -27,10 +30,13 @@ import { MessagesComponent } from './pages/messages/pages/messages/messages.comp
     MessageNavComponent,
     InboxComponent,
     MessagesComponent,
+    AccoladeProgressComponent,
+    AccountServicesComponent,
   ],
   imports: [
     MatIconModule,
     CommonModule,
+    MatTooltipModule,
     ProfileRoutingModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,

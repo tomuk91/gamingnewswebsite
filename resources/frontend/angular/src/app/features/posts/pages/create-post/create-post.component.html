@@ -136,6 +136,14 @@
             </div>
           </div>
         </mat-form-field>
+        <div class="form-group">
+          <ngx-recaptcha2
+            #captchaElem
+            [siteKey]="siteKey"
+            formControlName="recaptcha"
+          >
+          </ngx-recaptcha2>
+        </div>
         <button class="btn btn-primary btn-md" type="submit">Submit</button>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { HomeComponent } from './features/home/components/Home/home.component';
 import { HomeModule } from './features/home/home.module';
 import { HttpSpinnerInterceptor } from './core/interceptors/spinner.interceptor';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -51,6 +52,13 @@ import { SharedModule } from './shared/shared.module';
       timeOut: 10000,
     }),
     RouterModule.forRoot([
+      { path: 'home', component: HomeComponent },
+      {
+        path: 'site', loadChildren: () => import('./features/home/home.module').then( m => m.HomeModule)
+      },
+      {
+        path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+      },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '404', component: PageNotFoundComponent },
       { path: '**', component: PageNotFoundComponent },
