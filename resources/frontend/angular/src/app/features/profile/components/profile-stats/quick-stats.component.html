@@ -1,49 +1,55 @@
 <div *ngIf="stats|async; let stat" class="row">
-  <div class="stats col-sm-12 col-xs-11 mt-4 mx-auto rounded">
-    <h4 class="mt-2 text-center">Quick Stats</h4>
-    <hr />
-    <div class="container-fluid">
-      <div class="row d-flex justify-content-evenly">
-        <div class="col-sm-3 col-md-3">
-          <div class="card mb-1">
-            <div class="card-body m-2">
-              <div>
-                <mat-icon class="myIcon mx-2" inline="true">edit</mat-icon>
-                <h6>
-                  Posts<br />
-                  {{stat.post_count}}
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4 col-md-5">
-          <div class="card mb-1">
-            <div class="card-body m-2">
-              <div>
-                <mat-icon class="myIcon mx-2" inline="true">comment</mat-icon>
-                <h6>
-                  Comments<br />
-                  {{stat.comment_count}}
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-3 col-md-3">
-          <div class="card mb-1">
-            <div class="card-body m-2">
-              <div>
-                <mat-icon class="myIcon mx-2" inline="true">recommend</mat-icon>
-                <h6>
-                  Likes<br />
-                  {{stat.like_count}}
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="stats col-sm-12 col-xs-11 mt-4 mx-auto rounded">
+		<h4 class="mt-2 text-center">Quick Stats</h4>
+		<hr />
+		<div class="container-fluid">
+			<div class="row d-flex justify-content-evenly">
+				<div class="col-sm-3 col-md-3">
+					<div class="card mb-1">
+						<div class="card-body m-2">
+							<div>
+								<mat-icon class="myIcon mx-2" inline="true"
+									>edit</mat-icon
+								>
+								<h6>
+									Posts<br />
+									{{stat.post_count}}
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-md-5">
+					<div class="card mb-1">
+						<div class="card-body m-2">
+							<div>
+								<mat-icon class="myIcon mx-2" inline="true"
+									>comment</mat-icon
+								>
+								<h6>
+									Comments<br />
+									{{stat.comment_count}}
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					<div class="card mb-1">
+						<div class="card-body m-2">
+							<div>
+								<mat-icon class="myIcon mx-2" inline="true"
+									>recommend</mat-icon
+								>
+								<h6>
+									Likes<br />
+									{{stat.like_count}}
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

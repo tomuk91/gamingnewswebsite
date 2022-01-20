@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-error-messages',
@@ -33,13 +33,13 @@ import { Component, Input, OnInit } from '@angular/core';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ErrorMessagesComponent implements OnInit {
   @Input() errorMessage: string = '';
   @Input() passwordError: string = '';
 
-  constructor() {}
+  constructor () {}
 
-  ngOnInit(): void {}
+  ngOnInit (): void {}
 }

@@ -1,5 +1,6 @@
-import { categories } from './pages/create-post/categories';
-import { comments } from './comments';
+/* eslint-disable camelcase */
+import { categories } from './categories'
+import { comments } from './comments'
 export interface PostDetails {
     id: number;
     title: string;
@@ -14,6 +15,7 @@ export interface PostDetails {
     user_id: number;
     created_at: Date;
     updated_at: Date;
+    // eslint-disable-next-line no-use-before-define
     votes: votes[];
 }
 

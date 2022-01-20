@@ -1,32 +1,32 @@
-import { HomeComponent } from './features/home/components/Home/home.component';
-import { HomeModule } from './features/home/home.module';
-import { HttpSpinnerInterceptor } from './core/interceptors/spinner.interceptor';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
-import { AppComponent } from './app.component';
-import { NavbarComponent } from './core/components/navbar/navbar.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { UserModule } from './features/user/user.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PageNotFoundComponent } from './core/components/pagenotfound/page-not-found.component';
-import { CookieService } from 'ngx-cookie-service';
-import { CommonModule } from '@angular/common';
-import { PostsModule } from './features/posts/posts.module';
-import { ProfileModule } from './features/profile/profile.module';
-import { DeleteUserComponent } from './core/modals/delete-user/delete-user.component';
-import { UpdateUserComponent } from './core/modals/update-user/update-user.component';
-import { ContactUserComponent } from './core/modals/contact-user/contact-user.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ForgotPasswordComponent } from './core/modals/forgot-password/forgot-password.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner/';
-import { AuthInterceptor } from './core/interceptors/auth.interceptor';
-import { FooterComponent } from './core/components/footer/footer.component';
-import { PaginationModule } from './shared/components/pagination/pagination.module';
-import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './features/home/components/Home/home.component'
+import { HomeModule } from './features/home/home.module'
+import { HttpSpinnerInterceptor } from './core/interceptors/spinner.interceptor'
+import { AuthenticationService } from 'src/app/core/services/authentication.service'
+import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser'
+import { RouterModule } from '@angular/router'
+import { ToastrModule } from 'ngx-toastr'
+import { AppComponent } from './app.component'
+import { NavbarComponent } from './core/components/navbar/navbar.component'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { UserModule } from './features/user/user.module'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { PageNotFoundComponent } from './core/components/pagenotfound/page-not-found.component'
+import { CookieService } from 'ngx-cookie-service'
+import { CommonModule } from '@angular/common'
+import { PostsModule } from './features/posts/posts.module'
+import { ProfileModule } from './features/profile/profile.module'
+import { DeleteUserComponent } from './core/modals/delete-user/delete-user.component'
+import { UpdateUserComponent } from './core/modals/update-user/update-user.component'
+import { ContactUserComponent } from './core/modals/contact-user/contact-user.component'
+import { ReactiveFormsModule } from '@angular/forms'
+import { ForgotPasswordComponent } from './core/modals/forgot-password/forgot-password.component'
+import { MatDialogModule } from '@angular/material/dialog'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner/'
+import { AuthInterceptor } from './core/interceptors/auth.interceptor'
+import { FooterComponent } from './core/components/footer/footer.component'
+import { PaginationModule } from './shared/components/pagination/pagination.module'
+import { SharedModule } from './shared/shared.module'
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { SharedModule } from './shared/shared.module';
     UpdateUserComponent,
     ForgotPasswordComponent,
     FooterComponent,
-    ContactUserComponent,
+    ContactUserComponent
   ],
   imports: [
     MatProgressSpinnerModule,
@@ -49,25 +49,25 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      timeOut: 10000,
+      timeOut: 10000
     }),
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       {
-        path: 'site', loadChildren: () => import('./features/home/home.module').then( m => m.HomeModule)
+        path: 'site', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '404', component: PageNotFoundComponent },
-      { path: '**', component: PageNotFoundComponent },
+      { path: '**', component: PageNotFoundComponent }
     ]),
     HomeModule,
     PaginationModule,
     ProfileModule,
     UserModule,
-    PostsModule,
+    PostsModule
   ],
   providers: [
     [CookieService],
@@ -75,14 +75,14 @@ import { SharedModule } from './shared/shared.module';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true,
+      multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpSpinnerInterceptor,
-      multi: true,
-    },
+      multi: true
+    }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

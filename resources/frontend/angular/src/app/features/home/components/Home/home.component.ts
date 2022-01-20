@@ -1,54 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { PostsService } from 'src/app/core/services/posts.service';
+import { PostDetails } from 'src/app/features/posts/post-details'
+import { Component, OnInit } from '@angular/core'
+import { PostsService } from 'src/app/core/services/posts.service'
 @Component({
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  // INFINITE SCROLL
   throttle = 0;
   distance = 2;
   page = 1;
   offset = 6;
   orderBy = 'desc';
-  posts: any = [];
-  featuredPosts: any = [];
-  title = 'Recently Approved';
+  // DATA
+  public posts: PostDetails[] = [];
+  public featuredPosts: PostDetails[] = [];
+  public title = 'Recently Approved';
 
-  constructor(private postService: PostsService) {}
+  constructor (private postService: PostsService) {}
 
-  ngOnInit(): void {
-    this.getLatestApprovedPosts();
-    this.getFeaturedPosts();
+  ngOnInit (): void {
+    this.getLatestApprovedPosts()
+    this.getFeaturedPosts()
   }
 
-  voted(event: Event) {
+  // EVENT IF USER VOTED - REFRESH;
+  public voted (event: Event) {
     if (event) {
-      this.ngOnInit();
+      this.ngOnInit()
     }
   }
 
-  getFeaturedPosts() {
-    this.postService.featuredPosts().subscribe(
-      (posts) => {
-        this.featuredPosts = posts;
-      }
-    )
+  // DATA
+  public getFeaturedPosts () {
+    this.postService.featuredPosts().subscribe((posts) => {
+      this.featuredPosts = posts
+    })
   }
 
-  getLatestApprovedPosts() {
+  public getLatestApprovedPosts () {
     this.postService
       .latestApprovedPosts(this.page, this.offset, this.orderBy)
       .subscribe((posts: any) => {
-        this.posts = posts.data;
-        this.page = posts.current_page;
-      });
+        this.posts = posts.data
+        this.page = posts.current_page
+      })
   }
 
-  onScroll() {
+  // INFINITE SCROLL
+  public onScroll () {
     this.postService
       .latestApprovedPosts(++this.page, this.offset, this.orderBy)
       .subscribe((posts: any) => {
-        this.posts.push(...posts.data);
-      });
+        this.posts.push(...posts.data)
+      })
   }
 }

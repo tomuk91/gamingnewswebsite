@@ -1,4 +1,6 @@
+/* eslint-disable camelcase */
 export interface Inbox {
+    // eslint-disable-next-line no-use-before-define
     conversations: conversations[];
     conversation_id: number;
     created_at: Date;

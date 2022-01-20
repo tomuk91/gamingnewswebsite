@@ -1,61 +1,60 @@
 @media (min-width: 500px) {
-  .responsive-text {
-    font-size: 1.1rem;
-  } /*1rem = 16px*/
+	.responsive-text {
+		font-size: 1.1rem;
+	} /*1rem = 16px*/
 }
 
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
 @media (min-width: 768px) {
-  .responsive-text {
-    font-size: 2rem;
-  } /*1rem = 16px*/
+	.responsive-text {
+		font-size: 2rem;
+	} /*1rem = 16px*/
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .responsive-text {
-    font-size: 1.8rem;
-  } /*1rem = 16px*/
+	.responsive-text {
+		font-size: 1.8rem;
+	} /*1rem = 16px*/
 }
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-  .responsive-text {
-    font-size: 2.3rem;
-  } /*1rem = 16px*/
-  .carousel img {
-    max-height: 600px;
-  }
+	.responsive-text {
+		font-size: 2.3rem;
+	} /*1rem = 16px*/
+	.carousel img {
+		max-height: 600px;
+	}
 }
 
 .container {
-  background-color: rgb(226, 226, 226);
-  border-radius: 4px;
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
-    0 2px 4px -1px rgba(0, 0, 0, 0.3);
+	background-color: rgb(226, 226, 226);
+	border-radius: 4px;
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+		0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 i {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 img {
-  height: 100%;
-  object-fit: cover;
-  border-top: black solid 2px;
-  max-height: 300px;
-  width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-top: black solid 2px;
+	max-height: 300px;
+	width: 100%;
 }
 
 .card {
-  margin: o auto;
-  height: auto;
-  background-color: #ffffff;
-  padding: 0;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
-    0 2px 4px -1px rgba(0, 0, 0, 0.3);
-
+	margin: o auto;
+	height: auto;
+	background-color: #ffffff;
+	padding: 0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+		0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }

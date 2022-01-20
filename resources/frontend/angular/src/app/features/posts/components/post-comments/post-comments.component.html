@@ -1,99 +1,111 @@
 <div class="container p-3">
-  <app-create-comment [comments]="comments"></app-create-comment>
-  <div *ngIf="comments.length > 0; else empty">
-    <div
-      *ngFor="
+	<app-create-comment [comments]="comments"></app-create-comment>
+	<div *ngIf="comments.length > 0; else empty">
+		<div
+			*ngFor="
         let comments of offset ? comments : (comments | slice: 0:5);
         let i = index
       "
-    >
-      <div class="comments m-2 rounded mx-auto d-flex">
-        <div class="pt-3 px-3 m-3 w-100 d-flex">
-          <img
-            [src]="
+		>
+			<div class="comments m-2 rounded mx-auto d-flex">
+				<div class="pt-3 px-3 m-3 w-100 d-flex">
+					<img
+						[src]="
               comments.user.user_profile_picture !== null
                 ? 'http://localhost:8000/storage/profile_images/' +
                   comments.user.user_profile_picture.image
                 : 'http://localhost:8000/storage/profile-picture.png'
             "
-            class="rounded-circle profile-img d-inline"
-            alt="profile picture"
-          />
-          <div class="comments-container rounded p-2 m-2">
-            <div class="main-comment">
-              <a [routerLink]="['/profile', 'details', comments.user.id]">
-                <h6 class="p-2 d-inline">{{ comments.user.username }}</h6>
-              </a>
-              <p class="d-inline time">
-                {{ postService.calculateDiff(comments.created_at) }}
-              </p>
-              <p class="p-2 word-wrap text-break">{{ comments.comment }}</p>
-              <button
-                *ngIf="isLoggedIn"
-                class="btn btn-sm btn-dark ms-1 mb-1"
-                (click)="hideReplyForm[i] = !hideReplyForm[i]"
-              >
-                Reply
-              </button>
-              <div [hidden]="!hideReplyForm[i]">
-                <app-comment-replies
-                  [index]="i"
-                  [comments]="comments"
-                ></app-comment-replies>
-              </div>
-            </div>
-            <ng-container *ngFor="let commentreplies of comments.replies">
-              <div class="replies m-1 p-1 rounded">
-                <img
-                  [src]="
+						class="rounded-circle profile-img d-inline"
+						alt="profile picture"
+					/>
+					<div class="comments-container rounded p-2 m-2">
+						<div class="main-comment">
+							<a
+								[routerLink]="['/profile', 'details', comments.user.id]"
+							>
+								<h6 class="p-2 d-inline">
+									{{ comments.user.username }}
+								</h6>
+							</a>
+							<p class="d-inline time">
+								{{
+								postService.calculateDiff(comments.created_at)
+								}}
+							</p>
+							<p class="p-2 word-wrap text-break">
+								{{ comments.comment }}
+							</p>
+							<button
+								*ngIf="isLoggedIn"
+								class="btn btn-sm btn-dark ms-1 mb-1"
+								(click)="hideReplyForm[i] = !hideReplyForm[i]"
+							>
+								Reply
+							</button>
+							<div [hidden]="!hideReplyForm[i]">
+								<app-comment-replies
+									[index]="i"
+									[comments]="comments"
+								></app-comment-replies>
+							</div>
+						</div>
+						<ng-container
+							*ngFor="let commentreplies of comments.replies"
+						>
+							<div class="replies m-1 p-1 rounded">
+								<img
+									[src]="
                     commentreplies.user.user_profile_picture !== null
                       ? 'http://localhost:8000/storage/profile_images/' +
                         commentreplies.user.user_profile_picture.image
                       : 'http://localhost:8000/storage/profile-picture.png'
                   "
-                  class="rounded-circle profile-img d-inline"
-                  alt="profile picture"
-                />
-                <div class="main-comment">
-                  <a
-                    [routerLink]="[
+									class="rounded-circle profile-img d-inline"
+									alt="profile picture"
+								/>
+								<div class="main-comment">
+									<a
+										[routerLink]="[
                       '/profile',
                       'details',
                       commentreplies.user.id
                     ]"
-                    ><h6 class="d-inline">
-                      {{ commentreplies.user.username }}
-                    </h6>
-                  </a>
-                  <p class="d-inline time p-2">
-                    {{ postService.calculateDiff(commentreplies.created_at) }}
-                  </p>
-                  <br />
-                  <p class="mx-3 word-wrap text-break">
-                    {{ commentreplies.comment }}
-                  </p>
-                </div>
-              </div>
-            </ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="d-flex justify-content-center">
-    <button
-      *ngIf="comments.length > 0"
-      class="btn btn-secondary btn-lg m-2"
-      (click)="offset = !offset"
-    >
-      {{ offset ? "Less Comments" : "More Comments" }}
-    </button>
-  </div>
+										><h6 class="d-inline">
+											{{ commentreplies.user.username }}
+										</h6>
+									</a>
+									<p class="d-inline time p-2">
+										{{
+										postService.calculateDiff(commentreplies.created_at)
+										}}
+									</p>
+									<br />
+									<p class="mx-3 word-wrap text-break">
+										{{ commentreplies.comment }}
+									</p>
+								</div>
+							</div>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center">
+		<button
+			*ngIf="comments.length > 0"
+			class="btn btn-secondary btn-lg m-2"
+			(click)="offset = !offset"
+		>
+			{{ offset ? "Less Comments" : "More Comments" }}
+		</button>
+	</div>
 </div>
 
 <ng-template #empty>
-  <div class="text-center p-3">
-    <h5>No comments to show</h5>
-    <p>Be the first to contribute to this post!</p>
-  </div>
+	<div class="text-center p-3">
+		<h5>No comments to show</h5>
+		<p>Be the first to contribute to this post!</p>
+	</div>
 </ng-template>

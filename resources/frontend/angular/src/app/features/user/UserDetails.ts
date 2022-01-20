@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-export interface User {
- [index: number]: {
+export interface UserDetails {
     id: number;
     username: string;
     first_name: string;
@@ -19,7 +18,4 @@ export interface User {
       updated_at: string;
       user_id: string;
     };
-  };
-  public?: boolean;
-  id: number;
 }

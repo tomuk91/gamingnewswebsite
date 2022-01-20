@@ -1,35 +1,39 @@
 <div *ngFor="let user of user | async" class="rounded">
-  <div class="container" class="m-1 p-1">
-    <div class="row">
-      <div class="col-md-3" class="rounded" style="background-color: white">
-        <h4 class="text-center p-3">
-          Profile Portal<br />
-          <small class="text-muted">Welcome</small>
-        </h4>
-        <nav class="nav nav-pills nav-fill pb-4">
-          <a
-            routerLinkActive="active"
-            class="nav-link"
-            aria-current="page"
-            [routerLink]="['details', user.id]"
-            >Profile</a
-          >
-          <a
-            class="nav-link"
-            [ngClass]="{ isDisabled: public === true }"
-            routerLinkActive="active"
-            [routerLink]="public === true ? null : ['posts']"
-            >Posts</a
-          >
-          <a
-            class="nav-link"
-            [ngClass]="{ isDisabled: public === true }"
-            routerLinkActive="active"
-            [routerLink]="public === true ? null : ['messages']"
-            >Messages</a
-          >
-        </nav>
-      </div>
-    </div>
-  </div>
+	<div class="container" class="m-1 p-1">
+		<div class="row">
+			<div
+				class="col-md-3"
+				class="rounded"
+				style="background-color: white"
+			>
+				<h4 class="text-center p-3">
+					Profile Portal<br />
+					<small class="text-muted">Welcome</small>
+				</h4>
+				<nav class="nav nav-pills nav-fill pb-4">
+					<a
+						routerLinkActive="active"
+						class="nav-link"
+						aria-current="page"
+						[routerLink]="['details', user.id]"
+						>Profile</a
+					>
+					<a
+						class="nav-link"
+						[ngClass]="{ isDisabled: public === true }"
+						routerLinkActive="active"
+						[routerLink]="public === true ? null : ['posts']"
+						>Posts</a
+					>
+					<a
+						class="nav-link"
+						[ngClass]="{ isDisabled: public === true }"
+						routerLinkActive="active"
+						[routerLink]="public === true ? null : ['messages']"
+						>Messages</a
+					>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>

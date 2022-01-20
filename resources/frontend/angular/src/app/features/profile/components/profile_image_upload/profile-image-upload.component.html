@@ -1,19 +1,19 @@
 <form class="d-inline" (submit)="submit()" [formGroup]="form">
-  <div class="form-group">
-    <input
-      class="form-control"
-      formControlName="image"
-      type="file"
-      name="image"
-      (change)="uploadImage($event)"
-      [ngClass]="{ 'is-invalid': submitted && f.image.errors }"
-    />
-    <div *ngIf="submitted && f.image.errors" class="invalid-feedback">
-      <div *ngIf="f.image.errors.required">Image is required</div>
-      <div *ngIf="f.image.errors.extension">
-        Wrong file type. Allowed formats: JPEG, JPG, PNG
-      </div>
-    </div>
-  </div>
-  <button class="btn btn-dark btn-md m-2" type="submit">Submit</button>
+	<div class="form-group">
+		<input
+			class="form-control"
+			formControlName="image"
+			type="file"
+			name="image"
+			(change)="uploadImage($event)"
+			[ngClass]="{ 'is-invalid': submitted && f.image.errors }"
+		/>
+		<div *ngIf="submitted && f.image.errors" class="invalid-feedback">
+			<div *ngIf="f.image.errors.required">Image is required</div>
+			<div *ngIf="f.image.errors.extension">
+				Wrong file type. Allowed formats: JPEG, JPG, PNG
+			</div>
+		</div>
+	</div>
+	<button class="btn btn-dark btn-md m-2" type="submit">Submit</button>
 </form>

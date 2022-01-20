@@ -1,37 +1,39 @@
-import { AccoladeService } from 'src/app/core/services/accolade-service';
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { accolades } from './../../accolades.interface'
+import { stats } from './../../stats.interface'
+import { AccoladeService } from 'src/app/core/services/accolade-service'
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-accolade-progress',
   templateUrl: './accolade-progress.component.html',
-  styleUrls: ['./accolade-progress.component.scss'],
+  styleUrls: ['./accolade-progress.component.scss']
 })
 export class AccoladeProgressComponent implements OnInit {
-  @Input() public: any;
-  @Input() user_id!: any;
-  public stats!: any;
-  public accolades: any;
+  @Input() public!: boolean;
+  @Input() userId!: number;
+  public stats!: stats;
+  public accolades!: accolades[];
 
+  constructor (private accoladeService: AccoladeService) {}
 
-  constructor(private accoladeService: AccoladeService) {}
+  ngOnInit (): void {
+    this.getAllAccolades()
+    this.getStats()
+  }
 
-  ngOnInit(): void {
-    this.getAllAccolades();
+  // private methods
 
-    this.accoladeService.getStats(this.public, this.user_id).subscribe(
-      (response) => {
-        this.stats = response;
-        console.log(response);
+  private getStats () {
+    this.accoladeService
+      .getStats(this.public, this.userId)
+      .subscribe((response) => {
+        this.stats = response
       })
   }
 
-  getAllAccolades() {
+  private getAllAccolades () {
     this.accoladeService.getAccolades().subscribe(response => {
-      this.accolades = response;
-      console.log(this.accolades);
+      this.accolades = response
     })
   }
-
-  
 }

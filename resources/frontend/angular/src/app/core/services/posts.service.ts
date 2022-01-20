@@ -1,72 +1,70 @@
-import { PostDetails } from 'src/app/features/posts/post-details';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, EMPTY, Observable, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import * as moment from 'moment';
+import { PostDetails } from 'src/app/features/posts/post-details'
+import { Injectable } from '@angular/core'
+import { Observable } from 'rxjs'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import * as moment from 'moment'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class PostsService {
-  constructor(private http: HttpClient) {}
+  constructor (private http: HttpClient) {}
 
   private readonly baseUrl = 'http://localhost:8000';
   private endpoint = '/currentuserposts';
   protected _url = `${this.baseUrl}${this.endpoint}`;
 
-  getUserPosts(
+  getUserPosts (
     pageOffset: number,
     page: number,
     orderBy: string
   ): Observable<any> {
     const params = new HttpParams({
-      fromObject: { pageOffset, page, orderBy },
-    });
-    return this.http.get(`${this._url}`, { params: params ? params : {} });
+      fromObject: { pageOffset, page, orderBy }
+    })
+    return this.http.get(`${this._url}`, { params: params || {} })
   }
 
-  postsByCategory($id: any) {
-    const endpoint = '/postbycat';
-    const fullUrl = `${this.baseUrl}${endpoint}`;
-    let params = new HttpParams();
-    params = params.set('id', $id);
+  postsByCategory ($id: any) {
+    const endpoint = '/postbycat'
+    const fullUrl = `${this.baseUrl}${endpoint}`
+    let params = new HttpParams()
+    params = params.set('id', $id)
 
-    return this.http.get<PostDetails[]>(`${fullUrl}`, { params: params });
+    return this.http.get<PostDetails[]>(`${fullUrl}`, { params: params })
   }
 
-  featuredPosts() {
-    const featuredEndpoint = '/featuredposts';
-    const fullFeaturedUrl = `${this.baseUrl}${featuredEndpoint}`;
-    return this.http.get(fullFeaturedUrl);
+  featuredPosts () {
+    const featuredEndpoint = '/featuredposts'
+    const fullFeaturedUrl = `${this.baseUrl}${featuredEndpoint}`
+    return this.http.get<PostDetails[]>(fullFeaturedUrl)
   }
 
-  pendingPosts(pageOffset: number, page: number, orderBy: string): Observable<any> {
-    const pendingEndPoint = '/pending';
-    const pendingUrl = `${this.baseUrl}${pendingEndPoint}`;
+  pendingPosts (pageOffset: number, page: number, orderBy: string): Observable<any> {
+    const pendingEndPoint = '/pending'
+    const pendingUrl = `${this.baseUrl}${pendingEndPoint}`
     const params = new HttpParams({
-      fromObject: { pageOffset, page, orderBy },
-    });
-    return this.http.get(`${pendingUrl}`, { params: params ? params : {} });
+      fromObject: { pageOffset, page, orderBy }
+    })
+    return this.http.get(`${pendingUrl}`, { params: params || {} })
   }
 
-  latestApprovedPosts(page: number, pageOffset: number, orderBy: string) {
-    const latestEndPoint = '/latestapprovedposts';
-    const latestPostsUrl = `${this.baseUrl}${latestEndPoint}`;
+  latestApprovedPosts (page: number, pageOffset: number, orderBy: string) {
+    const latestEndPoint = '/latestapprovedposts'
+    const latestPostsUrl = `${this.baseUrl}${latestEndPoint}`
     const params = new HttpParams({
-      fromObject: { pageOffset, page, orderBy}
-    });
-    return this.http.get(`${latestPostsUrl}`, { params: params ? params: {}});
+      fromObject: { pageOffset, page, orderBy }
+    })
+    return this.http.get(`${latestPostsUrl}`, { params: params || {} })
   }
 
-  vote(data: any) {
-    return this.http.post('http://localhost:8000/vote', data);
+  vote (data: any) {
+    return this.http.post('http://localhost:8000/vote', data)
   }
 
-  calculateDiff(sentDate: string | number | Date) {
-    let date1 = moment(sentDate);
-    let date2 = moment(new Date());
-    return date1.from(date2);
+  calculateDiff (sentDate: string | number | Date) {
+    const date1 = moment(sentDate)
+    const date2 = moment(new Date())
+    return date1.from(date2)
   }
-
-
 }

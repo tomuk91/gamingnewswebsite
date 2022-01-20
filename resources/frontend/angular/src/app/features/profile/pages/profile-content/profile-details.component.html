@@ -1,117 +1,137 @@
 <div class="container-fluid">
-  <div class="row">
-    <div
-      class="col-sm-12 col-md-12 col-lg-6 mt-4 rounded"
-      style="background-color: white"
-    >
-      <div class="pt-3 px-3 m-3">
-        <div *ngIf="!user[0].user_profile_picture">
-          <img
-            src="http://localhost:8000/storage/profile-picture.png"
-            class="img-thumbnail"
-            alt="profile picture"
-          />
-        </div>
-        <div *ngIf="user[0].user_profile_picture?.image">
-          <img
-            src="http://localhost:8000/storage/profile_images/{{
+	<div class="row">
+		<div
+			class="col-sm-12 col-md-12 col-lg-6 mt-4 rounded"
+			style="background-color: white"
+		>
+			<div class="pt-3 px-3 m-3">
+				<div *ngIf="!user[0].user_profile_picture">
+					<img
+						src="http://localhost:8000/storage/profile-picture.png"
+						class="img-thumbnail"
+						alt="profile picture"
+					/>
+				</div>
+				<div *ngIf="user[0].user_profile_picture?.image">
+					<img
+						src="http://localhost:8000/storage/profile_images/{{
               user[0].user_profile_picture.image
             }}"
-            class="img-thumbnail"
-            alt="profile picture"
-          />
-        </div>
-        <span
-          *ngIf="public === true"
-          class="message-user"
-          (click)="openDialogContact()"
-          href=""
-          >Create Conversation</span
-        >
-      </div>
-      <button
-        class="btn btn-md btn-dark m-2"
-        *ngIf="!editPic && public == false"
-        (click)="changeImage()"
-      >
-        Edit Pic
-      </button>
-      <div class="d-inline" *ngIf="editPic">
-        <app-profile-image-upload [user]="user"></app-profile-image-upload>
-      </div>
-    </div>
+						class="img-thumbnail"
+						alt="profile picture"
+					/>
+				</div>
+				<span
+					*ngIf="public === true"
+					class="message-user"
+					(click)="openDialogContact()"
+					href=""
+					>Create Conversation</span
+				>
+			</div>
+			<button
+				class="btn btn-md btn-dark m-2"
+				*ngIf="!editPic && public == false"
+				(click)="changeImage()"
+			>
+				Edit Pic
+			</button>
+			<div class="d-inline" *ngIf="editPic">
+				<app-profile-image-upload
+					[user]="user"
+				></app-profile-image-upload>
+			</div>
+		</div>
 
-    <div class="col-md">
-      <h4 class="text-center mt-4">My Profile</h4>
-      <hr />
-      <div id="profileContainer">
-        <h6>Username:</h6>
-        <p>{{ user[0]?.username }}</p>
-      </div>
-      <div *ngIf="public === false">
-        <div id="profileContainer">
-          <h6>First Name:</h6>
-          <p>{{ user[0]?.first_name }}</p>
-        </div>
-        <div id="profileContainer">
-          <h6>Last Name:</h6>
-          <p>{{ user[0]?.last_name }}</p>
-        </div>
-        <div id="profileContainer">
-          <h6>Email:</h6>
-          <p>{{ user[0]?.email }}</p>
-        </div>
-      </div>
-      <div id="profileContainer">
-        <h6>Member Since:</h6>
-        <p>{{ user[0].created_at | date }}</p>
-      </div>
-      <button
-        *ngIf="public === false"
-        type="button"
-        class="btn btn-primary btn-sm d-grid gap-2 col-6 mx-auto m-2"
-        (click)="openDialogUpdate()"
-      >
-        Edit Profile
-      </button>
-    </div>
-  </div>
-  <app-quick-stats [user_id]="userId" [public]="public"></app-quick-stats>
-  <app-accolades [accolades]="accolades"></app-accolades>
+		<div class="col-md">
+			<h4 class="text-center mt-4">My Profile</h4>
+			<hr />
+			<div id="profileContainer">
+				<h6>Username:</h6>
+				<p>{{ user[0]?.username }}</p>
+			</div>
+			<div *ngIf="public === false">
+				<div id="profileContainer">
+					<h6>First Name:</h6>
+					<p>{{ user[0]?.first_name }}</p>
+				</div>
+				<div id="profileContainer">
+					<h6>Last Name:</h6>
+					<p>{{ user[0]?.last_name }}</p>
+				</div>
+				<div id="profileContainer">
+					<h6>Email:</h6>
+					<p>{{ user[0]?.email }}</p>
+				</div>
+			</div>
+			<div id="profileContainer">
+				<h6>Member Since:</h6>
+				<p>{{ user[0].created_at | date }}</p>
+			</div>
+			<button
+				*ngIf="public === false"
+				type="button"
+				class="btn btn-primary btn-sm d-grid gap-2 col-6 mx-auto m-2"
+				(click)="openDialogUpdate()"
+			>
+				Edit Profile
+			</button>
+		</div>
+	</div>
+	<app-quick-stats [userId]="userId" [public]="public"></app-quick-stats>
+	<app-accolades [accolades]="accolades"></app-accolades>
 
-  <!--ACTIVITIES AND ACCOUNT SERVICES SECTION OF PROFILE-->
+	<!--ACTIVITIES AND ACCOUNT SERVICES SECTION OF PROFILE-->
 
-  <div *ngIf="public === false" class="row mx-auto">
-    <div class="col-md-6">
-      <app-accolade-progress
-        [user_id]="userId"
-        [public]="public"
-      ></app-accolade-progress>
-    </div>
-    <div class="col-md-6">
-      <div class="col-sm-12 col-md-6 d-inline">
-        <h4 class="text-center mt-4">Account Services</h4>
-        <div class="account-services p-2 mb-2 rounded">
-          <div class="account mb-3">
-            <h6>Request Support:</h6>
-            <button [routerLink]="['/site/contact']" class="btn btn-sm btn-primary">Support</button>
-          </div>
-          <div class="account mb-3">
-            <h6>Terms & Conditions:</h6>
-            <button [routerLink]="['/site/terms']" class="btn btn-sm btn-primary">T&C</button>
-          </div>
-          <div class="account mb-3">
-            <h6>Privacy Policy:</h6>
-            <button [routerLink]="['/site/privacy']" class="btn btn-sm btn-primary">Policy</button>
-          </div>
-          <div class="account mb-3">
-            <h6>Delete Account:</h6>
-            <button class="btn btn-sm btn-danger" (click)="openDialogDelete()">
-              Delete
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div *ngIf="public === false" class="row mx-auto">
+		<div class="col-md-6">
+			<app-accolade-progress
+				[userId]="userId"
+				[public]="public"
+			></app-accolade-progress>
+		</div>
+		<div class="col-md-6">
+			<div class="col-sm-12 col-md-6 d-inline">
+				<h4 class="text-center mt-4">Account Services</h4>
+				<div class="account-services p-2 mb-2 rounded">
+					<div class="account mb-3">
+						<h6>Request Support:</h6>
+						<button
+							[routerLink]="['/site/contact']"
+							class="btn btn-sm btn-primary"
+						>
+							Support
+						</button>
+					</div>
+					<div class="account mb-3">
+						<h6>Terms & Conditions:</h6>
+						<button
+							[routerLink]="['/site/terms']"
+							class="btn btn-sm btn-primary"
+						>
+							T&C
+						</button>
+					</div>
+					<div class="account mb-3">
+						<h6>Privacy Policy:</h6>
+						<button
+							[routerLink]="['/site/privacy']"
+							class="btn btn-sm btn-primary"
+						>
+							Policy
+						</button>
+					</div>
+					<div class="account mb-3">
+						<h6>Delete Account:</h6>
+						<button
+							class="btn btn-sm btn-danger"
+							(click)="openDialogDelete()"
+						>
+							Delete
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

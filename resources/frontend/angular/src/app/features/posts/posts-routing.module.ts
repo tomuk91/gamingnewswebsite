@@ -1,33 +1,33 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from 'src/app/core/guards/auth-guard.guard';
-import { CreatePostComponent } from './pages/create-post/create-post.component';
-import { PendingComponent } from './pages/pending/pending.component';
-import { PostDetailsComponent } from './pages/post-details/post-details.component';
-import { PostsCategoryComponent } from './pages/posts-category/posts-category.component';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { AuthGuard } from 'src/app/core/guards/auth-guard.guard'
+import { CreatePostComponent } from './pages/create-post/create-post.component'
+import { PendingComponent } from './pages/pending/pending.component'
+import { PostDetailsComponent } from './pages/post-details/post-details.component'
+import { PostsCategoryComponent } from './pages/posts-category/posts-category.component'
 
 const routes: Routes = [
   {
     path: 'posts/:id',
-    component: PostDetailsComponent,
+    component: PostDetailsComponent
   },
   {
     path: 'category/:id',
-    component: PostsCategoryComponent,
+    component: PostsCategoryComponent
   },
   {
     path: 'create',
     component: CreatePostComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'pending',
-    component: PendingComponent,
-  },
-];
+    component: PendingComponent
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class PostsRoutingModule {}

@@ -1,6 +1,4 @@
-import { positionService } from '@ng-bootstrap/ng-bootstrap/util/positioning';
-import { CommentsUser } from '../profile/pages/user-posts/commentsUser';
-
+/* eslint-disable camelcase */
 export interface comments {
   id: number;
   post_id: number;
@@ -11,7 +9,9 @@ export interface comments {
   updated_at: Date;
   user: {
     id: number;
-    user_profile_picture: string;
+    user_profile_picture: {
+      image: string,
+    }
     username: string;
   };
   replies: [

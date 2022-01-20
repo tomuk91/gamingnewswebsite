@@ -1,48 +1,50 @@
-import { PostDetails } from 'src/app/features/posts/post-details';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { PostsService } from 'src/app/core/services/posts.service';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { NotificationService } from 'src/app/core/services/notification.service';
+import { PostDetails } from 'src/app/features/posts/post-details'
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core'
+import { PostsService } from 'src/app/core/services/posts.service'
+import { AuthenticationService } from 'src/app/core/services/authentication.service'
+import { NotificationService } from 'src/app/core/services/notification.service'
 
 @Component({
   selector: 'app-posts-container',
   templateUrl: './posts-container.component.html',
-  styleUrls: ['./posts-container.component.scss'],
+  styleUrls: ['./posts-container.component.scss']
 })
 export class PostsContainerComponent implements OnInit {
   @Input() posts!: PostDetails[];
-  @Output() votedEvent = new EventEmitter;
+  @Output() votedEvent = new EventEmitter();
 
-  error = '';
+  public error = '';
 
-  constructor(
+  constructor (
     public postService: PostsService,
     private auth: AuthenticationService,
     private postsService: PostsService,
     private notify: NotificationService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   }
 
-  vote(post_id: number) {
+  // public methods
+
+  public vote (postId: number) {
     if (!this.auth.loginStatus) {
-      this.notify.showError('You must login to vote', 'Failed');
-      return;
+      this.notify.showError('You must login to vote', 'Failed')
+      return
     }
     const data = {
-      post_id: post_id,
-    };
+      post_id: postId
+    }
 
     this.postsService.vote(data).subscribe(
       (vote: any) => {
-        alert(vote.message);
-        this.votedEvent.emit('voted!');
-        return vote;
+        alert(vote.message)
+        this.votedEvent.emit('voted!')
+        return vote
       },
       (error) => {
-        this.error = error.error;
+        this.error = error.error
       }
-    );
+    )
   }
 }

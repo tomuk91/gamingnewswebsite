@@ -1,10 +1,10 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'externalHref',
+  name: 'externalHref'
 })
 export class ExternalHrefPipe implements PipeTransform {
-  transform(href: string): string {
-    return /^https?/.test(href) ? href : `//${href}`;
+  transform (href: string): string {
+    return /^https?/.test(href) ? href : `//${href}`
   }
 }

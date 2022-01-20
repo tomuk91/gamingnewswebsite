@@ -1,52 +1,57 @@
 <div class="container post-container" *ngIf="post">
-  <div class="row">
-    <div class="col-md col-sm-12 my-2 d-flex align-items-center text-center">
-      <img
-        src="{{ post.image_url }}"
-        class="img-thumbnail img-fluid align-items-center"
-        alt="post main picture"
-      />
-    </div>
-    <div class="col mt-4 text-center">
-      <h2>
-        {{ post.title }}
-      </h2>
-      <div class="d-flex links justify-content-center">
-        <div *ngFor="let category of post.categories">
-          <p class="mx-3">{{ category.name }}</p>
-        </div>
-      </div>
-      <div class="mt-1">
-        <p>{{ post.summary }}</p>
-      </div>
-      <div class="col d-flex justify-content-evenly">
-        <p>{{ postService.calculateDiff(post.created_at) }}</p>
-        <b>|</b>
-        <div class="d-flex">
-          <h6 class="mx-2">{{ post.upvotes }} Likes</h6>
-          <div *ngIf="post.votes.length > 0">
-            <i (click)="vote()" style="color: red" class="vote material-icons"
-              >favorite</i
-            >
-          </div>
-          <div *ngIf="post.votes.length === 0">
-            <i
-              (click)="vote()"
-              style="color: red"
-              class="vote mx-2 material-icons"
-              >favorite_border</i
-            >
-          </div>
-        </div>
-        <b>|</b>
-        <p>{{ post.website }}</p>
-      </div>
-      <div class="col d-flex justify-content-center mt-2">
-        <a [href]="post.url | externalHref" target="_blank"
-          ><button class="btn btn-secondary mb-2 p-2">Read More</button></a
-        >
-      </div>
-    </div>
-    <app-post-comments [postId]="postId"></app-post-comments>
-  </div>
+	<div class="row">
+		<div
+			class="col-md col-sm-12 my-2 d-flex align-items-center text-center"
+		>
+			<img
+				src="{{ post.image_url }}"
+				class="img-thumbnail img-fluid align-items-center"
+				alt="post main picture"
+			/>
+		</div>
+		<div class="col mt-4 text-center">
+			<h2>{{ post.title }}</h2>
+			<div class="d-flex links justify-content-center">
+				<div *ngFor="let category of post.categories">
+					<p class="mx-3">{{ category.name }}</p>
+				</div>
+			</div>
+			<div class="mt-1">
+				<p>{{ post.summary }}</p>
+			</div>
+			<div class="col d-flex justify-content-evenly">
+				<p>{{ postService.calculateDiff(post.created_at) }}</p>
+				<b>|</b>
+				<div class="d-flex">
+					<h6 class="mx-2">{{ post.upvotes }} Likes</h6>
+					<div *ngIf="post.votes.length > 0">
+						<i
+							(click)="vote()"
+							style="color: red"
+							class="vote material-icons"
+							>favorite</i
+						>
+					</div>
+					<div *ngIf="post.votes.length === 0">
+						<i
+							(click)="vote()"
+							style="color: red"
+							class="vote mx-2 material-icons"
+							>favorite_border</i
+						>
+					</div>
+				</div>
+				<b>|</b>
+				<p>{{ post.website }}</p>
+			</div>
+			<div class="col d-flex justify-content-center mt-2">
+				<a [href]="post.url | externalHref" target="_blank"
+					><button class="btn btn-secondary mb-2 p-2">
+						Read More
+					</button></a
+				>
+			</div>
+		</div>
+		<app-post-comments [postId]="postId"></app-post-comments>
+	</div>
 </div>

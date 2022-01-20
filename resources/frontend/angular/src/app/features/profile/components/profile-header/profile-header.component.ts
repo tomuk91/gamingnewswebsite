@@ -1,43 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { AuthenticationService } from 'src/app/core/services/authentication.service';
-import { User } from 'src/app/features/user/user';
+import { Component, OnInit } from '@angular/core'
+import { Observable, Subscription } from 'rxjs'
+import { AuthenticationService } from 'src/app/core/services/authentication.service'
+import { User } from 'src/app/features/user/user'
 
 @Component({
   selector: 'app-profile-header',
   templateUrl: './profile-header.component.html',
-  styleUrls: ['./profile-header.component.scss'],
+  styleUrls: ['./profile-header.component.scss']
 })
 export class ProfileHeaderComponent implements OnInit {
-  clicked: boolean = false;
-  public!: boolean;
-  sub!: Subscription;
-  user!: Observable<User[]>;
+ public public!: boolean;
+ public user!: Observable<User[]>;
+ private sub!: Subscription;
 
-  constructor(private auth: AuthenticationService) {}
+ constructor (private auth: AuthenticationService) {}
 
-  ngOnInit() {
-    this.publicState();
-    this.getUserId();
-  }
+ ngOnInit () {
+   this.publicState()
+   this.getUserId()
+ }
 
-  getUserId() {
-   this.user = this.auth.user;
-  }
+ // private methods
 
-  publicState() {
-    this.sub = this.auth.public.subscribe(
-      (value) => {
-        this.public = value;
-      }
-    )
-  }
+ private getUserId () {
+   this.user = this.auth.user
+ }
 
-  Clicked() {
-    this.clicked = true;
-  }
+ private publicState () {
+   this.sub = this.auth.public.subscribe(
+     (value) => {
+       this.public = value
+     }
+   )
+ }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
+ ngOnDestroy (): void {
+   this.sub.unsubscribe()
+ }
 }

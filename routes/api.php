@@ -88,7 +88,7 @@ Route::group([
     Route::get('latestapprovedposts', [PostsController::class, 'latestApprovedPosts']);
     Route::get('featuredposts', [PostsController::class, 'featuredPosts']);
     Route::get('/postbyid', [PostsController::class, 'postById']);
-    Route::get('/getpostcomments', [CommentsController::class, 'getPostComments']);
+    Route::get('/postcomments', [CommentsController::class, 'getPostComments']);
     //REGISTER & CONTACT
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/contact', [MailController::class, 'contact']);

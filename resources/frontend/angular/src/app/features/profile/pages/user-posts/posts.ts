@@ -1,6 +1,8 @@
-import { categories } from './../../../posts/pages/create-post/categories';
-import { comments } from './../../../posts/comments';
+/* eslint-disable camelcase */
+import { categories } from '../../../posts/categories'
+import { comments } from './../../../posts/comments'
 export interface Posts {
+    // eslint-disable-next-line no-use-before-define
     data: PostDetails[];
     links: any[];
     current_page: number;
@@ -15,7 +17,7 @@ export interface Posts {
     to: number;
     total: number;
 }
- export interface PostDetails {
+export interface PostDetails {
      id: number;
      title: string;
      summary: string;
@@ -30,5 +32,3 @@ export interface Posts {
      created_at: Date;
      updated_at: Date;
   }
-
-

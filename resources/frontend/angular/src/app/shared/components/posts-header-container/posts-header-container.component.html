@@ -1,10 +1,16 @@
 <div class="header text-center p-4">
-  <h2 class="title">{{ title }}</h2>
-  <h6 [hidden]="!hideDesc">{{ description }}</h6>
-  <i [hidden]="!hideDesc" (click)="hidden()" class="icon material-icons pointer"
-    >close</i
-  >
-  <i [hidden]="hideDesc" (click)="hidden()" class="icon material-icons pointer"
-    >expand_circle_down</i
-  >
+	<h2 class="title">{{ title }}</h2>
+	<h6 [hidden]="!hideDesc">{{ description }}</h6>
+	<i
+		[hidden]="!hideDesc"
+		(click)="hidden()"
+		class="icon material-icons pointer"
+		>close</i
+	>
+	<i
+		[hidden]="hideDesc"
+		(click)="hidden()"
+		class="icon material-icons pointer"
+		>expand_circle_down</i
+	>
 </div>

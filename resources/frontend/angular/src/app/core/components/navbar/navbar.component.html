@@ -1,251 +1,275 @@
 <div class="container">
-  <!--MAIN NAVIGATION HEADER - TOP OF WEBSITE -->
-  <div *ngIf="spinnerService.isLoading | async" class="spinner-container">
-    <mat-spinner style="top: 50%; left: 50%"></mat-spinner>
-  </div>
-  <nav class="navbar navbar navbar-light">
-    <a routerLink="/home" class="nav-bar-brand h5 text-decoration-none">
-      <img
-        src="../../assets/angular/assets/img/retromize-logo.png"
-        alt="Retromize Logo"
-        width="300"
-        height="100"
-        class="d-inline-block align-top"
-      />
-      <span class="d-none">Retromize</span>
-    </a>
-    <nav class="nav">
-      <a class="nav-link active" [routerLink]="['/login']" *ngIf="!isLoggedIn"
-        >Login</a
-      >
-      <a
-        class="nav-link active"
-        [routerLink]="['/']"
-        *ngIf="isLoggedIn"
-        (click)="logout()"
-        >Logout</a
-      >
-      <a class="nav-link" [routerLink]="['/register']" *ngIf="!isLoggedIn"
-        >Register</a
-      >
-      <a
-        class="nav-link"
-        [routerLink]="['/pending']"
-        data-bs-dismiss="offcanvas"
-        >Pending</a
-      >
-      <li class="nav-item dropdown">
-        <a
-          class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown"
-          href="#"
-          role="button"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >Categories</a
-        >
-        <div class="dropdown-menu">
-          <div *ngFor="let cat of categories">
-            <a class="dropdown-item" [routerLink]="['category', cat.id]"
-              ><b>{{ cat.name }}</b></a
-            >
-            <div *ngFor="let sub of cat.sub_categories">
-              <a class="dropdown-item" [routerLink]="['category', sub.id]">{{
-                sub.name
-              }}</a>
-            </div>
-          </div>
-        </div>
-      </li>
-      <b
-        ><a class="btn btn-xs btn-outline-primary" [routerLink]="['/create']"
-          >Submit</a
-        ></b
-      >
-    </nav>
-    <button
-      class="btn"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#navigation"
-      aria-controls="offcanvasExample"
-    >
-      <span class="navbar-toggler-icon btn-md"></span>
-    </button>
+	<!--MAIN NAVIGATION HEADER - TOP OF WEBSITE -->
+	<div *ngIf="spinnerService.isLoading | async" class="spinner-container">
+		<mat-spinner style="top: 50%; left: 50%"></mat-spinner>
+	</div>
+	<nav class="navbar navbar navbar-light">
+		<a routerLink="/home" class="nav-bar-brand h5 text-decoration-none">
+			<img
+				src="../../assets/angular/assets/img/retromize-logo.png"
+				alt="Retromize Logo"
+				width="300"
+				height="100"
+				class="d-inline-block align-top"
+			/>
+			<span class="d-none">Retromize</span>
+		</a>
+		<nav class="nav">
+			<a
+				class="nav-link active"
+				[routerLink]="['/login']"
+				*ngIf="!isLoggedIn"
+				>Login</a
+			>
+			<a
+				class="nav-link active"
+				[routerLink]="['/']"
+				*ngIf="isLoggedIn"
+				(click)="logout()"
+				>Logout</a
+			>
+			<a class="nav-link" [routerLink]="['/register']" *ngIf="!isLoggedIn"
+				>Register</a
+			>
+			<a
+				class="nav-link"
+				[routerLink]="['/pending']"
+				data-bs-dismiss="offcanvas"
+				>Pending</a
+			>
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle"
+					data-bs-toggle="dropdown"
+					href="#"
+					role="button"
+					aria-haspopup="true"
+					aria-expanded="false"
+					>Categories</a
+				>
+				<div class="dropdown-menu">
+					<div *ngFor="let cat of categories">
+						<a
+							class="dropdown-item"
+							[routerLink]="['category', cat.id]"
+							><b>{{ cat.name }}</b></a
+						>
+						<div *ngFor="let sub of cat.sub_categories">
+							<a
+								class="dropdown-item"
+								[routerLink]="['category', sub.id]"
+								>{{ sub.name }}</a
+							>
+						</div>
+					</div>
+				</div>
+			</li>
+			<b
+				><a
+					class="btn btn-xs btn-outline-primary"
+					[routerLink]="['/create']"
+					>Submit</a
+				></b
+			>
+		</nav>
+		<button
+			class="btn"
+			type="button"
+			data-bs-toggle="offcanvas"
+			data-bs-target="#navigation"
+			aria-controls="offcanvasExample"
+		>
+			<span class="navbar-toggler-icon btn-md"></span>
+		</button>
 
-    <!--START OF OFF-CANVAS NAVIGATION SECTION -->
+		<!--START OF OFF-CANVAS NAVIGATION SECTION -->
 
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="navigation"
-      aria-labelledby="offcanvasExampleLabel"
-    >
-      <div class="offcanvas-header">
-        <h4 class="offcanvas-title mx-auto" id="offcanvasExampleLabel"></h4>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
+		<div
+			class="offcanvas offcanvas-start"
+			tabindex="-1"
+			id="navigation"
+			aria-labelledby="offcanvasExampleLabel"
+		>
+			<div class="offcanvas-header">
+				<h4
+					class="offcanvas-title mx-auto"
+					id="offcanvasExampleLabel"
+				></h4>
+				<button
+					type="button"
+					class="btn-close text-reset"
+					data-bs-dismiss="offcanvas"
+					aria-label="Close"
+				></button>
+			</div>
 
-      <!--QUICK PROFILE SECTION -->
+			<!--QUICK PROFILE SECTION -->
 
-      <div *ngIf="isLoggedIn" class="text-center mx-auto">
-        <div *ngFor="let user of user | async">
-          <h5 class="p-2">Welcome, {{ user.username }}</h5>
-          <img
-            class="rounded-circle z-depth-2 mb-2"
-            width="100"
-            height="100"
-            alt="profile picture"
-            [src]="
+			<div *ngIf="isLoggedIn" class="text-center mx-auto">
+				<div *ngFor="let user of user | async">
+					<h5 class="p-2">Welcome, {{ user.username }}</h5>
+					<img
+						class="rounded-circle z-depth-2 mb-2"
+						width="100"
+						height="100"
+						alt="profile picture"
+						[src]="
               user.user_profile_picture !== null
                 ? 'http://localhost:8000/storage/profile_images/' +
                   user.user_profile_picture.image
                 : 'http://localhost:8000/storage/profile-picture.png'
             "
-            data-holder-rendered="true"
-          />
-          <p>
-            <a
-              [routerLink]="['profile', 'details', user.id]"
-              data-bs-dismiss="offcanvas"
-              class="text-decoration-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-person-circle"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                <path
-                  fill-rule="evenodd"
-                  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-                />
-              </svg>
-              Profile
-            </a>
-          </p>
-          <p>
-            <a [routerLink]="['profile', 'messages']" data-bs-dismiss="offcanvas" class="text-decoration-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-chat-square-text"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
-                />
-                <path
-                  d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-              Messages
-            </a>
-          </p>
-          <p>
-            <a
-              data-bs-dismiss="offcanvas"
-              [routerLink]="['/profile/posts']"
-              class="text-decoration-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-journal"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"
-                />
-                <path
-                  d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"
-                />
-              </svg>
-              Your Posts
-            </a>
-          </p>
-          <p>
-            <a
-              data-bs-dismiss="offcanvas"
-              *ngIf="isLoggedIn"
-              (click)="logout()"
-              class="text-decoration-none"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-x-lg"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"
-                />
-              </svg>
-              Logout
-            </a>
-          </p>
-        </div>
-      </div>
-      <div *ngIf="!isLoggedIn" class="text-center">
-        <h5>Log in to see your quick profile</h5>
-      </div>
+						data-holder-rendered="true"
+					/>
+					<p>
+						<a
+							[routerLink]="['profile', 'details', user.id]"
+							data-bs-dismiss="offcanvas"
+							class="text-decoration-none"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-person-circle"
+								viewBox="0 0 16 16"
+							>
+								<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+								<path
+									fill-rule="evenodd"
+									d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+								/>
+							</svg>
+							Profile
+						</a>
+					</p>
+					<p>
+						<a
+							[routerLink]="['profile', 'messages']"
+							data-bs-dismiss="offcanvas"
+							class="text-decoration-none"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-chat-square-text"
+								viewBox="0 0 16 16"
+							>
+								<path
+									d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"
+								/>
+								<path
+									d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"
+								/>
+							</svg>
+							Messages
+						</a>
+					</p>
+					<p>
+						<a
+							data-bs-dismiss="offcanvas"
+							[routerLink]="['/profile/posts']"
+							class="text-decoration-none"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-journal"
+								viewBox="0 0 16 16"
+							>
+								<path
+									d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"
+								/>
+								<path
+									d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"
+								/>
+							</svg>
+							Your Posts
+						</a>
+					</p>
+					<p>
+						<a
+							data-bs-dismiss="offcanvas"
+							*ngIf="isLoggedIn"
+							(click)="logout()"
+							class="text-decoration-none"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								fill="currentColor"
+								class="bi bi-x-lg"
+								viewBox="0 0 16 16"
+							>
+								<path
+									d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"
+								/>
+							</svg>
+							Logout
+						</a>
+					</p>
+				</div>
+			</div>
+			<div *ngIf="!isLoggedIn" class="text-center">
+				<h5>Log in to see your quick profile</h5>
+			</div>
 
-      <!--SITE NAVIGATION SECTION -->
+			<!--SITE NAVIGATION SECTION -->
 
-      <hr class="dotted" />
-      <div class="offcanvas-body">
-        <h4 class="text-center">Site Navigation</h4>
-        <ul class="p-2 list-unstyled h6 text-center">
-          <li class="p-2">
-            <a [routerLink]="['/home']" data-bs-dismiss="offcanvas">Home</a>
-          </li>
-          <li class="p-2">
-            <a [routerLink]="['/site/about']" data-bs-dismiss="offcanvas"
-              >About</a
-            >
-          </li>
-          <li class="p-2">
-            <a [routerLink]="['/site/contact']" data-bs-dismiss="offcanvas"
-              >Contact</a
-            >
-          </li>
-          <li class="p-2">
-            <a [routerLink]="['/pending']" data-bs-dismiss="offcanvas"
-              >Pending</a
-            >
-          </li>
-          <li class="p-2">
-            <a
-              [routerLink]="['/register']"
-              data-bs-dismiss="offcanvas"
-              *ngIf="!isLoggedIn"
-              >Register</a
-            >
-          </li>
-          <li class="p-2">
-            <a
-              [routerLink]="['/login']"
-              data-bs-dismiss="offcanvas"
-              *ngIf="!isLoggedIn"
-              >Login</a
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+			<hr class="dotted" />
+			<div class="offcanvas-body">
+				<h4 class="text-center">Site Navigation</h4>
+				<ul class="p-2 list-unstyled h6 text-center">
+					<li class="p-2">
+						<a [routerLink]="['/home']" data-bs-dismiss="offcanvas"
+							>Home</a
+						>
+					</li>
+					<li class="p-2">
+						<a
+							[routerLink]="['/site/about']"
+							data-bs-dismiss="offcanvas"
+							>About</a
+						>
+					</li>
+					<li class="p-2">
+						<a
+							[routerLink]="['/site/contact']"
+							data-bs-dismiss="offcanvas"
+							>Contact</a
+						>
+					</li>
+					<li class="p-2">
+						<a
+							[routerLink]="['/pending']"
+							data-bs-dismiss="offcanvas"
+							>Pending</a
+						>
+					</li>
+					<li class="p-2">
+						<a
+							[routerLink]="['/register']"
+							data-bs-dismiss="offcanvas"
+							*ngIf="!isLoggedIn"
+							>Register</a
+						>
+					</li>
+					<li class="p-2">
+						<a
+							[routerLink]="['/login']"
+							data-bs-dismiss="offcanvas"
+							*ngIf="!isLoggedIn"
+							>Login</a
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </div>

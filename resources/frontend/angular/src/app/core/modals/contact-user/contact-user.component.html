@@ -1,51 +1,59 @@
 <h6 class="text-center" mat-dialog-title>Create Conversation</h6>
 <p class="text-muted text-center">
-  Fill out your conversation subject and initial message.<br />
-  Once created, it'll be displayed in your messages
+	Fill out your conversation subject and initial message.<br />
+	Once created, it'll be displayed in your messages
 </p>
 <form [formGroup]="form" class="form-body">
-  <div class="form-group">
-    <b><label for="username" class="control-label mt-3">Subject</label></b>
-    <input
-      formControlName="subject"
-      type="text"
-      class="form-control"
-      [ngClass]="{
+	<div class="form-group">
+		<b><label for="username" class="control-label mt-3">Subject</label></b>
+		<input
+			formControlName="subject"
+			type="text"
+			class="form-control"
+			[ngClass]="{
         'is-invalid': submitted && f.subject.errors
       }"
-    />
-    <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
-      <div *ngIf="f.subject.errors.required">A subject is required</div>
-      <div *ngIf="f.subject.errors.maxlength">
-        Subject should be no more than 50 characters
-      </div>
-      <div *ngIf="f.subject.errors.minlength">
-        Subject should be more than 2 characters
-      </div>
-    </div>
-    <div class form-group>
-      <b><label for="message" class="control-label">First Message</label></b>
-      <textarea
-        formControlName="message"
-        type="textarea"
-        class="form-control"
-        [ngClass]="{
+		/>
+		<div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+			<div *ngIf="f.subject.errors.required">A subject is required</div>
+			<div *ngIf="f.subject.errors.maxlength">
+				Subject should be no more than 50 characters
+			</div>
+			<div *ngIf="f.subject.errors.minlength">
+				Subject should be more than 2 characters
+			</div>
+		</div>
+		<div class form-group>
+			<b
+				><label for="message" class="control-label"
+					>First Message</label
+				></b
+			>
+			<textarea
+				formControlName="message"
+				type="textarea"
+				class="form-control"
+				[ngClass]="{
           'is-invalid': submitted && f.message.errors
         }"
-      ></textarea>
-      <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
-        <div *ngIf="f.message.errors.required">A message is required</div>
-        <div *ngIf="f.message.errors.maxlength">
-          Your message should be less than 400 characters!
-        </div>
-        <div *ngIf="f.message.errors.minlength">
-          Your message should be more than 2 characters!
-        </div>
-      </div>
-    </div>
-  </div>
-  <button (click)="submit()" class="btn btn-primary btn-block m-1">Create</button>
-  <button (click)="cancel()" class="btn btn-warning btn-block m-1">
-    Cancel
-  </button>
+			></textarea>
+			<div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+				<div *ngIf="f.message.errors.required">
+					A message is required
+				</div>
+				<div *ngIf="f.message.errors.maxlength">
+					Your message should be less than 400 characters!
+				</div>
+				<div *ngIf="f.message.errors.minlength">
+					Your message should be more than 2 characters!
+				</div>
+			</div>
+		</div>
+	</div>
+	<button (click)="submit()" class="btn btn-primary btn-block m-1">
+		Create
+	</button>
+	<button (click)="cancel()" class="btn btn-warning btn-block m-1">
+		Cancel
+	</button>
 </form>

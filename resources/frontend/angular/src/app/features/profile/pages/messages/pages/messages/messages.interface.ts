@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export interface messages {
   conversation: [{}];
   conversation_id: number;

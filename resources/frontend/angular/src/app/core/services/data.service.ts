@@ -1,55 +1,53 @@
-import { categories } from './../../features/posts/pages/create-post/categories';
-import { comments } from './../../features/posts/comments';
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { NotificationService } from './notification.service';
-import { Observable } from 'rxjs';
-import { PostDetails } from 'src/app/features/posts/post-details';
+import { categories } from '../../features/posts/categories'
+import { comments } from './../../features/posts/comments'
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { NotificationService } from './notification.service'
+import { Observable } from 'rxjs'
+import { PostDetails } from 'src/app/features/posts/post-details'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class DataService {
+  private baseUrl = 'http://localhost:8000';
 
-  baseUrl = 'http://localhost:8000';
+  constructor (private http: HttpClient, private notify: NotificationService) {}
 
-  constructor(private http: HttpClient, private notify: NotificationService) {}
-
-  uploadProfileImage(data: any) {
+  public uploadProfileImage (data: any) {
     return this.http
       .post('http://localhost:8000/profileImage', data)
       .pipe((data) => {
-        this.notify.showSuccess('Success', 'Profile Image Updated!');
-        return data;
-      });
+        this.notify.showSuccess('Success', 'Profile Image Updated!')
+        return data
+      })
   }
 
-  createPost(data: any) {
-    console.log('in service');
-    return this.http.post('http://localhost:8000/createpost', data);
+  public createPost (data: any) {
+    const endpoint = '/createpost'
+    return this.http.post(`${this.baseUrl}${endpoint}`, data)
   }
 
-
-
-  getCategories() {
-    return this.http.get<categories[]>('http://localhost:8000/category');
+  public getCategories () {
+    const endpoint = '/category'
+    return this.http.get<categories[]>(`${this.baseUrl}${endpoint}`)
   }
 
+  public getPostById (postId: string): Observable<PostDetails> {
+    const endpoint = '/postbyid'
+    const params = new HttpParams().set('post_id', postId)
 
-  getPostById($post_id: string): Observable<PostDetails> {
-    let params = new HttpParams().set('post_id', $post_id);
-
-    return this.http.get<PostDetails>('//localhost:8000/postbyid', {
-      params: params,
-    });
+    return this.http.get<PostDetails>(`${this.baseUrl}${endpoint}`, {
+      params: params
+    })
   }
 
-  getCommentsByPostId($post_id: string): Observable<comments[]> {
-    let params = new HttpParams().set('post_id', $post_id);
+  public getCommentsByPostId (postId: string): Observable<comments[]> {
+    const endpoint = '/postcomments'
+    const params = new HttpParams().set('post_id', postId)
 
-    return this.http.get<comments[]>('//localhost:8000/getpostcomments', {
-      params: params,
-    });
+    return this.http.get<comments[]>(`${this.baseUrl}${endpoint}`, {
+      params: params
+    })
   }
 }
-``;

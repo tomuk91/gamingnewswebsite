@@ -1,54 +1,60 @@
 <div class="container">
-  <div class="list-group-item">
-    <div *ngFor="let message of inbox | async">
-      <div class="container">
-        <div class="d-flex bg-light rounded justify-content-between">
-          <h6>
-            <span class="headers mx-2">user:</span>
-            {{ message.sender[0].username }}
-          </h6>
-          <div class="d-flex" *ngIf="message.is_seen">
-            <span style="color: green" class="material-icons"> done </span>
-            <span>Seen</span>
-          </div>
-          <h6 class="text-muted">
-            <span class="me-2"></span>{{ message.created_at | date: "short" }}
-          </h6>
-        </div>
-        <div class="d-flex text-wrap">
-          <h6 class="mx-2 p-2 text-break word-wrap">{{ message.message }}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="list-group-item">
+		<div *ngFor="let message of inbox | async">
+      {{message | log }}
+			<div class="container">
+				<div class="d-flex bg-light rounded justify-content-between">
+					<h6>
+						<span class="headers mx-2">user:</span>
+						{{ message.sender[0].username }}
+					</h6>
+					<div class="d-flex" *ngIf="message.is_seen">
+						<span style="color: green" class="material-icons">
+							done
+						</span>
+						<span>Seen</span>
+					</div>
+					<h6 class="text-muted">
+						<span class="me-2"></span>{{ message.created_at | date:
+						"short" }}
+					</h6>
+				</div>
+				<div class="d-flex text-wrap">
+					<h6 class="mx-2 p-2 text-break word-wrap">
+						{{ message.message }}
+					</h6>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <button
-  (click)="hideReplyBox()"
-  class="mt-1 btn btn-sm btn-primary p-2 mb-2 mx-4"
+	(click)="hideReplyBox()"
+	class="mt-1 btn btn-sm btn-primary p-2 mb-2 mx-4"
 >
-  Reply
+	Reply
 </button>
 <div class="mb-2 container">
-  <form [formGroup]="form" (submit)="submit()" *ngIf="!hideReply">
-    <input
-      class="form-control w-75 d-inline"
-      formControlName="message"
-      type="text"
-      [ngClass]="{ 'is-invalid': submitted && f.message.errors }"
-    />
-    <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
-      <div *ngIf="f.message.errors.required">
-        You must type in a reply to send back to this user.
-      </div>
-      <div *ngIf="f.message.errors.minlength">
-        Your reply must be more than 1 character
-      </div>
-      <div *ngIf="f.message.errors.maxlength">
-        Your reply must be no more than 255 characters
-      </div>
-    </div>
-    <button type="submit" class="btn btn-sm mb-1 btn-dark p-2 d-inline">
-      Send
-    </button>
-  </form>
+	<form [formGroup]="form" (submit)="submit()" *ngIf="!hideReply">
+		<input
+			class="form-control w-75 d-inline"
+			formControlName="message"
+			type="text"
+			[ngClass]="{ 'is-invalid': submitted && f.message.errors }"
+		/>
+		<div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+			<div *ngIf="f.message.errors.required">
+				You must type in a reply to send back to this user.
+			</div>
+			<div *ngIf="f.message.errors.minlength">
+				Your reply must be more than 1 character
+			</div>
+			<div *ngIf="f.message.errors.maxlength">
+				Your reply must be no more than 255 characters
+			</div>
+		</div>
+		<button type="submit" class="btn btn-sm mb-1 btn-dark p-2 d-inline">
+			Send
+		</button>
+	</form>
 </div>

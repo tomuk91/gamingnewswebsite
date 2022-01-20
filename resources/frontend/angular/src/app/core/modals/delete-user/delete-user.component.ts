@@ -1,18 +1,17 @@
-import { TokenStorageService } from './../../services/token-storage.service';
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { NotificationService } from 'src/app/core/services/notification.service';
-import { AuthenticationService } from '../../services/authentication.service';
-import { PostDetailsComponent } from 'src/app/features/posts/pages/post-details/post-details.component';
+import { TokenStorageService } from './../../services/token-storage.service'
+import { Component, Inject, OnInit } from '@angular/core'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { Router } from '@angular/router'
+import { NotificationService } from 'src/app/core/services/notification.service'
+import { AuthenticationService } from '../../services/authentication.service'
+import { PostDetailsComponent } from 'src/app/features/posts/pages/post-details/post-details.component'
 
 @Component({
   selector: 'app-delete-user',
-  templateUrl: './delete-user.component.html',
-  styleUrls: ['./delete-user.component.css'],
+  templateUrl: './delete-user.component.html'
 })
 export class DeleteUserComponent implements OnInit {
-  constructor(
+  constructor (
     @Inject(MAT_DIALOG_DATA) public data: any,
     private auth: AuthenticationService,
     private notify: NotificationService,
@@ -21,19 +20,21 @@ export class DeleteUserComponent implements OnInit {
     private tokenStorage: TokenStorageService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit (): void {}
 
-  cancel() {
-    this.dialogRef.close();
+  // public methods
+
+  public cancel () {
+    this.dialogRef.close()
   }
 
-  delete() {
+  public delete () {
     this.auth.delete().subscribe((result) => {
-      this.notify.showSuccess('Success', 'Account was deleted successfully!');
-      this.router.navigate(['/home']);
-      this.tokenStorage.signOut();
-      this.dialogRef.close();
-      return result;
-    });
+      this.notify.showSuccess('Success', 'Account was deleted successfully!')
+      this.router.navigate(['/home'])
+      this.tokenStorage.signOut()
+      this.dialogRef.close()
+      return result
+    })
   }
 }

@@ -1,25 +1,26 @@
 .form-holder {
-  margin-top: 50px;
-  width: auto;
-  align-items: center;
-  text-align: center;
+	margin-top: 50px;
+	width: auto;
+	align-items: center;
+	text-align: center;
 }
 
 .form-items {
-  width: 100%;
-  display: inline-block;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  text-align: left;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+	width: 100%;
+	display: inline-block;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	text-align: left;
+	-webkit-transition: all 0.4s ease;
+	transition: all 0.4s ease;
 }
 
-.form-group, textarea {
-  margin-top: 10px;
+.form-group,
+textarea {
+	margin-top: 10px;
 }
 
 .message {
-  height: 100px;
+	height: 100px;
 }

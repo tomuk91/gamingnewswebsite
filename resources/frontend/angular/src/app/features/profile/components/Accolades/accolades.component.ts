@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { accolades } from './../../accolades.interface'
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-accolades',
@@ -6,10 +7,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./accolades.component.scss']
 })
 export class AccoladesComponent implements OnInit {
-@Input() accolades!: any
+@Input() accolades!: accolades[]
 
-  constructor() {}
+constructor () {}
 
-  ngOnInit(): void {
-  }
+ngOnInit (): void {
+}
 }

@@ -1,40 +1,40 @@
-import { PostDetails } from 'src/app/features/posts/post-details';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PostsService } from 'src/app/core/services/posts.service';
+import { PostDetails } from 'src/app/features/posts/post-details'
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { PostsService } from 'src/app/core/services/posts.service'
 
 @Component({
   selector: 'app-posts-category',
   templateUrl: './posts-category.component.html',
-  styleUrls: ['./posts-category.component.scss'],
+  styleUrls: ['./posts-category.component.scss']
 })
 export class PostsCategoryComponent implements OnInit {
-  categoryId!: number;
-  posts!: PostDetails[];
-  title: string = '';
-  description: string = '';
+  protected categoryId!: number;
+  public posts!: PostDetails[];
+  public title: string = '';
+  public description: string = '';
 
-  constructor(
+  constructor (
     private activatedRoute: ActivatedRoute,
     public postService: PostsService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.activatedRoute.params.subscribe((paramsId) => {
-      this.categoryId = paramsId.id;
-      this.getPosts();
-    });
+      this.categoryId = paramsId.id
+      this.getPosts()
+    })
   }
 
+  // public methods
 
-  getPosts() {
+  public getPosts () {
     this.postService
       .postsByCategory(this.categoryId)
       .subscribe((posts: PostDetails[]) => {
-        this.posts = posts;
-        this.title = posts[0].categories[0].name;
-        this.description = posts[0].categories[0].description;
-      });
+        this.posts = posts
+        this.title = posts[0].categories[0].name
+        this.description = posts[0].categories[0].description
+      })
   }
-
 }

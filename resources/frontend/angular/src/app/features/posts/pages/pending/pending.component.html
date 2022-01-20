@@ -1,13 +1,16 @@
 <app-posts-header-container
-  [title]="title"
-  [description]="description"
+	[title]="title"
+	[description]="description"
 ></app-posts-header-container>
 
-<app-posts-container (votedEvent)="voted($event)" [posts]="posts"></app-posts-container>
+<app-posts-container
+	(votedEvent)="voted($event)"
+	[posts]="posts"
+></app-posts-container>
 
 <app-pagination
-  class="mx-4"
-  [pageIndex]="pageIndex"
-  [pageOffset]="pageOffset"
-  [length]="total"
+	class="mx-4"
+	[pageIndex]="pageIndex"
+	[pageOffset]="pageOffset"
+	[length]="total"
 ></app-pagination>

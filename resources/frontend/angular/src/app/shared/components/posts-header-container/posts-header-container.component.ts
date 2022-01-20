@@ -1,5 +1,4 @@
-import { PostDetails } from '../../../features/profile/pages/user-posts/posts';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-posts-header-container',
@@ -10,15 +9,16 @@ export class PostsHeaderContainerComponent implements OnInit {
   @Input() title!: string;
   @Input() description!: string;
 
-  hideDesc: boolean = false;
+  public hideDesc: boolean = false;
 
-  constructor() { }
+  constructor () { }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   }
 
-  hidden() {
-    this.hideDesc = !this.hideDesc;
-  }
+  // public methods
 
+  public hidden () {
+    this.hideDesc = !this.hideDesc
+  }
 }
