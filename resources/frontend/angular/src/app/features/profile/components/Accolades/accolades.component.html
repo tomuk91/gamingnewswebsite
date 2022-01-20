@@ -1,6 +1,6 @@
 <h4 class="text-center mt-4">Awarded Accolades</h4>
 <div class="badges-container mb-2 col-md-12 rounded">
-	<div *ngIf="!accolades; else empty">
+	<div *ngIf="accolades.length > 0; else empty">
 		<div *ngFor="let accolade of accolades">
 			<img
 				src="../../assets/angular/assets/img/{{ accolade.badge }}"

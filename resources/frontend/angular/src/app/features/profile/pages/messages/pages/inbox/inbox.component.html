@@ -1,5 +1,5 @@
 <div class="container">
-	<div *ngIf="inbox; else empty">
+	<div *ngIf="inbox.length > 0; else empty">
 		<div *ngFor="let message of inbox">
 			<ol class="list-group">
 				<li

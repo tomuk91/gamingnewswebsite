@@ -11,7 +11,8 @@ use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +35,8 @@ Route::post('createcategory', [CategoriesController::class, 'store']);
 Route::get('/currentuserposts', [PostsController::class, 'currentUserPosts']);
 Route::get('/postbyuser', [PostsController::class, 'postByUser']);
 Route::get('/posts/{user_id}', [PostsController::class, 'getPostByUserId']);
+
+
 
 
 //USER & PROFILE
