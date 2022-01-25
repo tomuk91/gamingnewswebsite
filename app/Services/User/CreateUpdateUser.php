@@ -18,11 +18,15 @@ class CreateUpdateUser {
             'password' => Hash::make($request->password),
         ]);
 
-        if($user) {
-            return $user;
-        } else {
-           return throw new \Exception('Error: We\'re Unable to create your account!');
-        }
+        $token = $user->createToken('retromize')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response()->json($response, 201);
+
     }
 
     public function update($request) {

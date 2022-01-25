@@ -1,21 +1,22 @@
+import { User } from './../../features/user/user'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Router } from '@angular/router'
+import { Data, Router } from '@angular/router'
 import { BehaviorSubject, Observable, Subject } from 'rxjs'
-import { User } from '../../features/user/user'
 import { first, map, switchMap } from 'rxjs/operators'
 import { TokenStorageService } from './token-storage.service'
-import { Token } from '../../features/user/token'
 import { CookieService } from 'ngx-cookie-service'
+import { UserDetails } from 'src/app/features/user/UserDetails'
+import { Token } from 'src/app/features/user/token'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 userData!: User | null;
-public userSubject: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+public userSubject = new BehaviorSubject<UserDetails | null>(null);
 
-private baseUrl = 'http://localhost:8000'
+private baseUrl = '//localhost:8000/api';
 
 private isLoggedIn: BehaviorSubject<string | null>;
 public public = new Subject<boolean>();
@@ -29,8 +30,7 @@ constructor (
   private CookieService: CookieService
 ) {
   this.isLoggedIn = new BehaviorSubject(
-    this.tokenStorage.getRefreshToken() ?? null
-  )
+    this.tokenStorage.getAccessToken() ?? null)
   this.user = this.userSubject.asObservable()
   this.loggedIn = this.isLoggedIn.asObservable()
 }
@@ -62,31 +62,31 @@ public getProfileData (id: number) {
     .pipe(first())
 }
 
+public updateUser (id: number, data: Data) {
+  const endpoint = '/update' + id
+  return this.http.post(`${this.baseUrl}${endpoint}`, data)
+}
+
 public login (data: {}) {
-  const endpoint = '/oauth/token'
+  const endpoint = '/login'
   return this.http
     .post<Token>(`${this.baseUrl}${endpoint}`, data)
-    .pipe(switchMap((token: Token) => this.returnUser(token)))
+    .pipe(switchMap((token: Token) => this.returnUser(token.token)))
     .pipe(
-      map((user) => {
-        this.userSubject.next(user)
-        return user
+      map((user: UserDetails) => {
+        return this.userSubject.next(user)
       })
     )
 }
 
 public delete () {
   const endpoint = '/delete'
-  return this.http.delete(`${this.baseUrl}${endpoint}`).pipe((response) => {
-    this.userSubject.next([])
-    return response
-  })
-}
-
-public refreshLogout (): void {
-  this.tokenStorage.signOut()
-  this.CookieService.deleteAll()
-  this.userSubject.next([])
+  return this.http
+    .delete(`${this.baseUrl}${endpoint}`)
+    .pipe((response) => {
+      this.userSubject.next(null)
+      return response
+    })
 }
 
 public logout () {
@@ -94,31 +94,17 @@ public logout () {
   return this.http
     .post<any>(`${this.baseUrl}${endpoint}`, null)
     .pipe((response) => {
-      this.userSubject.next([])
+      this.userSubject.next(null)
       this.isLoggedIn.next(null)
       return response
     })
 }
 
 public logoutSuccess (): void {
-  this.userSubject.next([])
+  this.userSubject.next(null)
   this.tokenStorage.signOut()
   this.CookieService.deleteAll()
   this.router.navigate(['/home'])
-}
-
-public refreshToken () {
-  const endpoint = '/oauth/token'
-  const token = this.tokenStorage.getRefreshToken()
-
-  const data = {
-    grant_type: 'refresh_token',
-    refresh_token: `${token}`,
-    client_id: 2,
-    client_secret: 'pmILBlIAvkZHYoYUo2PDgNGX9jPE2KWyBjv8hY6h',
-    scope: '*'
-  }
-  return this.http.post<any>(`${this.baseUrl}${endpoint}`, data)
 }
 
 public forgotPassword (data: {}) {
@@ -141,17 +127,16 @@ public resetPassword (data: {}) {
 
 // protected methods
 
-protected returnUser (token: any): Observable<User[]> {
-  this.tokenStorage.saveAccessToken(token.access_token)
-  this.tokenStorage.saveRefreshToken(token.refresh_token)
-  this.isLoggedIn.next(token.access_token)
+protected returnUser (token: any) {
+  this.tokenStorage.saveAccessToken(token)
+  this.isLoggedIn.next(token)
 
   const endpoint = '/getLoggedInuser'
   const headers = new HttpHeaders({
     Accept: 'application/json',
-    Authorization: 'Bearer ' + token.access_token
+    Authorization: 'Bearer ' + token
   })
-  return this.http.get<User[]>(`${this.baseUrl}${endpoint}`, {
+  return this.http.get<UserDetails>(`${this.baseUrl}${endpoint}`, {
     headers: headers
   })
 }

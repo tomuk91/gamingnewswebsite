@@ -10,13 +10,14 @@ import { PostDetails } from 'src/app/features/posts/post-details'
   providedIn: 'root'
 })
 export class DataService {
-  private baseUrl = 'http://localhost:8000';
+  private baseUrl = '//localhost:8000/api';
 
   constructor (private http: HttpClient, private notify: NotificationService) {}
 
   public uploadProfileImage (data: any) {
+    const endpoint = '/profileImage'
     return this.http
-      .post('http://localhost:8000/profileImage', data)
+      .post(`${this.baseUrl}${endpoint}`, data)
       .pipe((data) => {
         this.notify.showSuccess('Success', 'Profile Image Updated!')
         return data

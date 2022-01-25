@@ -6,20 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function findForPassport($username){
-    return $user = (new User)->where('email', $username)->orWhere('username', $username)->first();
-    }
-
-    public function AauthAcessToken(){
-    return $this->hasMany('\App\OauthAccessToken');
-
-}
 
     /**
      * The attributes that are mass assignable.

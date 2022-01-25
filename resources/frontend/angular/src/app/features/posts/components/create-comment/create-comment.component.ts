@@ -1,11 +1,11 @@
 import { comments } from 'src/app/features/posts/comments'
-import { HttpClient } from '@angular/common/http'
 import { Component, Input, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router'
 import { Subscription } from 'rxjs'
 import { AuthenticationService } from 'src/app/core/services/authentication.service'
 import { NotificationService } from 'src/app/core/services/notification.service'
+import { CommentsService } from 'src/app/core/services/comments-service'
 
 @Component({
   selector: 'app-create-comment',
@@ -21,7 +21,7 @@ private postId: string = '';
 
 constructor (
   private fb: FormBuilder,
-  private http: HttpClient,
+  private commentService: CommentsService,
   private notify: NotificationService,
   public auth: AuthenticationService,
   private route: ActivatedRoute
@@ -53,8 +53,7 @@ submit () {
 
   const formData = this.form.getRawValue()
 
-  return this.http
-    .post('http://localhost:8000/createcomment', formData)
+  return this.commentService.createComment(formData)
     .subscribe((result) => {
       this.notify.showSuccess('Success!', 'Comment Created!')
       window.location.reload()

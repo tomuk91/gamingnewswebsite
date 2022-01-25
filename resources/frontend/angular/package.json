@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve --configuration=dev",
+		"start": "ng serve --configuration=dev --proxy-config ./proxy.conf.json",
 		"build": "ng build --configuration=production && cp ../../../public/assets/angular/index.html ../../views/home.blade.php",
 		"prod": "ng build --configuration=production && cp ../../../public/assets/angular/index.html ../../views/home.blade.php",
 		"watch": "ng build --watch --configuration dev",

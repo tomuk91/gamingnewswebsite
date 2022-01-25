@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
@@ -12,69 +13,64 @@ import { ForgotPasswordComponent } from 'src/app/core/modals/forgot-password/for
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public submitted = false;
-  public form!: FormGroup;
-  public errorMessage: string = '';
-  protected login!: boolean;
+public submitted = false;
+public form!: FormGroup;
+public errorMessage: string = '';
+protected login!: boolean;
 
-  constructor (
-    private fb: FormBuilder,
-    private router: Router,
-    private notify: NotificationService,
-    private authenticationService: AuthenticationService,
-    private dialog: MatDialog
-  ) {}
+constructor (
+  private fb: FormBuilder,
+  private router: Router,
+  private notify: NotificationService,
+  private authenticationService: AuthenticationService,
+  private dialog: MatDialog
+) {}
 
-  ngOnInit (): void {
-    this.form = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    })
+ngOnInit (): void {
+  this.form = this.fb.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+  })
+}
+
+// public methods
+
+public openDialogUpdatePassword () {
+  this.dialog.open(ForgotPasswordComponent, {
+    height: '240px',
+    width: '600px'
+  })
+}
+
+public get f () {
+  return this.form.controls
+}
+
+public submit () {
+  this.submitted = true
+
+  if (this.form.invalid) {
+    return
   }
 
-  // public methods
+  const formData = this.form.value
 
-  public openDialogUpdatePassword () {
-    this.dialog.open(ForgotPasswordComponent, {
-      height: '240px',
-      width: '600px'
-    })
+  const data = {
+    email: formData.email,
+    password: formData.password
   }
 
-  public get f () {
-    return this.form.controls
-  }
-
-  public submit () {
-    this.submitted = true
-
-    if (this.form.invalid) {
-      return
-    }
-
-    const formData = this.form.value
-
-    const data = {
-      username: formData.username,
-      password: formData.password,
-      grant_type: 'password',
-      client_id: 2,
-      client_secret: 'pmILBlIAvkZHYoYUo2PDgNGX9jPE2KWyBjv8hY6h',
-      scope: '*'
-    }
-
-    this.authenticationService
-      .login(data)
-      .pipe()
-      .subscribe(
-        (user) => {
-          this.notify.showSuccess('Welcome to Retromize', 'Login Successful')
-          this.router.navigate(['/home'])
-          return user
-        },
-        (error) => {
-          this.errorMessage = error.error.message
-        }
+  this.authenticationService.login(data).subscribe(
+    () => {
+      this.notify.showSuccess(
+        'Welcome to Retromize',
+        'Login Successful'
       )
-  }
+      this.router.navigate(['/home'])
+    },
+    (error) => {
+      this.errorMessage = error.error.message
+    }
+  )
+}
 }

@@ -29,6 +29,7 @@ constructor (
 }
 
 ngOnInit (): void {
+  console.log(this.user)
   this.getUser()
   this.getCategories()
 }

@@ -9,7 +9,7 @@ import { accolades } from 'src/app/features/profile/accolades.interface'
   providedIn: 'root'
 })
 export class AccoladeService {
-  baseUrl = 'http://localhost:8000';
+  baseUrl = '//localhost:8000/api';
 
   public stats: BehaviorSubject<{}> = new BehaviorSubject<{}>({});
 

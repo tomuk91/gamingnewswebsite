@@ -7,6 +7,7 @@ use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
 use App\Services\User\CreateUpdateUser;
 use App\Services\User\DeleteUser;
+use App\Services\User\LoginUser;
 use App\Services\User\LogoutUser;
 use App\Services\User\UserService;
 use App\Services\User\ProfileData;
@@ -60,6 +61,14 @@ class UserController extends Controller
        $action = $user->create($request);
 
        return response()->json($action, 200);
+    }
+
+    public function login(Request $request, LoginUser $user )
+    {
+        $action = $user->login($request);
+
+        return $action;
+
     }
 
     public function logout(LogoutUser $user)

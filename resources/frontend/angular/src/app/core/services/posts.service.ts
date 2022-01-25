@@ -10,7 +10,7 @@ import * as moment from 'moment'
 export class PostsService {
   constructor (private http: HttpClient) {}
 
-  private readonly baseUrl = 'http://localhost:8000';
+  private readonly baseUrl = '//localhost:8000/api';
   private endpoint = '/currentuserposts';
   protected _url = `${this.baseUrl}${this.endpoint}`;
 
@@ -59,7 +59,8 @@ export class PostsService {
   }
 
   vote (data: any) {
-    return this.http.post('http://localhost:8000/vote', data)
+    const endpoint = '/vote'
+    return this.http.post(`${this.baseUrl}${endpoint}`, data)
   }
 
   calculateDiff (sentDate: string | number | Date) {

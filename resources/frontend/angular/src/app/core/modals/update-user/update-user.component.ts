@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { AuthenticationService } from 'src/app/core/services/authentication.service'
 import { Component, Inject, OnInit } from '@angular/core'
 import {
   FormBuilder,
@@ -26,7 +26,7 @@ export class UpdateUserComponent implements OnInit {
   constructor (
     @Inject(MAT_DIALOG_DATA) public data: any,
     private notify: NotificationService,
-    private http: HttpClient,
+    private auth: AuthenticationService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<PostDetailsComponent>
   ) {}
@@ -86,22 +86,23 @@ export class UpdateUserComponent implements OnInit {
 
     const formData = this.form.value
 
-    this.http
-      .post('http://localhost:8000/update' + this.data.user[0].id, formData)
-      .subscribe(
-        (result) => {
-          this.notify.showSuccess('Success', 'Your profile has been updated!')
-          this.dialogRef.close()
-          window.location.reload()
-          return result
-        },
-        (error) => {
-          this.notify.showError(
-            'Error',
-            'There has been an error updating your account'
-          )
-          this.errorMessage = error.error.message
-        }
-      )
+    this.auth.updateUser(this.data.user[0].id, formData).subscribe(
+      (result) => {
+        this.notify.showSuccess(
+          'Success',
+          'Your profile has been updated!'
+        )
+        this.dialogRef.close()
+        window.location.reload()
+        return result
+      },
+      (error) => {
+        this.notify.showError(
+          'Error',
+          'There has been an error updating your account'
+        )
+        this.errorMessage = error.error.message
+      }
+    )
   }
 }

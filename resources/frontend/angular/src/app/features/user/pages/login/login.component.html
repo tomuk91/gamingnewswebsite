@@ -9,17 +9,17 @@
 					<div class="form mt-12">
 						<div class="form-group">
 							<input
-								formControlName="username"
+								formControlName="email"
 								type="text"
 								class="form-control"
-								placeholder="Username or Email"
-								[ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+								placeholder="Email"
+								[ngClass]="{ 'is-invalid': submitted && f.email.errors }"
 							/>
 							<div
-								*ngIf="submitted && f.username.errors"
+								*ngIf="submitted && f.email.errors"
 								class="invalid-feedback"
 							>
-								<div *ngIf="f.username.errors.required">
+								<div *ngIf="f.email.errors.required">
 									Username is required
 								</div>
 							</div>

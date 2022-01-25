@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router'
 import { ToastrModule } from 'ngx-toastr'
 import { AppComponent } from './app.component'
 import { NavbarComponent } from './core/components/navbar/navbar.component'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http'
 import { UserModule } from './features/user/user.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PageNotFoundComponent } from './core/components/pagenotfound/page-not-found.component'
@@ -23,10 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { ForgotPasswordComponent } from './core/modals/forgot-password/forgot-password.component'
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner/'
-import { AuthInterceptor } from './core/interceptors/auth.interceptor'
 import { FooterComponent } from './core/components/footer/footer.component'
 import { PaginationModule } from './shared/components/pagination/pagination.module'
 import { SharedModule } from './shared/shared.module'
+import { AuthInterceptor } from './core/interceptors/auth.interceptor'
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { SharedModule } from './shared/shared.module'
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 10000
@@ -54,15 +53,27 @@ import { SharedModule } from './shared/shared.module'
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       {
-        path: 'site', loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+        path: 'site',
+        loadChildren: () =>
+          import('./features/home/home.module').then(
+            (m) => m.HomeModule
+          )
       },
       {
-        path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)
+        path: 'profile',
+        loadChildren: () =>
+          import('./features/profile/profile.module').then(
+            (m) => m.ProfileModule
+          )
       },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '404', component: PageNotFoundComponent },
       { path: '**', component: PageNotFoundComponent }
     ]),
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN'
+    }),
     HomeModule,
     PaginationModule,
     ProfileModule,
@@ -70,8 +81,8 @@ import { SharedModule } from './shared/shared.module'
     PostsModule
   ],
   providers: [
-    [CookieService],
-    [AuthenticationService],
+    CookieService,
+    AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

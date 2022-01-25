@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { CookieService } from 'ngx-cookie-service'
 
-const TOKEN_KEY = 'access_token'
+const TOKEN_KEY = 'access'
 const REFRESHTOKEN_KEY = 'refresh_token'
 
 @Injectable({

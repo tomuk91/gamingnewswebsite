@@ -22,12 +22,6 @@ export class AppComponent implements OnInit {
       this.auth.getCurrentUser().subscribe(
         (user: any) => {
           this.auth.userSubject.next(user)
-        },
-        (err) => {
-          if (err.status === 401) {
-            console.log(err.status)
-            this.auth.refreshLogout()
-          }
         }
       )
     }
