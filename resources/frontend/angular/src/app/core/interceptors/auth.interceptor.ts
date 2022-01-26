@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../services/authentication.service'
 import { Router } from '@angular/router'
 import { TokenStorageService } from '../services/token-storage.service'
 import { Observable, throwError } from 'rxjs'
@@ -16,6 +17,7 @@ import { catchError } from 'rxjs/operators'
 @Injectable({ providedIn: 'root' })
 export class AuthInterceptor implements HttpInterceptor {
   constructor (
+  private auth: AuthenticationService,
   private tokenService: TokenStorageService,
   private route: Router
   ) {}
@@ -35,6 +37,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (
           error instanceof HttpErrorResponse && error.status === 401
         ) {
+          this.tokenService.signOut()
           this.route.navigate(['/login'])
         } else {
           return throwError(error)

@@ -45,6 +45,11 @@ public get loginStatus () {
 
 // public methods
 
+public register (data: Data) {
+  const endpoint = '/register'
+  return this.http.post(`${this.baseUrl}${endpoint}`, data)
+}
+
 public getCurrentUser () {
   const endpoint = '/getLoggedInuser'
   return this.http

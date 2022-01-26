@@ -7,14 +7,17 @@ import { LogPipe } from './pipes/log.pipe'
 import { SanitizedImagePipe } from './pipes/sanitized-image.pipe'
 import { PostsContainerComponent } from './components/posts-container/posts-container.component'
 import { PostsHeaderContainerComponent } from './components/posts-header-container/posts-header-container.component'
-
+import { ErrorMessagesComponent } from './components/error-messages.component'
+import { PrettyPrintPipe } from './pipes/prettyprint.pipe'
 @NgModule({
   declarations: [
     ExternalHrefPipe,
     LogPipe,
     SanitizedImagePipe,
     PostsContainerComponent,
-    PostsHeaderContainerComponent
+    PostsHeaderContainerComponent,
+    ErrorMessagesComponent,
+    PrettyPrintPipe
   ],
   imports: [
     CommonModule,
@@ -24,10 +27,12 @@ import { PostsHeaderContainerComponent } from './components/posts-header-contain
   exports: [
     PaginationModule,
     ExternalHrefPipe,
+    PrettyPrintPipe,
     LogPipe,
     SanitizedImagePipe,
     PostsContainerComponent,
-    PostsHeaderContainerComponent
+    PostsHeaderContainerComponent,
+    ErrorMessagesComponent
   ]
 })
 export class SharedModule { }
