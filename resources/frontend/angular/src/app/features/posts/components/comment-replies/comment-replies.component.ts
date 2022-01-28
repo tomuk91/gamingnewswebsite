@@ -1,5 +1,5 @@
+import { CommentsService } from 'src/app/core/services/comments-service'
 import { comments } from 'src/app/features/posts/comments'
-import { HttpClient } from '@angular/common/http'
 import { Component, Input, OnInit } from '@angular/core'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { NotificationService } from 'src/app/core/services/notification.service'
@@ -16,7 +16,7 @@ export class CommentRepliesComponent implements OnInit {
 
   constructor (
     private fb: FormBuilder,
-    private http: HttpClient,
+    private commentService: CommentsService,
     private notify: NotificationService
   ) {}
 
@@ -35,11 +35,17 @@ export class CommentRepliesComponent implements OnInit {
     })
 
     this.form.patchValue({
-      comment: '@' + this.comments.user.username
+      comment: '@' + this.comments.user.username // @user to reply too
     })
   }
 
   // public methods
+
+  /**
+   * Submit replies form (user replies to parent comments)
+   * uses comment service - passing form data
+   * reloads page on success
+   */
 
   public submit () {
     this.submitted = true
@@ -50,10 +56,7 @@ export class CommentRepliesComponent implements OnInit {
 
     const formData = this.form.getRawValue()
 
-    console.log(formData)
-
-    return this.http
-      .post('http://localhost:8000/createcomment', formData)
+    return this.commentService.replyToComment(formData)
       .subscribe((result) => {
         this.notify.showSuccess('Success!', 'Comment Created!')
         window.location.reload()

@@ -39,6 +39,11 @@ ngOnInit (): void {
   this.getPendingPosts()
 }
 
+/**
+ * Subscribes to paginate in pagination component
+ * Used to keep track of current page and offset
+ */
+
 ngAfterContentInit (): void {
   this.paginator.paginate
     .pipe(takeUntil(this._subscribe))
@@ -51,7 +56,7 @@ ngAfterContentInit (): void {
 
 // public methods
 
-// EVENT IF USER VOTES
+// event if user voted - refreshes page
 public voted (event: Event) {
   if (event) {
     this.ngOnInit()
@@ -59,6 +64,12 @@ public voted (event: Event) {
 }
 
 // private methods
+
+/**
+ * Gets pending post data from service
+ * updates the pagination variables on success
+ * Puts post data into posts variable
+ */
 
 private getPendingPosts () {
   this.postsService

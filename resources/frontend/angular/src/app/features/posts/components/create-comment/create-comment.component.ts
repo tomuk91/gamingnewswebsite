@@ -46,6 +46,13 @@ ngOnInit (): void {
   })
 }
 
+/**
+ * Submit comment form
+ * Creates parent comment to post
+ * Post ID supplied from route
+ * uses createComment method in CommentsService
+ */
+
 submit () {
   if (this.form.invalid || !this.auth.loginStatus) return
 

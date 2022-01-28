@@ -35,6 +35,11 @@ export class PostCommentsComponent implements OnInit {
 
   // public methods
 
+  /**
+ * Gets comments data for related post
+ * postId supplied from route data
+ */
+
   public commentsByPostId () {
     return this.commentsService.getCommentsByPostId(this.postId).subscribe(
       (comments: comments[]) => {

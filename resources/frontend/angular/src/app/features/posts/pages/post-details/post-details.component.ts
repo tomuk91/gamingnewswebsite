@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs'
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { DataService } from 'src/app/core/services/data.service'
@@ -15,6 +16,7 @@ export class PostDetailsComponent implements OnInit {
 public postId: string = '';
 public post!: PostDetails;
 public error: string = '';
+protected postSub!: Subscription;
 
 constructor (
   private activatedRoute: ActivatedRoute,
@@ -26,7 +28,8 @@ constructor (
 ) {}
 
 ngOnInit (): void {
-  this.activatedRoute.params.subscribe((paramsId) => {
+  // get postId from route
+  this.postSub = this.activatedRoute.params.subscribe((paramsId) => {
     this.postId = paramsId.id
   })
 
@@ -34,6 +37,12 @@ ngOnInit (): void {
 }
 
 // public methods
+
+/**
+ * Submit vote form
+ * Uses vote method in postService
+ * Error displayed if user not logged in
+ */
 
 public vote () {
   if (!this.auth.loginStatus) {
@@ -58,6 +67,10 @@ public vote () {
 
 // private methods
 
+/**
+ * Retrieves post data by ID
+ * uses DataService
+ */
 private getPost () {
   this.DataService.getPostById(this.postId).subscribe(
     (post) => {
@@ -70,5 +83,9 @@ private getPost () {
       return error
     }
   )
+}
+
+ngOnDestroy (): void {
+  this.postSub.unsubscribe()
 }
 }

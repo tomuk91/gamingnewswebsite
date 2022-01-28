@@ -55,6 +55,9 @@ export class UpdateUserComponent implements OnInit {
         [RxwebValidators.compare({ fieldName: 'password' })]
       ]
     })
+    /**
+     * patch default form values from @input data variable
+     */
     this.form.patchValue({
       username: this.data.user[0].username,
       first_name: this.data.user[0].first_name,
@@ -69,13 +72,25 @@ export class UpdateUserComponent implements OnInit {
     return this.form.controls
   }
 
+  /**
+   * Toggles changePassword variable to display additional form field
+   * Activated on click
+   */
   public toggle () {
     this.changePassword = !this.changePassword
   }
 
+  // close update-user modal
+
   public cancel () {
     this.dialogRef.close()
   }
+
+  /**
+ * submit update user form
+ * refresh the page on success
+ * calls updateUser in Authentication Service
+ */
 
   public submit () {
     this.submitted = true

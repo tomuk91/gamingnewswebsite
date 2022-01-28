@@ -27,7 +27,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<Object>> {
     let authReq = req
-    const token = this.tokenService.getAccessToken()
+    const token = this.tokenService.getAccessToken() // access token from token service
     if (token != null) {
       authReq = this.addTokenHeader(req, token)
     }
@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       catchError((error) => {
         if (
-          error instanceof HttpErrorResponse && error.status === 401
+          error instanceof HttpErrorResponse && error.status === 401 // check if error is 401
         ) {
           this.tokenService.signOut()
           this.route.navigate(['/login'])

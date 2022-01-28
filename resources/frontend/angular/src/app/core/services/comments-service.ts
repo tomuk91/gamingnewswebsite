@@ -25,6 +25,11 @@ export class CommentsService {
     })
   }
 
+  public replyToComment (data: Data) {
+    const endpoint = '/createcomment'
+    return this.http.post(`${this.baseUrl}${endpoint}`, data)
+  }
+
   public createComment (data: Data) {
     const endpoint = '/createcomment'
     return this.http.post(`${this.baseUrl}${endpoint}`, data)

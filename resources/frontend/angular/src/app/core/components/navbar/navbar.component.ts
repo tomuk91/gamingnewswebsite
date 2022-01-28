@@ -1,8 +1,8 @@
+import { DataService } from './../../services/data.service'
+import { AuthenticationService } from './../../services/authentication.service'
 import { categories } from '../../../features/posts/categories'
-import { DataService } from 'src/app/core/services/data.service'
 import { SpinnerService } from './../../services/spinner.service'
 import { Component, OnDestroy, OnInit } from '@angular/core'
-import { AuthenticationService } from '../../services/authentication.service'
 import { NotificationService } from '../../services/notification.service'
 import { Observable, Subscription } from 'rxjs'
 import { UserDetails } from 'src/app/features/user/UserDetails'
@@ -36,6 +36,11 @@ ngOnInit (): void {
 
 // public methods
 
+/**
+ * Logout user
+ * Called on button click
+ */
+
 public logout () {
   this.authService.logout().subscribe((success) => {
     this.notify.showSuccess('Logout', 'Successful')
@@ -46,11 +51,19 @@ public logout () {
 
 // protected methods
 
+/**
+ * Get User Data from auth service
+ */
+
 protected getUser () {
   this.authService.loggedIn.subscribe((value) => {
     this.isLoggedIn = value
   })
 }
+
+/**
+ **Get Categories from data service
+ */
 
 protected getCategories () {
   this.sub = this.dataService.getCategories().subscribe(

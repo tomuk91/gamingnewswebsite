@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs'
 import { PostDetails } from 'src/app/features/posts/post-details'
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
@@ -10,6 +11,7 @@ import { PostsService } from 'src/app/core/services/posts.service'
 })
 export class PostsCategoryComponent implements OnInit {
   protected categoryId!: number;
+  protected postSub!: Subscription;
   public posts!: PostDetails[];
   public title: string = '';
   public description: string = '';
@@ -20,13 +22,19 @@ export class PostsCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit (): void {
-    this.activatedRoute.params.subscribe((paramsId) => {
+    // gets category id from route
+    this.postSub = this.activatedRoute.params.subscribe((paramsId) => {
       this.categoryId = paramsId.id
       this.getPosts()
     })
   }
 
   // public methods
+
+  /**
+ * Retrieves posts by category ID
+ * Updates title and Description variables for use in PostsHeaderComponent
+ */
 
   public getPosts () {
     this.postService
@@ -36,5 +44,9 @@ export class PostsCategoryComponent implements OnInit {
         this.title = posts[0].categories[0].name
         this.description = posts[0].categories[0].description
       })
+  }
+
+  ngOnDestroy (): void {
+    this.postSub.unsubscribe()
   }
 }

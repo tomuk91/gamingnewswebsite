@@ -53,14 +53,28 @@ export class ContactUserComponent implements OnInit {
 
   // public methods
 
+  /**
+   * form controls shortcut to use in html
+   */
+
   public get f () {
     return this.form.controls
   }
+
+  /**
+ * close the modal
+ */
 
   public cancel () {
     this.dialogRef.close()
   }
 
+  /**
+ * submit contact user form
+ * checks validation / returns if invalid
+ * calls createConversation, passing the formData in messageService
+ * errors are caught and passed to errorMessage Variable
+ */
   public submit () {
     this.submitted = true
 

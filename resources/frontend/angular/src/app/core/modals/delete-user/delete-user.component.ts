@@ -24,9 +24,19 @@ export class DeleteUserComponent implements OnInit {
 
   // public methods
 
+  /**
+ * close delete-user modal
+ */
+
   public cancel () {
     this.dialogRef.close()
   }
+
+  /**
+ * delete user from DB
+ * calls delete method in authentication service
+ * no params, checks current user in backend
+ */
 
   public delete () {
     this.auth.delete().subscribe((result) => {

@@ -71,12 +71,23 @@ ngOnInit (): void {
 
 // public methods
 
+/**
+ * Takes categories form value to see how many options selected
+ * Then Compares user selected against categories data // disables option if matched
+ * Category ID passed in from HTML
+ */
+
 public isOptionDisabled (opt: any): boolean {
   return (
     this.form.get('categories')?.value.length >= 3 &&
     !this.form.get('categories')?.value.find((el: any) => el === opt)
   )
 }
+
+/**
+ * Submit create post form
+ * Navigates user to newly created post on success
+ */
 
 public submit () {
   this.submitted = true
@@ -97,6 +108,11 @@ public submit () {
     }
   )
 }
+
+/**
+ * Used for form in HTML
+ * @readonly
+ */
 
 public get title () {
   return this.form.get('title') as FormControl
@@ -123,6 +139,10 @@ public get category () {
 }
 
 // private methods
+
+/**
+ * Gets category data from service
+ */
 
 private getCategories () {
   this.sub = this.dataService.getCategories().subscribe(

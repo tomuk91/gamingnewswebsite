@@ -31,13 +31,27 @@ export class ForgotPasswordComponent implements OnInit {
 
   // public methods
 
+  /**
+   * From control shortcut to use in html
+   * @readonly
+   */
+
   public get p () {
     return this.formPassword.controls
   }
 
+  /**
+ * close forgot-password modal
+ */
+
   public cancel () {
     this.dialogRef.close()
   }
+
+  /**
+   * Submit password request form
+   * calls forgotPassword method in Authentication service
+   */
 
   public submitPasswordRequest () {
     this.emailSubmitted = true
