@@ -8,21 +8,24 @@ import { Observable } from 'rxjs'
   templateUrl: './quick-stats.component.html',
   styleUrls: ['./quick-stats.component.scss']
 })
-
 export class QuickStatsComponent {
-  @Input() public!: boolean;
-  @Input() userId!: number;
-  public stats!: Observable<stats>;
+@Input() public!: boolean; // inputted from profile-details component
+@Input() userId!: number; // inputted from profile-details component
+public stats!: Observable<stats>;
 
-  constructor (private accoladeService: AccoladeService) {}
+constructor (private accoladeService: AccoladeService) {}
 
-  ngOnChanges (): void {
-    this.getStats()
-  }
+ngOnChanges (): void {
+  this.getStats()
+}
 
-  // private methods
+// private methods
 
-  private getStats () {
-    this.stats = this.accoladeService.getStats(this.public, this.userId)
-  }
+/**
+* Get user stats data for user profile
+*/
+
+private getStats () {
+  this.stats = this.accoladeService.getStats(this.public, this.userId)
+}
 }

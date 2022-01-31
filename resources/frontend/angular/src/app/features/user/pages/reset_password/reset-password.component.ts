@@ -24,6 +24,7 @@ export class ResetPasswordComponent implements OnInit {
   ) {}
 
   ngOnInit (): void {
+    // Get token from route URL
     this.token = this.route.snapshot.paramMap.get('token')
 
     this.form = this.fb.group({
@@ -53,9 +54,18 @@ export class ResetPasswordComponent implements OnInit {
 
   // public methods
 
+  /**
+   * Form control short-cut for HTML
+   */
+
   public get f () {
     return this.form.controls
   }
+
+  /**
+ * Reset password sumbit form
+ * Uses token taken from route URL
+ */
 
   public submit () {
     this.submitted = true

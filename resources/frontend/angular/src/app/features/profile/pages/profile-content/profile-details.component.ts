@@ -18,7 +18,7 @@ public accolades!: accolades[];
 public userId!: number;
 public editPic = false;
 public HasImage = false;
-public user!: User;
+public user!: User; // User Data
 public public!: boolean;
 private routeSub!: Subscription;
 private sub!: Subscription;
@@ -36,6 +36,11 @@ ngOnInit (): void {
 
 // public methods
 
+/**
+ * Contact user modal
+ * Passes userId to the modal
+ */
+
 public openDialogContact () {
   this.dialog.open(ContactUserComponent, {
     height: '475px',
@@ -45,6 +50,11 @@ public openDialogContact () {
     }
   })
 }
+
+/**
+ * Delete user modal
+ * Passes userId to the modal
+ */
 
 public openDialogDelete () {
   this.dialog.open(DeleteUserComponent, {
@@ -56,6 +66,11 @@ public openDialogDelete () {
   })
 }
 
+/**
+ * Update user modal
+ * Passes userId to the modal
+ */
+
 public openDialogUpdate () {
   this.dialog.open(UpdateUserComponent, {
     height: '530px',
@@ -66,17 +81,31 @@ public openDialogUpdate () {
   })
 }
 
+/**
+* Toogle based on user click
+* On toggle, shoes upload form to change user profile image
+*/
+
 public changeImage () {
   this.editPic = !this.editPic
 }
 
 // private methods
 
+/**
+* Get userId from params using activated routes
+* Assigned to a subscription, unsubcribes in ngOnDestroy
+*/
 private extractUserIdFromUrl () {
   this.routeSub = this.activatedRoute.params.subscribe((params) => {
     this.userId = params.id
   })
 }
+
+/**
+ * Gets user data from user resolver
+ * Updates varaibles user, piblic and accolades upon success
+ */
 
 private getUserData () {
   this.sub = this.activatedRoute.data.subscribe((user) => {

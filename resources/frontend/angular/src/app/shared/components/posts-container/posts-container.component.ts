@@ -27,6 +27,12 @@ export class PostsContainerComponent implements OnInit {
 
   // public methods
 
+  /**
+   * Checks auth login status
+   * If user not logged in and try to vote, shows a error via notify
+   * If user is logged in, procceds to send vote to backend.
+   */
+
   public vote (postId: number) {
     if (!this.auth.loginStatus) {
       this.notify.showError('You must login to vote', 'Failed')

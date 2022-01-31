@@ -31,6 +31,7 @@ export class UserPostsComponent implements OnInit {
   }
 
   ngOnInit (): void {
+    // Initalize pagination
     this.loading = true
     this.pageIndex = 1
     this.orderBy = 'desc'
@@ -42,6 +43,12 @@ export class UserPostsComponent implements OnInit {
 
   // private methods
 
+  /**
+   * Keeps track of pagination state
+   * Active until component is closed (NgOnDestroy)
+   * Calls getPosts method
+   */
+
   private updatePaginator () {
     this.paginator.paginate
       .pipe(takeUntil(this._subscribe))
@@ -51,6 +58,11 @@ export class UserPostsComponent implements OnInit {
         this.getPosts()
       })
   }
+
+  /**
+   * Gets user posts data from backend
+   * Updates pagination varaibles upon success
+   */
 
   private getPosts (): void {
     this.loading = true

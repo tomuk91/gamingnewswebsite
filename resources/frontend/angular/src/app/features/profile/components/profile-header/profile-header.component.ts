@@ -22,9 +22,18 @@ export class ProfileHeaderComponent implements OnInit {
 
  // private methods
 
+ /**
+  * Get user data from Authentification service
+  */
+
  private getUserId () {
    this.user = this.auth.user
  }
+
+ /**
+ * Checks the public state from Authentification service to determine whether to show a public profile
+ * Check is completed backend when requesting the profile data
+ */
 
  private publicState () {
    this.sub = this.auth.public.subscribe(

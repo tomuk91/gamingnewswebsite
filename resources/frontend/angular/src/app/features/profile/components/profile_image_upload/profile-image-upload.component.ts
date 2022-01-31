@@ -10,7 +10,7 @@ import { RxwebValidators } from '@rxweb/reactive-form-validators'
   templateUrl: './profile-image-upload.component.html'
 })
 export class ProfileImageUploadComponent implements OnInit {
-@Input() user!: User;
+@Input() user!: User; // Input user from profile-details
 public form!: FormGroup;
 public submitted = false;
 protected files!: File;
@@ -19,6 +19,7 @@ protected image = new Image();
 constructor (private fb: FormBuilder, private dataService: DataService) {}
 
 ngOnInit (): void {
+  // Initalize form
   this.form = this.fb.group({
     image: [
       '',
@@ -34,13 +35,25 @@ ngOnInit (): void {
 
 // public methods
 
+// Form control short-cut for use in HTML
 public get f () {
   return this.form.controls
 }
 
+/**
+ * Updates files varaible on detection of selected image
+* Uses changes event in HTML
+* Stored for proccessing in submit method.
+*/
+
 public uploadImage (event: any) {
   this.files = event.target.files[0]
 }
+
+/**
+ * Submit file upload form
+ * Uses files varaible to get image
+ */
 
 public submit () {
   this.submitted = true

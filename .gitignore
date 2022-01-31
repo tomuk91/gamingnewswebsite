@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
+/resources/frontend/angular
 /vendor
 .env
 .env.backup

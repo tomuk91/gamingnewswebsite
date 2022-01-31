@@ -27,6 +27,7 @@ constructor (
 ) {}
 
 ngOnInit (): void {
+  // Initalize form
   this.form = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
@@ -35,6 +36,11 @@ ngOnInit (): void {
 
 // public methods
 
+/**
+ * Update password modal
+ * Opens ForgetPasswordComponent on click
+ */
+
 public openDialogUpdatePassword () {
   this.dialog.open(ForgotPasswordComponent, {
     height: '240px',
@@ -42,9 +48,19 @@ public openDialogUpdatePassword () {
   })
 }
 
+/**
+ * Form control short-cut for use in HTML
+ */
+
 public get f () {
   return this.form.controls
 }
+
+/**
+ * Submit login form
+ * Takes formData from form varaible
+ * Uses Authentification Service - login method
+ */
 
 public submit () {
   this.submitted = true

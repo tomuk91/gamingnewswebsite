@@ -10,7 +10,7 @@ import { comments } from '../../comments'
   styleUrls: ['./post-comments.component.scss']
 })
 export class PostCommentsComponent implements OnInit {
-  @Input() postId!: string;
+  @Input() postId!: string; // gets postID from post-details component
   public comments: comments[] = [];
   public offset!: boolean;
   public hideReplyForm: any[];

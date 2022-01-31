@@ -110,8 +110,7 @@ public submit () {
 }
 
 /**
- * Used for form in HTML
- * @readonly
+ * Used for form control in HTML
  */
 
 public get title () {

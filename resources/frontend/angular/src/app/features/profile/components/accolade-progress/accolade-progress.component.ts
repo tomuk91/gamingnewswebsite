@@ -9,31 +9,39 @@ import { Component, Input, OnInit } from '@angular/core'
   styleUrls: ['./accolade-progress.component.scss']
 })
 export class AccoladeProgressComponent implements OnInit {
-  @Input() public!: boolean;
-  @Input() userId!: number;
-  public stats!: stats;
-  public accolades!: accolades[];
+@Input() public!: boolean; // gets id fom profile-details component
+@Input() userId!: number; // gets id fom profile-details component
+public stats!: stats;
+public accolades!: accolades[];
 
-  constructor (private accoladeService: AccoladeService) {}
+constructor (private accoladeService: AccoladeService) {}
 
-  ngOnInit (): void {
-    this.getAllAccolades()
-    this.getStats()
-  }
+ngOnInit (): void {
+  this.getAllAccolades()
+  this.getStats()
+}
 
-  // private methods
+// private methods
 
-  private getStats () {
-    this.accoladeService
-      .getStats(this.public, this.userId)
-      .subscribe((response) => {
-        this.stats = response
-      })
-  }
+/**
+ * retrieves user stats data from backend
+ */
 
-  private getAllAccolades () {
-    this.accoladeService.getAccolades().subscribe(response => {
-      this.accolades = response
+private getStats () {
+  this.accoladeService
+    .getStats(this.public, this.userId)
+    .subscribe((response) => {
+      this.stats = response
     })
-  }
+}
+
+/**
+ * retrieves user accolades from backend
+ */
+
+private getAllAccolades () {
+  this.accoladeService.getAccolades().subscribe((response) => {
+    this.accolades = response
+  })
+}
 }

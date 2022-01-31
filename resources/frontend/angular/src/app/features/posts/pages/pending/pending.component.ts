@@ -32,6 +32,11 @@ constructor (private postsService: PostsService) {
   this._subscribe = new Subject()
 }
 
+/**
+ *Initalizes pagination
+ * returns posts with pending state from backend.
+ */
+
 ngOnInit (): void {
   this.loading = true
   this.pageIndex = 1
