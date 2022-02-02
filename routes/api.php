@@ -10,10 +10,8 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotesController;
-use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Client\Request;
-use Illuminate\Support\Str;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

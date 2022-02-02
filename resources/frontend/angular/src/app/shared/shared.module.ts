@@ -9,6 +9,7 @@ import { PostsContainerComponent } from './components/posts-container/posts-cont
 import { PostsHeaderContainerComponent } from './components/posts-header-container/posts-header-container.component'
 import { ErrorMessagesComponent } from './components/error-messages.component'
 import { PrettyPrintPipe } from './pipes/prettyprint.pipe'
+
 @NgModule({
   declarations: [
     ExternalHrefPipe,
@@ -19,11 +20,7 @@ import { PrettyPrintPipe } from './pipes/prettyprint.pipe'
     ErrorMessagesComponent,
     PrettyPrintPipe
   ],
-  imports: [
-    CommonModule,
-    PaginationModule,
-    RouterModule
-  ],
+  imports: [CommonModule, PaginationModule, RouterModule],
   exports: [
     PaginationModule,
     ExternalHrefPipe,
@@ -35,4 +32,4 @@ import { PrettyPrintPipe } from './pipes/prettyprint.pipe'
     ErrorMessagesComponent
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

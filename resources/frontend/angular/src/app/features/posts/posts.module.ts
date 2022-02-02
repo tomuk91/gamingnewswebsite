@@ -14,6 +14,7 @@ import { PostsCategoryComponent } from './pages/posts-category/posts-category.co
 import { PendingComponent } from './pages/pending/pending.component'
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module'
 import { SharedModule } from 'src/app/shared/shared.module'
+
 @NgModule({
   declarations: [
     PostDetailsComponent,
