@@ -1,9 +1,11 @@
-<div class="container">
+<div class="container mx-auto">
 	<!--MAIN NAVIGATION HEADER - TOP OF WEBSITE -->
 	<div *ngIf="spinnerService.isLoading | async" class="spinner-container">
 		<mat-spinner style="top: 50%; left: 50%"></mat-spinner>
 	</div>
-	<nav class="navbar navbar navbar-light">
+  <div class="container">
+
+	  <nav class="navbar navbar-light">
 		<a routerLink="/home" class="nav-bar-brand h5 text-decoration-none">
 			<img
 				src="../../assets/img/retromize-logo.png"
@@ -72,15 +74,17 @@
 				></b
 			>
 		</nav>
-		<button
-			class="btn"
-			type="button"
-			data-bs-toggle="offcanvas"
-			data-bs-target="#navigation"
-			aria-controls="offcanvasExample"
-		>
-			<span class="navbar-toggler-icon btn-md"></span>
-		</button>
+    <button
+      class="btn nav-btn"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#navigation"
+      aria-controls="offcanvasExample"
+    >
+      <span class="navbar-toggler-icon btn-lg"></span>
+    </button>
+
+
 
 		<!--START OF OFF-CANVAS NAVIGATION SECTION -->
 

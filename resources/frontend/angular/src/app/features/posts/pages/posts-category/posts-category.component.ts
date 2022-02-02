@@ -40,6 +40,7 @@ export class PostsCategoryComponent implements OnInit {
     this.postService
       .postsByCategory(this.categoryId)
       .subscribe((posts: PostDetails[]) => {
+        console.log(posts)
         this.posts = posts
         this.title = posts[0].categories[0].name
         this.description = posts[0].categories[0].description

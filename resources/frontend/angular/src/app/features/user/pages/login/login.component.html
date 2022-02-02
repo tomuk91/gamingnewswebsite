@@ -1,60 +1,66 @@
 <form [formGroup]="form" (submit)="submit()" class="form-body">
 	<app-error-messages [errorMessage]="errorMessage"></app-error-messages>
-	<div class="row">
-		<div class="form-holder">
-			<div class="form-content">
-				<div class="form-items">
-					<h3>Login</h3>
-					<p>Complete form below to continue</p>
-					<div class="form mt-12">
-						<div class="form-group">
-							<input
-								formControlName="email"
-								type="text"
-								class="form-control"
-								placeholder="Email"
-								[ngClass]="{ 'is-invalid': submitted && f.email.errors }"
-							/>
-							<div
-								*ngIf="submitted && f.email.errors"
-								class="invalid-feedback"
-							>
-								<div *ngIf="f.email.errors.required">
-									Username is required
-								</div>
-							</div>
-						</div>
-						<div class="form mt-12 mt-2">
-							<div class form-group>
-								<input
-									autocomplete="on"
-									formControlName="password"
-									type="password"
-									class="form-control"
-									placeholder="Password"
-									[ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-								/>
-								<div
-									*ngIf="submitted && f.password.errors"
-									class="invalid-feedback"
-								>
-									<div *ngIf="f.password.errors.required">
-										Password is required
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="form-holder">
+					<div class="form-content">
+						<div class="form-items">
+							<h3>Login</h3>
+							<p>Complete form below to continue</p>
+							<div class="form mt-12">
+								<div class="form-group">
+									<input
+										formControlName="email"
+										type="text"
+										class="form-control"
+										placeholder="Email"
+										[ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+									/>
+									<div
+										*ngIf="submitted && f.email.errors"
+										class="invalid-feedback"
+									>
+										<div *ngIf="f.email.errors.required">
+											Username is required
+										</div>
 									</div>
 								</div>
+								<div class="form mt-12 mt-2">
+									<div class form-group>
+										<input
+											autocomplete="on"
+											formControlName="password"
+											type="password"
+											class="form-control"
+											placeholder="Password"
+											[ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+										/>
+										<div
+											*ngIf="submitted && f.password.errors"
+											class="invalid-feedback"
+										>
+											<div
+												*ngIf="f.password.errors.required"
+											>
+												Password is required
+											</div>
+										</div>
+									</div>
+									<button
+										class="btn btn-primary mt-2"
+										[disabled]="form.invalid && form.pristine"
+									>
+										Login
+									</button>
+									<a
+										class="btn btn-warning mt-2"
+										(click)="openDialogUpdatePassword()"
+									>
+										Forgotten Password?
+									</a>
+								</div>
 							</div>
-							<button
-								class="btn btn-primary mt-2"
-								[disabled]="form.invalid && form.pristine"
-							>
-								Login
-							</button>
-							<a
-								class="btn btn-warning mt-2"
-								(click)="openDialogUpdatePassword()"
-							>
-								Forgotten Password?
-							</a>
 						</div>
 					</div>
 				</div>

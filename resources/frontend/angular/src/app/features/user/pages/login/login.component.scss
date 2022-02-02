@@ -8,15 +8,24 @@
 }
 
 .form-content .form-items {
-	border: 3px solid black;
+	border: 1px solid black;
 	padding: 40px;
-	display: inline-block;
 	margin: auto;
-	min-width: 540px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 	text-align: left;
 	-webkit-transition: all 0.4s ease;
 	transition: all 0.4s ease;
+}
+
+input {
+	width: 27rem;
+
+	@media only screen and (max-width: 561px) {
+		width: 20rem;
+	}
+  @media only screen and (max-width: 402px) {
+		width: 14rem;
+	}
 }
