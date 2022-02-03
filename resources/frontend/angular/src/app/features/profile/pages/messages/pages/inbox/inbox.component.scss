@@ -1,3 +1,58 @@
+.icon-red {
+  color: red;
+}
+
+.unread {
+  font-size: 15px;
+
+  @media only screen and (max-width: 950px) {
+    display: none;
+	}
+}
+
 .headers {
-	color: #0275d8;
+  color: #0275d8;
+  margin-right: 1rem;
+  font-weight: 600;
+  @media only screen and (max-width: 950px) {
+    font-size: 80%;
+    font-weight: 500;
+    margin: auto;
+	}
+}
+
+.info {
+  font-weight: 600;
+  margin-right: 3rem;
+  @media only screen and (max-width: 950px) {
+    font-size: 80%;
+    font-weight: 600;
+	}
+  @media only screen and (max-width: 520px) {
+    font-size: 70%;
+    font-weight: 500;
+	}
+}
+
+.hide-sm {
+  @media only screen and (max-width: 520px) {
+   display: none;
+	}
+}
+
+.btn-read {
+  font-size:15px;
+}
+
+button {
+  @media only screen and (max-width: 950px) {
+    font-size: 10px;
+
+  }
+}
+
+.buttons {
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
 }

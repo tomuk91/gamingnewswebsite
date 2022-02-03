@@ -8,6 +8,7 @@ import {
 import { NotificationService } from 'src/app/core/services/notification.service'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { PostDetailsComponent } from 'src/app/features/posts/pages/post-details/post-details.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-contact-user',
@@ -26,6 +27,7 @@ export class ContactUserComponent implements OnInit {
     private messageService: MessageService,
     private notify: NotificationService,
     private fb: FormBuilder,
+    private router: Router,
     public dialogRef: MatDialogRef<PostDetailsComponent>
   ) {}
 
@@ -87,6 +89,7 @@ export class ContactUserComponent implements OnInit {
       (result) => {
         this.dialogRef.close()
         this.notify.showSuccess('Success', 'Your conversation was created!')
+        this.navigateToInbox()
         return result
       },
       (error) => {
@@ -97,5 +100,17 @@ export class ContactUserComponent implements OnInit {
         this.errorMessage = error.error.message
       }
     )
+  }
+
+  // protected methods
+
+  /**
+   * Dummy Route then navigates to message
+   * Created so current user profile is loaded and not public
+   */
+  protected navigateToInbox () {
+    this.router.navigate(['/'], { skipLocationChange: true }).then(() => {
+      this.router.navigate(['profile', 'messages'])
+    })
   }
 }

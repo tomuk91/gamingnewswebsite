@@ -10,7 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { UserModule } from './features/user/user.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { PageNotFoundComponent } from './core/components/pagenotfound/page-not-found.component'
-import { CommonModule } from '@angular/common'
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common'
 import { PostsModule } from './features/posts/posts.module'
 import { DeleteUserComponent } from './core/modals/delete-user/delete-user.component'
 import { UpdateUserComponent } from './core/modals/update-user/update-user.component'
@@ -79,6 +79,10 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor'
   ],
   providers: [
     AuthenticationService,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

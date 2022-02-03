@@ -2,35 +2,42 @@
 	<div *ngIf="undefined !== inbox && inbox.length > 0; else empty">
 		<div *ngFor="let message of inbox">
 			<ol class="list-group">
-				<li
-					class="list-group-item d-flex justify-content-between align-items-start"
-				>
+				<li class="list-group-item d-flex">
 					<div class="ms-2 me-auto">
-						<div class="fw-bold">
-							<div class="d-flex">
-								<h6>
-									<span class="headers">Received:</span>
-									{{ message.created_at | date }}
-								</h6>
-								<h6 class="mx-5">
-									<span class="headers">Created by:</span>
+						<div>
+							<div class="my-2">
+								<span class="headers">Received:</span>
+								<span class="info"
+									>{{ message.created_at | date }}</span
+								>
+								<span class="headers hide-sm">Created by:</span>
+								<span class="info hide-sm">
 									{{ message.creator[0].username }}
-								</h6>
+								</span>
+								<div
+									class="d-flex"
+									*ngIf="message.messages.length > 0"
+								>
+									<span class="material-icons icon-red">
+										priority_high
+									</span>
+									<span class="unread">Unread Messages</span>
+								</div>
 							</div>
-							<span class="d-flex my-3">
-								<h4 class="headers">Subject:</h4>
-								<a>
-									<h4 class="mx-2">{{ message.subject }}</h4>
-								</a>
-							</span>
+							<div class="my-2">
+								<span class="headers">Subject:</span>
+								<span class="info">
+									{{ message.subject }}
+								</span>
+							</div>
 						</div>
-						<h6>
-							<span class="headers">Participants:</span>
+						<span class="headers">Participants:</span>
+						<span class="info">
 							{{ message.creator[0].username }}, {{
 							message.user_two[0].username }}
-						</h6>
+						</span>
 					</div>
-					<div class="col-md-1 col-sm-12 p-1 me-3">
+					<div class="d-flex buttons">
 						<button
 							[routerLink]="[
                 '/profile',
@@ -38,7 +45,7 @@
                 'conversation',
                 message.id
               ]"
-							class="btn my-1 btn-sm btn-dark"
+							class="btn my-1 btn-read btn-sm btn-dark"
 						>
 							Read
 						</button>

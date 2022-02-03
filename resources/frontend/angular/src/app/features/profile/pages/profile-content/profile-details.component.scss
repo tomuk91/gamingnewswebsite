@@ -15,6 +15,16 @@
 	min-width: 90%;
 }
 
+.image-container {
+  height: 22rem;
+  overflow: hidden;
+}
+
+img {
+  height: 100%;
+  width: auto;
+}
+
 .account button,
 h6 {
 	display: inline-flex;
@@ -27,8 +37,10 @@ h6 {
 }
 
 .message-user {
+  color: blue;
+  font-size: 20px;
 	font-weight: 500;
-	margin-top: 15px;
+	margin-top: 20px;
 	cursor: pointer;
 
 	&:hover {

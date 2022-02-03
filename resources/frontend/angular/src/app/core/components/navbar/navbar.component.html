@@ -3,88 +3,90 @@
 	<div *ngIf="spinnerService.isLoading | async" class="spinner-container">
 		<mat-spinner style="top: 50%; left: 50%"></mat-spinner>
 	</div>
-  <div class="container">
-
-	  <nav class="navbar navbar-light">
-		<a routerLink="/home" class="nav-bar-brand h5 text-decoration-none">
-			<img
-				src="../../assets/img/retromize-logo.png"
-				alt="Retromize Logo"
-				width="300"
-				height="100"
-				class="d-inline-block align-top"
-			/>
-			<span class="d-none">Retromize</span>
-		</a>
-		<nav class="nav">
-			<a
-				class="nav-link active"
-				[routerLink]="['/login']"
-				*ngIf="!isLoggedIn"
-				>Login</a
-			>
-			<a
-				class="nav-link active"
-				[routerLink]="['/']"
-				*ngIf="isLoggedIn"
-				(click)="logout()"
-				>Logout</a
-			>
-			<a class="nav-link" [routerLink]="['/register']" *ngIf="!isLoggedIn"
-				>Register</a
-			>
-			<a
-				class="nav-link"
-				[routerLink]="['/pending']"
-				data-bs-dismiss="offcanvas"
-				>Pending</a
-			>
-			<li class="nav-item dropdown">
+	<div class="container">
+		<nav class="navbar navbar-light">
+			<a routerLink="/home" class="nav-bar-brand h5 text-decoration-none">
+				<img
+					src="../../assets/img/retromize-logo.png"
+					alt="Retromize Logo"
+					width="300"
+					height="100"
+					class="d-inline-block align-top"
+				/>
+				<span class="d-none">Retromize</span>
+			</a>
+			<nav class="nav">
 				<a
-					class="nav-link dropdown-toggle"
-					data-bs-toggle="dropdown"
-					href="#"
-					role="button"
-					aria-haspopup="true"
-					aria-expanded="false"
-					>Categories</a
+					class="nav-link active"
+					[routerLink]="['/login']"
+					data-bs-dismiss="offcanvas"
+					*ngIf="!isLoggedIn"
+					>Login</a
 				>
-				<div class="dropdown-menu">
-					<div *ngFor="let cat of categories">
-						<a
-							class="dropdown-item"
-							[routerLink]="['category', cat.id]"
-							><b>{{ cat.name }}</b></a
-						>
-						<div *ngFor="let sub of cat.sub_categories">
+				<a
+					class="nav-link active"
+					[routerLink]="['/']"
+					*ngIf="isLoggedIn"
+					(click)="logout()"
+					>Logout</a
+				>
+				<a
+					class="nav-link"
+					[routerLink]="['/register']"
+					*ngIf="!isLoggedIn"
+					>Register</a
+				>
+				<a
+					class="nav-link"
+					[routerLink]="['/pending']"
+					data-bs-dismiss="offcanvas"
+					>Pending</a
+				>
+				<li class="nav-item dropdown">
+					<a
+						class="nav-link dropdown-toggle"
+						data-bs-toggle="dropdown"
+						href="#"
+						role="button"
+						aria-haspopup="true"
+						aria-expanded="false"
+						>Categories</a
+					>
+					<div class="dropdown-menu">
+						<div *ngFor="let cat of categories">
 							<a
 								class="dropdown-item"
-								[routerLink]="['category', sub.id]"
-								>{{ sub.name }}</a
+								[routerLink]="['category', cat.id]"
+								><b>{{ cat.name }}</b></a
 							>
+							<div *ngFor="let sub of cat.sub_categories">
+								<a
+									class="dropdown-item"
+									[routerLink]="['category', sub.id]"
+									>{{ sub.name }}</a
+								>
+							</div>
 						</div>
 					</div>
-				</div>
-			</li>
-			<b
-				><a
-					class="btn btn-xs btn-outline-primary"
-					[routerLink]="['/create']"
-					>Submit</a
-				></b
+				</li>
+				<b
+					><a
+						class="btn btn-xs btn-outline-primary"
+						[routerLink]="['/create']"
+						>Submit</a
+					></b
+				>
+			</nav>
+			<button
+				class="btn nav-btn"
+				type="button"
+				data-bs-toggle="offcanvas"
+				data-bs-target="#navigation"
+				aria-controls="offcanvas"
 			>
+				<span class="navbar-toggler-icon btn-lg"></span>
+			</button>
 		</nav>
-    <button
-      class="btn nav-btn"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#navigation"
-      aria-controls="offcanvasExample"
-    >
-      <span class="navbar-toggler-icon btn-lg"></span>
-    </button>
-
-
 
 		<!--START OF OFF-CANVAS NAVIGATION SECTION -->
 
@@ -92,18 +94,14 @@
 			class="offcanvas offcanvas-start"
 			tabindex="-1"
 			id="navigation"
-			aria-labelledby="offcanvasExampleLabel"
+			aria-labelledby="#navigation"
 		>
 			<div class="offcanvas-header">
-				<h4
-					class="offcanvas-title mx-auto"
-					id="offcanvasExampleLabel"
-				></h4>
+				<h4 class="offcanvas-title mx-auto" id="#navigation"></h4>
 				<button
 					type="button"
 					class="btn-close text-reset"
 					data-bs-dismiss="offcanvas"
-					aria-label="Close"
 				></button>
 			</div>
 
@@ -231,14 +229,14 @@
 				<h4 class="text-center">Site Navigation</h4>
 				<ul class="p-2 list-unstyled h6 text-center">
 					<li class="p-2">
-						<a [routerLink]="['/home']" data-bs-dismiss="offcanvas"
+						<a data-bs-dismiss="offcanvas" [routerLink]="['/home']"
 							>Home</a
 						>
 					</li>
 					<li class="p-2">
 						<a
+              data-bs-dismiss="offcanvas"
 							[routerLink]="['/site/about']"
-							data-bs-dismiss="offcanvas"
 							>About</a
 						>
 					</li>
@@ -275,5 +273,5 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</div>
 </div>
