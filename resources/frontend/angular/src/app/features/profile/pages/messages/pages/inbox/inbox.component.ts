@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs'
   styleUrls: ['./inbox.component.scss']
 })
 export class InboxComponent implements OnInit {
-  public inbox!: Inbox[];
+  public inbox: Inbox[] = [];
   private routeSub = new Subscription();
 
   constructor (

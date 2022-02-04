@@ -12,7 +12,7 @@
 
 .headers {
   color: #0275d8;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
   font-weight: 600;
   @media only screen and (max-width: 950px) {
     font-size: 80%;
@@ -33,6 +33,7 @@
     font-weight: 500;
 	}
 }
+
 
 .hide-sm {
   @media only screen and (max-width: 520px) {

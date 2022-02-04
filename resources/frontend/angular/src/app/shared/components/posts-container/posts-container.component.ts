@@ -45,7 +45,7 @@ export class PostsContainerComponent implements OnInit {
     this.postsService.vote(data).subscribe(
       (vote: any) => {
         this.notify.showInfo(vote.message, 'Success')
-        this.votedEvent.emit('voted!')
+        this.votedEvent.emit(vote)
         return vote
       },
       (error) => {

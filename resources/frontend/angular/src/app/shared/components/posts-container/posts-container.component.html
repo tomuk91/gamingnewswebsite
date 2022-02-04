@@ -12,10 +12,10 @@
 					<p class="card-text">{{ post.summary | slice: 0:50 }}...</p>
 				</div>
 			</div>
-			<div class="read-more text-center">
+			<div class="text-center">
 				<i
 					[routerLink]="['/posts', post.id]"
-					class="icon material-icons"
+					class="icon read-more material-icons"
 					>read_more</i
 				>
 			</div>

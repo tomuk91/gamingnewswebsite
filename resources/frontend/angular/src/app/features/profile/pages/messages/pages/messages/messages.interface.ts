@@ -6,7 +6,6 @@ export interface messages {
   deleted_from_receiver: boolean;
   deleted_from_sender: boolean;
   id: number;
-  is_seen: boolean;
   message: string;
   sender: {
     [index: number]: {
@@ -14,6 +13,7 @@ export interface messages {
       username: string;
     };
   };
+  is_seen: boolean;
   updated_at: Date;
   user_id: number;
 }

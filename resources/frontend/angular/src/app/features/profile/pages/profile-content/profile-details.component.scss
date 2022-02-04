@@ -16,7 +16,7 @@
 }
 
 .image-container {
-  height: 22rem;
+  max-height: 22rem;
   overflow: hidden;
 }
 
@@ -37,17 +37,27 @@ h6 {
 }
 
 .message-user {
+  animation: blinker 3s linear infinite;
   color: blue;
   font-size: 20px;
 	font-weight: 500;
 	margin-top: 20px;
 	cursor: pointer;
 
+  @keyframes blinker {
+    50% {
+      opacity: 0.2;
+    }
+  }
 	&:hover {
-		background-color: lightblue;
+    animation: blinkerFast 0.5s linear infinite;
 		border-radius: 5px;
-		padding: 2px;
 	}
+  @keyframes blinkerFast {
+    50% {
+      opacity: 0.2;
+    }
+  }
 }
 
 @media (min-width: 1399.98px) {

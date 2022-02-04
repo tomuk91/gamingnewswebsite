@@ -4,7 +4,7 @@
 			class="col-sm-12 col-md-16 col-lg-6 mt-4 rounded"
 			style="background-color: white"
 		>
-			<div class="image-container pt-3 px-3 m-1">
+			<div class="image-container pt-3">
 				<div *ngIf="!user[0].user_profile_picture">
 					<img
 						src="http://localhost:8000/storage/profile-picture.png"
@@ -21,13 +21,6 @@
 						alt="profile picture"
 					/>
 				</div>
-				<span
-					*ngIf="public === true"
-					class="message-user"
-					(click)="openDialogContact()"
-					href=""
-					>Create Conversation</span
-				>
 			</div>
 			<button
 				class="btn btn-md btn-dark m-2"
@@ -36,15 +29,21 @@
 			>
 				Edit Pic
 			</button>
-			<div class="d-inline" *ngIf="editPic">
+			<div class="d-inline my-4" *ngIf="editPic">
 				<app-profile-image-upload
 					[user]="user"
 				></app-profile-image-upload>
 			</div>
+      <span
+      *ngIf="public === true"
+      class="message-user"
+      (click)="openDialogContact()"
+      href=""
+      >Create Conversation</span
+    >
 		</div>
-
 		<div class="col-md">
-			<h4 class="text-center mt-4">My Profile</h4>
+			<h4 class="text-center">My Profile</h4>
 			<hr />
 			<div id="profileContainer">
 				<h6>Username:</h6>
